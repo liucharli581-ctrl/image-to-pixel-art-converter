@@ -640,7 +640,7 @@
       font-size: 17px;
     }
 
-    .feature p, .price p, .faq-item p, .seo-copy p {
+    .feature p, .price p, .faq-item p, .seo-copy p, .legal-copy p {
       margin: 0;
       color: var(--muted);
     }
@@ -755,10 +755,48 @@
       font-size: 17px;
     }
 
+    .legal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .legal-copy {
+      border: 2px solid rgba(23,32,29,.10);
+      border-radius: 6px;
+      background: rgba(255,255,255,.72);
+      padding: 18px;
+    }
+
+    .legal-copy h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .legal-copy p + p {
+      margin-top: 10px;
+    }
+
     footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
       padding: 32px 0 44px;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--ink);
+      font-weight: 750;
+      text-decoration: none;
     }
 
     .toast {
@@ -787,7 +825,7 @@
       .tool { grid-template-columns: 1fr; }
       .stage { min-height: auto; }
       .compare-grid { grid-template-columns: 1fr; }
-      .grid-3, .steps, .longtail-list { grid-template-columns: 1fr 1fr; }
+      .grid-3, .steps, .longtail-list, .legal-grid { grid-template-columns: 1fr 1fr; }
       .faq { grid-template-columns: 1fr; }
     }
 
@@ -795,7 +833,7 @@
       .wrap { width: min(100% - 24px, 1160px); }
       .nav { display: none; }
       .hero { padding-top: 20px; }
-      .toggles, .preset-row, .grid-3, .steps, .longtail-list { grid-template-columns: 1fr; }
+      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid { grid-template-columns: 1fr; }
       .range-row { grid-template-columns: 1fr 76px; }
       .stage-head, .stage-foot { align-items: flex-start; flex-direction: column; }
       .stats { justify-content: flex-start; }
@@ -1061,10 +1099,31 @@
         <p>An image to pixel art converter helps you transform a regular picture into a retro, low-resolution style. This tool is designed for quick experiments: upload an image, adjust the pixel size, reduce the palette, preview the result instantly, and download the pixel art as PNG. It works well for avatars, icons, game mockups, cross-stitch references, bead art planning, social posts, and simple 8-bit style graphics.</p>
       </div>
     </section>
+
+    <section id="legal">
+      <div class="wrap legal-grid">
+        <div class="legal-copy" id="privacy">
+          <h2>Privacy Policy</h2>
+          <p>The basic image to pixel art converter runs locally in your browser using HTML canvas. Your uploaded image is not sent to our server for the free local conversion flow.</p>
+          <p>If optional AI restyling or payment features are added later, they will require a separate consent step and may use third-party processors such as an AI provider or payment provider.</p>
+          <p>We may use basic hosting logs provided by GitHub Pages. Do not upload images you do not have the right to use.</p>
+        </div>
+        <div class="legal-copy" id="terms">
+          <h2>Terms of Use</h2>
+          <p>This tool is provided as-is for converting images into pixel art previews and PNG downloads. You are responsible for the images you upload and the way you use the exported files.</p>
+          <p>The free local converter does not grant rights to third-party images. Commercial use depends on the rights and licenses of your original source image.</p>
+          <p>Paid AI credits, Batch/API access, and checkout are not active yet. Pricing shown on this page is a product plan preview until payment links are enabled.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="wrap">
     <span>PixelArtConvert - Free image to pixel art converter. No signup, no watermark.</span>
+    <nav class="footer-links" aria-label="Legal links">
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms of Use</a>
+    </nav>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
