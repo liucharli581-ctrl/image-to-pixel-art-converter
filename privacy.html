@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy - Image to Pixel Art Converter</title>
+  <meta name="description" content="Privacy Policy for Image to Pixel Art Converter. Learn how local conversion, optional AI restyling, payments, and hosting logs are handled.">
+  <link rel="canonical" href="https://image-to-pixel-art-converter.vercel.app/privacy.html">
+  <link rel="stylesheet" href="pixel-style-kit.css">
+  <style>
+    :root {
+      --ink: #17201d;
+      --muted: #5d6965;
+      --line: #dbe3df;
+      --paper: #fbfaf6;
+      --panel: #ffffff;
+      --mint: #28b67a;
+      --shadow: 0 16px 40px rgba(34, 48, 42, .12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(23,32,29,.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23,32,29,.028) 1px, transparent 1px),
+        var(--paper);
+      background-size: 18px 18px, 18px 18px, auto;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(860px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0 12px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .logo span:nth-child(1) { background: #28b67a; }
+    .logo span:nth-child(2) { background: #f6c85f; }
+    .logo span:nth-child(3) { background: #73a9ff; }
+    .logo span:nth-child(4) { background: #f07167; }
+    .logo span:nth-child(5) { background: #7566d8; }
+    .logo span:nth-child(6) { background: #fbfaf6; }
+
+    main {
+      padding: 36px 0 54px;
+    }
+
+    .doc {
+      border: 2px solid rgba(23,32,29,.12);
+      border-radius: 6px;
+      background: rgba(255,255,255,.86);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 42px);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 28px 0 8px;
+      font-size: 22px;
+    }
+
+    p, li {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .updated {
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 28px 0 44px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer a {
+      font-weight: 750;
+      color: var(--ink);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="/">
+      <span class="logo icon-pixel" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
+      <span>PixelArtConvert</span>
+    </a>
+  </header>
+
+  <main class="wrap">
+    <article class="doc card-pixel">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: July 5, 2026</p>
+
+      <p>The basic image to pixel art converter runs locally in your browser using HTML canvas. Your uploaded image is not sent to our server for the free local conversion flow.</p>
+
+      <h2>Local image processing</h2>
+      <p>When you use the free converter, the image file is handled by your browser. The tool uses canvas-based processing to create the pixel art preview and PNG download on your device.</p>
+
+      <h2>Optional paid and AI flows</h2>
+      <p>Optional AI restyling and paid checkout require a separate action. Payments are processed by Creem, and AI jobs may use a third-party AI provider after you explicitly start that flow.</p>
+
+      <h2>Hosting and logs</h2>
+      <p>We may use basic hosting logs provided by Vercel, such as request metadata, error logs, and security-related logs needed to operate the website.</p>
+
+      <h2>Your responsibility</h2>
+      <p>Do not upload images you do not have the right to use. You are responsible for the images you choose to process and for how you use exported files.</p>
+
+      <h2>Contact</h2>
+      <p>For privacy questions, contact the site operator through the email or support channel provided during checkout or account setup.</p>
+    </article>
+  </main>
+
+  <footer class="wrap">
+    <a href="/">Back to converter</a> · <a href="/terms.html">Terms of Use</a>
+  </footer>
+</body>
+</html>
