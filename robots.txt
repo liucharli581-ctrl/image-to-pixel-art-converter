@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://image-to-pixel-art-converter.vercel.app/sitemap.xml
+Sitemap: https://photo2pixelart.com/sitemap.xml

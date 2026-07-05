@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.photo2pixelart.com"
+        }
+      ],
+      "destination": "https://photo2pixelart.com/$1",
+      "permanent": true
+    }
+  ]
+}
