@@ -11,9 +11,11 @@
   <meta property="og:description" content="Turn photos and images into clean pixel art online. Free, fast, no signup.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://image-to-pixel-art-converter.vercel.app/">
+  <meta property="og:image" content="https://image-to-pixel-art-converter.vercel.app/preview.png">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Image to Pixel Art Converter">
   <meta name="twitter:description" content="Turn photos and images into clean pixel art online. Free, fast, no signup.">
+  <meta name="twitter:image" content="https://image-to-pixel-art-converter.vercel.app/preview.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -205,6 +207,60 @@
       font-size: clamp(18px, 2.4vw, 23px);
     }
 
+    .hero-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+      max-width: 860px;
+    }
+
+    .sample-card {
+      border: 2px solid rgba(23,32,29,.14);
+      border-radius: 6px;
+      background: rgba(255,255,255,.78);
+      box-shadow: 4px 4px 0 rgba(23,32,29,.08);
+      overflow: hidden;
+    }
+
+    .sample-card b {
+      display: block;
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .mini-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(23,32,29,.16);
+    }
+
+    .mini-art {
+      aspect-ratio: 1 / 1;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .mini-art.pixelated {
+      grid-template-columns: repeat(8, 1fr);
+      image-rendering: pixelated;
+    }
+
+    .mini-art i { min-height: 8px; }
+
+    .mini-caption {
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 10px 9px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 750;
+    }
+
     .tool {
       display: grid;
       grid-template-columns: minmax(300px, 420px) 1fr;
@@ -350,6 +406,7 @@
 
     .actions {
       display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 18px;
     }
@@ -467,6 +524,44 @@
       color: var(--ink);
       text-decoration: none;
       font-weight: 850;
+    }
+
+    .history {
+      display: none;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 10px;
+    }
+
+    .history.show {
+      display: block;
+    }
+
+    .history-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .history-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+    }
+
+    .history-list img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border: 1px solid rgba(23,32,29,.14);
+      border-radius: 4px;
+      object-fit: contain;
+      image-rendering: pixelated;
+      background: #f3f1eb;
     }
 
     .stage {
@@ -704,6 +799,26 @@
       box-shadow: 4px 4px 0 #17372d, 9px 9px 0 var(--sun);
     }
 
+    .ai-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin: 14px 0 4px;
+    }
+
+    .ai-demo .mini-art {
+      border: 1px solid rgba(23,32,29,.16);
+      border-radius: 4px;
+    }
+
+    .ai-demo-label {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
     .price-action {
       width: 100%;
       margin-top: 18px;
@@ -837,22 +952,8 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    .success-banner {
-      display: none;
-      border: 2px solid rgba(15,124,85,.34);
-      border-radius: 6px;
-      background: rgba(40,182,122,.12);
-      padding: 12px 14px;
-      margin: 0 auto 20px;
-      color: #254139;
-      font-weight: 750;
-    }
-
-    .success-banner.show {
-      display: block;
-    }
-
     @media (max-width: 900px) {
+      .hero-gallery { grid-template-columns: 1fr; }
       .tool { grid-template-columns: 1fr; }
       .stage { min-height: auto; }
       .compare-grid { grid-template-columns: 1fr; }
@@ -865,6 +966,7 @@
       .nav { display: none; }
       .hero { padding-top: 20px; }
       .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid { grid-template-columns: 1fr; }
+      .actions { grid-template-columns: 1fr; }
       .range-row { grid-template-columns: 1fr 76px; }
       .stage-head, .stage-foot { align-items: flex-start; flex-direction: column; }
       .stats { justify-content: flex-start; }
@@ -887,10 +989,35 @@
 
   <main>
     <div class="wrap hero">
-      <div class="success-banner" id="successBanner">Payment complete. Your Creem checkout was successful.</div>
       <span class="eyebrow"><span class="badge-pixel">FREE</span> online pixel art converter</span>
       <h1>Image to Pixel Art Converter</h1>
       <p class="lead">Turn any image, photo, or picture into clean pixel art online. Tune pixel size, color count, PICO-8, Game Boy, NES palettes, and grid, then download a crisp PNG.</p>
+      <div class="hero-gallery" aria-label="Before and after pixel art examples">
+        <div class="sample-card">
+          <b>Avatar</b>
+          <div class="mini-compare">
+            <div class="mini-art" data-mini="avatar-soft"></div>
+            <div class="mini-art pixelated" data-mini="avatar-pixel"></div>
+          </div>
+          <div class="mini-caption"><span>Photo</span><span>Pixel art</span></div>
+        </div>
+        <div class="sample-card">
+          <b>Landscape</b>
+          <div class="mini-compare">
+            <div class="mini-art" data-mini="land-soft"></div>
+            <div class="mini-art pixelated" data-mini="land-pixel"></div>
+          </div>
+          <div class="mini-caption"><span>Image</span><span>8-bit</span></div>
+        </div>
+        <div class="sample-card">
+          <b>Craft grid</b>
+          <div class="mini-compare">
+            <div class="mini-art" data-mini="craft-soft"></div>
+            <div class="mini-art pixelated" data-mini="craft-pixel"></div>
+          </div>
+          <div class="mini-caption"><span>Picture</span><span>Grid-ready</span></div>
+        </div>
+      </div>
     </div>
 
     <div class="wrap tool" id="tool">
@@ -952,9 +1079,14 @@
 
         <div class="actions">
           <button class="btn primary btn-pixel" id="download" type="button" disabled>Download PNG</button>
+          <button class="btn btn-pixel" id="copyPng" type="button" disabled>Copy PNG</button>
         </div>
         <div class="download-hint" id="downloadHint">Upload an image to enable download.</div>
         <div class="usage" id="usage"><b>Free local conversions:</b> 0 completed</div>
+        <div class="history" id="history">
+          <div class="history-head"><span>Recent local exports</span><span id="historyCount">0</span></div>
+          <div class="history-list" id="historyList"></div>
+        </div>
         <div class="nudge" id="downloadNudge">
           <b>Nice result. Want to go further?</b>
           Keep using the free converter, or unlock AI restyles for more visual styles and Batch/API for repeated exports.
@@ -1074,6 +1206,11 @@
             <span class="badge-pixel">AI Credits</span>
             <strong>$5</strong>
             <p>Optional server-side AI restyling for users who want generated pixel art, not just conversion.</p>
+            <div class="ai-demo" aria-label="AI restyle visual example">
+              <div class="mini-art" data-mini="avatar-soft"></div>
+              <div class="mini-art pixelated" data-mini="ai-pixel"></div>
+            </div>
+            <div class="ai-demo-label"><span>Input</span><span>AI restyle</span></div>
             <ul>
               <li>50 AI restyle credits</li>
               <li>Avatar, sprite, and icon styles</li>
@@ -1179,6 +1316,7 @@
     const stats = document.getElementById('stats');
     const swatches = document.getElementById('swatches');
     const download = document.getElementById('download');
+    const copyPng = document.getElementById('copyPng');
     const sample = document.getElementById('sample');
     const toast = document.getElementById('toast');
     const pixelSizeOut = document.getElementById('pixelSizeOut');
@@ -1194,8 +1332,10 @@
     const usage = document.getElementById('usage');
     const downloadNudge = document.getElementById('downloadNudge');
     const downloadHint = document.getElementById('downloadHint');
+    const history = document.getElementById('history');
+    const historyList = document.getElementById('historyList');
+    const historyCount = document.getElementById('historyCount');
     const checkoutStatus = document.getElementById('checkoutStatus');
-    const successBanner = document.getElementById('successBanner');
 
     const palettes = {
       pico8: ['#000000','#1D2B53','#7E2553','#008751','#AB5236','#5F574F','#C2C3C7','#FFF1E8','#FF004D','#FFA300','#FFEC27','#00E436','#29ADFF','#83769C','#FF77A8','#FFCCAA'],
@@ -1215,6 +1355,66 @@
       const blocks = pattern.map((n) => `<i style="background:${colors[n]}"></i>`).join('');
       empty.innerHTML = blocks;
       originalEmpty.innerHTML = blocks;
+    }
+
+    function renderMiniArt() {
+      const miniPalettes = {
+        'avatar-soft': ['#f7cfbd','#f7cfbd','#f3b79b','#7b4835','#7b4835','#fff6da','#73a9ff','#f07167'],
+        'avatar-pixel': ['#f7cfbd','#7b4835','#17201d','#fff6da','#28b67a','#f07167'],
+        'land-soft': ['#73a9ff','#9bc5ff','#fff1c9','#28b67a','#0f7c55','#7566d8','#17201d'],
+        'land-pixel': ['#73a9ff','#f6c85f','#28b67a','#0f7c55','#7566d8','#17201d'],
+        'craft-soft': ['#fbfaf6','#f6c85f','#f07167','#28b67a','#73a9ff','#7566d8'],
+        'craft-pixel': ['#fbfaf6','#f6c85f','#f07167','#28b67a','#73a9ff','#17201d'],
+        'ai-pixel': ['#17201d','#f6c85f','#f07167','#28b67a','#73a9ff','#7566d8','#fff6da']
+      };
+      const patterns = {
+        avatar: [1,1,1,2,2,1,1,1,1,6,6,2,2,6,6,1,6,6,0,0,0,0,6,6,6,0,0,5,5,0,0,6,6,0,3,0,0,3,0,6,6,0,0,4,4,0,0,6,1,6,0,0,0,0,6,1,1,1,6,6,6,6,1,1],
+        land: [0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,1,0,0,0,5,5,2,2,5,5,0,5,5,3,3,3,3,5,5,5,3,3,4,4,3,3,5,3,3,4,4,4,4,3,3,6,6,6,6,6,6,6,6],
+        craft: [0,0,1,1,1,1,0,0,0,1,2,2,2,2,1,0,1,2,3,3,3,3,2,1,1,2,3,4,4,3,2,1,1,2,3,4,4,3,2,1,1,2,3,3,3,3,2,1,0,1,2,2,2,2,1,0,0,0,1,1,1,1,0,0]
+      };
+      document.querySelectorAll('[data-mini]').forEach((node) => {
+        const name = node.dataset.mini;
+        const paletteSet = miniPalettes[name];
+        const key = name.includes('land') ? 'land' : name.includes('craft') ? 'craft' : 'avatar';
+        node.innerHTML = patterns[key].map((n) => `<i style="background:${paletteSet[n % paletteSet.length]}"></i>`).join('');
+      });
+    }
+
+    function getHistory() {
+      try {
+        return JSON.parse(localStorage.getItem('pixelArtHistory') || '[]');
+      } catch {
+        return [];
+      }
+    }
+
+    function renderHistory() {
+      const items = getHistory();
+      historyCount.textContent = String(items.length);
+      history.classList.toggle('show', items.length > 0);
+      historyList.innerHTML = items.map((src) => `<img src="${src}" alt="Recent pixel art export">`).join('');
+    }
+
+    function saveHistory() {
+      if (!lastImageData) return;
+      const thumb = document.createElement('canvas');
+      thumb.width = 96;
+      thumb.height = 96;
+      const thumbCtx = thumb.getContext('2d');
+      thumbCtx.imageSmoothingEnabled = false;
+      thumbCtx.fillStyle = '#fbfaf6';
+      thumbCtx.fillRect(0, 0, 96, 96);
+      const ratio = Math.min(96 / canvas.width, 96 / canvas.height);
+      const w = Math.max(1, Math.round(canvas.width * ratio));
+      const h = Math.max(1, Math.round(canvas.height * ratio));
+      thumbCtx.drawImage(canvas, Math.floor((96 - w) / 2), Math.floor((96 - h) / 2), w, h);
+      const items = [thumb.toDataURL('image/png'), ...getHistory()].slice(0, 4);
+      try {
+        localStorage.setItem('pixelArtHistory', JSON.stringify(items));
+        renderHistory();
+      } catch {
+        // Ignore storage quota limits; conversion still works.
+      }
     }
 
     function showToast(message) {
@@ -1439,6 +1639,7 @@
       empty.hidden = true;
       resultMeta.textContent = `${smallW}x${smallH} pixels`;
       download.disabled = false;
+      copyPng.disabled = false;
       downloadHint.textContent = 'Ready to download as PNG.';
       stats.innerHTML = `
         <span>Source ${sourceImage.naturalWidth}x${sourceImage.naturalHeight}</span>
@@ -1533,6 +1734,7 @@
       link.download = `${sourceName}-pixel-art.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
+      saveHistory();
       downloadNudge.classList.add('show');
       downloadNudge.innerHTML = `
         <b>Nice result. Want to go further?</b>
@@ -1543,6 +1745,26 @@
         </div>
       `;
       showToast('PNG downloaded. Batch and AI options are below.');
+    }
+
+    async function copyPngToClipboard() {
+      if (!lastImageData || !navigator.clipboard || !window.ClipboardItem) {
+        showToast('Copy is not supported in this browser. Download PNG instead.');
+        return;
+      }
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          showToast('Could not prepare PNG for clipboard.');
+          return;
+        }
+        try {
+          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          saveHistory();
+          showToast('PNG copied to clipboard.');
+        } catch {
+          showToast('Clipboard permission was blocked. Download PNG instead.');
+        }
+      }, 'image/png');
     }
 
     ['dragenter', 'dragover'].forEach((eventName) => {
@@ -1562,6 +1784,7 @@
     drop.addEventListener('drop', (event) => loadFile(event.dataTransfer.files[0]));
     fileInput.addEventListener('change', (event) => loadFile(event.target.files[0]));
     download.addEventListener('click', downloadPng);
+    copyPng.addEventListener('click', copyPngToClipboard);
     sample.addEventListener('click', createSample);
 
     [pixelSize, colorCount, scale, palette, grid, transparent].forEach((control) => {
@@ -1594,12 +1817,9 @@
       startCheckout(checkoutTrigger.dataset.checkout);
     });
 
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('checkout') === 'success') {
-      successBanner.classList.add('show');
-    }
-
     fillEmpty();
+    renderMiniArt();
+    renderHistory();
     updateOutputs();
   </script>
 </body>
