@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://liucharli581-ctrl.github.io/image-to-pixel-art-converter/sitemap.xml
+Sitemap: https://image-to-pixel-art-converter.vercel.app/sitemap.xml
