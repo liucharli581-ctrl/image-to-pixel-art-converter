@@ -1693,7 +1693,8 @@
       img.src = url;
     }
 
-    function createSample() {
+    function createSample(options = {}) {
+      const { count = true, notify = true } = options;
       const c = document.createElement('canvas');
       c.width = 520;
       c.height = 380;
@@ -1726,6 +1727,13 @@
       s.fillStyle = '#fbfaf6';
       s.fillRect(235, 242, 20, 24);
       s.fillRect(265, 242, 20, 24);
+      s.fillStyle = '#fff6da';
+      s.fillRect(314, 238, 42, 50);
+      s.fillStyle = '#f07167';
+      s.fillRect(306, 222, 58, 24);
+      s.fillStyle = '#28b67a';
+      s.fillRect(372, 246, 24, 42);
+      s.fillRect(404, 232, 18, 56);
       const img = new Image();
       img.onload = () => {
         sourceImage = img;
@@ -1736,7 +1744,8 @@
         originalMeta.textContent = `${img.naturalWidth}x${img.naturalHeight}`;
         downloadNudge.classList.remove('show');
         pixelate();
-        countConversion();
+        if (count) countConversion();
+        if (notify) showToast('Sample image converted to pixel art.');
       };
       img.src = c.toDataURL('image/png');
     }
@@ -1798,7 +1807,7 @@
     fileInput.addEventListener('change', (event) => loadFile(event.target.files[0]));
     download.addEventListener('click', downloadPng);
     copyPng.addEventListener('click', copyPngToClipboard);
-    sample.addEventListener('click', createSample);
+    sample.addEventListener('click', () => createSample());
 
     [pixelSize, colorCount, scale, palette, grid, transparent].forEach((control) => {
       control.addEventListener('input', () => {
@@ -1834,6 +1843,7 @@
     renderMiniArt();
     renderHistory();
     updateOutputs();
+    createSample({ count: false, notify: false });
   </script>
 </body>
 </html>
