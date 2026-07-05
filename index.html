@@ -704,6 +704,22 @@
       box-shadow: 4px 4px 0 #17372d, 9px 9px 0 var(--sun);
     }
 
+    .price-action {
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    .checkout-status {
+      display: none;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .checkout-status.show {
+      display: block;
+    }
+
     .steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -821,6 +837,21 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    .success-banner {
+      display: none;
+      border: 2px solid rgba(15,124,85,.34);
+      border-radius: 6px;
+      background: rgba(40,182,122,.12);
+      padding: 12px 14px;
+      margin: 0 auto 20px;
+      color: #254139;
+      font-weight: 750;
+    }
+
+    .success-banner.show {
+      display: block;
+    }
+
     @media (max-width: 900px) {
       .tool { grid-template-columns: 1fr; }
       .stage { min-height: auto; }
@@ -856,6 +887,7 @@
 
   <main>
     <div class="wrap hero">
+      <div class="success-banner" id="successBanner">Payment complete. Your Creem checkout was successful.</div>
       <span class="eyebrow"><span class="badge-pixel">FREE</span> online pixel art converter</span>
       <h1>Image to Pixel Art Converter</h1>
       <p class="lead">Turn any image, photo, or picture into clean pixel art online. Tune pixel size, color count, PICO-8, Game Boy, NES palettes, and grid, then download a crisp PNG.</p>
@@ -927,8 +959,8 @@
           <b>Nice result. Want to go further?</b>
           Keep using the free converter, or unlock AI restyles for more visual styles and Batch/API for repeated exports.
           <div class="nudge-actions">
-            <a href="#pricing">See AI credits</a>
-            <a href="#pricing">Compare Batch/API</a>
+            <a href="#pricing" data-checkout="ai">Buy AI credits</a>
+            <a href="#pricing" data-checkout="batch">Start Batch/API</a>
           </div>
         </div>
       </aside>
@@ -1036,6 +1068,7 @@
               <li>Retro palettes and grid preview</li>
               <li>No signup and no watermark</li>
             </ul>
+            <button class="btn btn-pixel price-action" type="button" disabled>Active by default</button>
           </div>
           <div class="price card-pixel highlight">
             <span class="badge-pixel">AI Credits</span>
@@ -1046,6 +1079,7 @@
               <li>Avatar, sprite, and icon styles</li>
               <li>Explicit upload consent for AI jobs</li>
             </ul>
+            <button class="btn primary btn-pixel price-action" type="button" data-checkout="ai">Buy AI Credits</button>
           </div>
           <div class="price card-pixel">
             <span class="badge-pixel">Batch / API</span>
@@ -1056,8 +1090,10 @@
               <li>Saved presets and API access</li>
               <li>Priority export queue</li>
             </ul>
+            <button class="btn btn-pixel price-action" type="button" data-checkout="batch">Start Batch/API</button>
           </div>
         </div>
+        <div class="checkout-status" id="checkoutStatus" role="status" aria-live="polite"></div>
       </div>
     </section>
 
@@ -1105,14 +1141,14 @@
         <div class="legal-copy" id="privacy">
           <h2>Privacy Policy</h2>
           <p>The basic image to pixel art converter runs locally in your browser using HTML canvas. Your uploaded image is not sent to our server for the free local conversion flow.</p>
-          <p>If optional AI restyling or payment features are added later, they will require a separate consent step and may use third-party processors such as an AI provider or payment provider.</p>
+          <p>Optional AI restyling and paid checkout require a separate action. Payments are processed by Creem, and AI jobs may use a third-party AI provider after you explicitly start that flow.</p>
           <p>We may use basic hosting logs provided by GitHub Pages. Do not upload images you do not have the right to use.</p>
         </div>
         <div class="legal-copy" id="terms">
           <h2>Terms of Use</h2>
           <p>This tool is provided as-is for converting images into pixel art previews and PNG downloads. You are responsible for the images you upload and the way you use the exported files.</p>
           <p>The free local converter does not grant rights to third-party images. Commercial use depends on the rights and licenses of your original source image.</p>
-          <p>Paid AI credits, Batch/API access, and checkout are not active yet. Pricing shown on this page is a product plan preview until payment links are enabled.</p>
+          <p>Paid AI credits and Batch/API checkout are processed by Creem. Access fulfillment may require a follow-up email or account setup while this early version is being launched.</p>
         </div>
       </div>
     </section>
@@ -1158,6 +1194,8 @@
     const usage = document.getElementById('usage');
     const downloadNudge = document.getElementById('downloadNudge');
     const downloadHint = document.getElementById('downloadHint');
+    const checkoutStatus = document.getElementById('checkoutStatus');
+    const successBanner = document.getElementById('successBanner');
 
     const palettes = {
       pico8: ['#000000','#1D2B53','#7E2553','#008751','#AB5236','#5F574F','#C2C3C7','#FFF1E8','#FF004D','#FFA300','#FFEC27','#00E436','#29ADFF','#83769C','#FF77A8','#FFCCAA'],
@@ -1186,6 +1224,40 @@
       showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
+    function showCheckoutStatus(message) {
+      checkoutStatus.textContent = message;
+      checkoutStatus.classList.add('show');
+    }
+
+    async function startCheckout(plan) {
+      showCheckoutStatus('Opening secure Creem checkout...');
+      document.querySelectorAll('[data-checkout]').forEach((button) => {
+        button.setAttribute('aria-busy', 'true');
+      });
+
+      try {
+        const response = await fetch('/api/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plan })
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok || !data.checkoutUrl) {
+          throw new Error(data.error || 'Checkout is not available yet.');
+        }
+
+        window.location.href = data.checkoutUrl;
+      } catch (error) {
+        showCheckoutStatus(error.message || 'Checkout is not available yet.');
+        showToast('Creem checkout needs configuration.');
+      } finally {
+        document.querySelectorAll('[data-checkout]').forEach((button) => {
+          button.removeAttribute('aria-busy');
+        });
+      }
+    }
+
     function updateOutputs() {
       pixelSizeOut.value = `${pixelSize.value} px wide`;
       colorCountOut.value = colorCount.value;
@@ -1205,8 +1277,8 @@
           <b>You have converted 5 images locally.</b>
           Try AI Restyle when you want generated pixel art variations, or Batch/API when you need the same settings across many files.
           <div class="nudge-actions">
-            <a href="#pricing">Try AI credits</a>
-            <a href="#pricing">Batch/API options</a>
+            <a href="#pricing" data-checkout="ai">Try AI credits</a>
+            <a href="#pricing" data-checkout="batch">Batch/API options</a>
           </div>
         `;
       }
@@ -1466,8 +1538,8 @@
         <b>Nice result. Want to go further?</b>
         Keep using the free converter, or unlock AI restyles for more visual styles and Batch/API for repeated exports.
         <div class="nudge-actions">
-          <a href="#pricing">See AI credits</a>
-          <a href="#pricing">Compare Batch/API</a>
+          <a href="#pricing" data-checkout="ai">See AI credits</a>
+          <a href="#pricing" data-checkout="batch">Compare Batch/API</a>
         </div>
       `;
       showToast('PNG downloaded. Batch and AI options are below.');
@@ -1514,6 +1586,18 @@
     document.querySelectorAll('[data-preset]').forEach((button) => {
       button.addEventListener('click', () => applyPreset(button.dataset.preset));
     });
+
+    document.addEventListener('click', (event) => {
+      const checkoutTrigger = event.target.closest('[data-checkout]');
+      if (!checkoutTrigger) return;
+      event.preventDefault();
+      startCheckout(checkoutTrigger.dataset.checkout);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('checkout') === 'success') {
+      successBanner.classList.add('show');
+    }
 
     fillEmpty();
     updateOutputs();
