@@ -119,11 +119,20 @@
     }
 
     .topbar {
+      position: sticky;
+      top: 10px;
+      z-index: 30;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 18px 0;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border: 2px solid rgba(23,32,29,.12);
+      border-radius: 8px;
+      background: rgba(251,250,246,.86);
+      box-shadow: 4px 4px 0 rgba(23,32,29,.08), 0 14px 32px rgba(34,48,42,.10);
+      backdrop-filter: blur(12px);
     }
 
     .brand {
@@ -156,6 +165,8 @@
     .nav {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
       gap: 18px;
       color: var(--muted);
       font-size: 14px;
@@ -963,7 +974,9 @@
 
     @media (max-width: 620px) {
       .wrap { width: min(100% - 24px, 1160px); }
-      .nav { display: none; }
+      .topbar { align-items: flex-start; gap: 12px; }
+      .brand { flex: 0 0 auto; }
+      .nav { gap: 10px; font-size: 12px; }
       .hero { padding-top: 20px; }
       .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid { grid-template-columns: 1fr; }
       .actions { grid-template-columns: 1fr; }
