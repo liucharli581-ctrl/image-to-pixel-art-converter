@@ -1,10 +1,3 @@
-const CREEM_API_BASE = process.env.CREEM_API_BASE || "https://api.creem.io/v1";
-
-const products = {
-  ai: process.env.CREEM_AI_PRODUCT_ID,
-  batch: process.env.CREEM_BATCH_PRODUCT_ID
-};
-
 function json(res, status, body) {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -12,37 +5,43 @@ function json(res, status, body) {
 }
 
 module.exports = async function handler(req, res) {
-  if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
-    return json(res, 405, { error: "Method not allowed" });
-  }
-
-  if (!process.env.CREEM_API_KEY) {
-    return json(res, 500, { error: "Creem API key is not configured." });
-  }
-
-  let body = {};
   try {
-    body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
-  } catch {
-    return json(res, 400, { error: "Invalid JSON body." });
-  }
+    if (req.method !== "POST") {
+      res.setHeader("Allow", "POST");
+      return json(res, 405, { error: "Method not allowed" });
+    }
 
-  const plan = body.plan === "batch" ? "batch" : body.plan === "ai" ? "ai" : null;
-  if (!plan) {
-    return json(res, 400, { error: "Unknown checkout plan." });
-  }
+    const creemApiBase = process.env.CREEM_API_BASE || "https://api.creem.io/v1";
+    const products = {
+      ai: process.env.CREEM_AI_PRODUCT_ID,
+      batch: process.env.CREEM_BATCH_PRODUCT_ID
+    };
 
-  const productId = products[plan];
-  if (!productId) {
-    return json(res, 500, { error: `Creem product ID is not configured for ${plan}.` });
-  }
+    if (!process.env.CREEM_API_KEY) {
+      return json(res, 500, { error: "Creem API key is not configured." });
+    }
 
-  const origin = req.headers.origin || `https://${req.headers.host}`;
-  const requestId = `${plan}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+    let body = {};
+    try {
+      body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
+    } catch {
+      return json(res, 400, { error: "Invalid JSON body." });
+    }
 
-  try {
-    const creemResponse = await fetch(`${CREEM_API_BASE}/checkouts`, {
+    const plan = body.plan === "batch" ? "batch" : body.plan === "ai" ? "ai" : null;
+    if (!plan) {
+      return json(res, 400, { error: "Unknown checkout plan." });
+    }
+
+    const productId = products[plan];
+    if (!productId) {
+      return json(res, 500, { error: `Creem product ID is not configured for ${plan}.` });
+    }
+
+    const origin = req.headers.origin || `https://${req.headers.host}`;
+    const requestId = `${plan}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+
+    const creemResponse = await fetch(`${creemApiBase}/checkouts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
