@@ -852,10 +852,13 @@
 
     .compare-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 14px;
       width: 100%;
       align-items: stretch;
+    }
+    .preview-card:first-child {
+      display: none;
     }
 
     .preview-card {
@@ -1690,7 +1693,6 @@
       .tool { grid-template-columns: 1fr; }
       .stage { min-height: auto; }
       .compare-grid { grid-template-columns: 1fr; }
-      .how-layout { grid-template-columns: 1fr; }
       .grid-3, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr 1fr; }
       .share-row { grid-template-columns: repeat(3, 1fr); margin-top: -22px; }
       .faq { grid-template-columns: 1fr; }
@@ -1887,48 +1889,6 @@
         </div>
       </div>
     </div>
-    <div class="divider-pixel" aria-hidden="true"></div>
-
-    <div class="wrap share-row label-pixel" aria-label="Share Photo2PixelArt">
-      <button type="button" id="copyLink">Copy link</button>
-      <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">Facebook</a>
-      <a class="x" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">X</a>
-      <a class="whatsapp" href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">Pinterest</a>
-    </div>
-
-    <section class="how-section">
-      <div class="wrap how-layout">
-        <div class="how-copy">
-          <h2 class="section-title title-accent">How to use this image to pixel art converter</h2>
-          <p>Start with a photo, choose a style, tune the pixel grid, then export a crisp PNG. The core conversion stays fast because it runs directly in your browser.</p>
-        </div>
-        <div class="steps">
-          <div class="step step-pixel">
-            <span class="step-icon">UP</span>
-            <b>Upload</b>
-            <p>Drop a photo, image, or picture into the converter.</p>
-          </div>
-          <div class="step step-pixel">
-            <span class="step-icon">PX</span>
-            <b>Adjust</b>
-            <p>Pick a preset or tune pixel width, colors, scale, palette, and grid.</p>
-          </div>
-          <div class="step step-pixel">
-            <span class="step-icon">AB</span>
-            <b>Compare</b>
-            <p>Check the original image beside the live pixel art result.</p>
-          </div>
-          <div class="step step-pixel">
-            <span class="step-icon">PNG</span>
-            <b>Download</b>
-            <p>Export the finished pixel art as a crisp PNG file.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="showcase">
       <div class="wrap">
         <h2 class="section-title title-accent">Real Photo to Pixel Art Showcase</h2>
@@ -1969,6 +1929,47 @@
             <h3>Nature Image to Pixel Art</h3>
             <p>Reduce mountains, forests, and sunset gradients into readable pixel scenery with a limited palette.</p>
           </article>
+        </div>
+      </div>
+    </section>
+    <div class="divider-pixel" aria-hidden="true"></div>
+
+    <div class="wrap share-row label-pixel" aria-label="Share Photo2PixelArt">
+      <button type="button" id="copyLink">Copy link</button>
+      <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">Facebook</a>
+      <a class="x" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">X</a>
+      <a class="whatsapp" href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">Pinterest</a>
+    </div>
+
+    <section class="how-section">
+      <div class="wrap how-layout">
+        <div class="how-copy">
+          <h2 class="section-title title-accent">How to use this image to pixel art converter</h2>
+          <p>Start with a photo, choose a style, tune the pixel grid, then export a crisp PNG. The core conversion stays fast because it runs directly in your browser.</p>
+        </div>
+        <div class="steps">
+          <div class="step step-pixel">
+            <span class="step-icon">UP</span>
+            <b>Upload</b>
+            <p>Drop a photo, image, or picture into the converter.</p>
+          </div>
+          <div class="step step-pixel">
+            <span class="step-icon">PX</span>
+            <b>Adjust</b>
+            <p>Pick a preset or tune pixel width, colors, scale, palette, and grid.</p>
+          </div>
+          <div class="step step-pixel">
+            <span class="step-icon">AB</span>
+            <b>Compare</b>
+            <p>Check the original image beside the live pixel art result.</p>
+          </div>
+          <div class="step step-pixel">
+            <span class="step-icon">PNG</span>
+            <b>Download</b>
+            <p>Export the finished pixel art as a crisp PNG file.</p>
+          </div>
         </div>
       </div>
     </section>
