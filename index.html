@@ -2271,90 +2271,21 @@
       });
     }
 
-    function drawHeroSource() {
-      const c = document.createElement('canvas');
-      c.width = 640;
-      c.height = 480;
-      const s = c.getContext('2d');
-      const sky = s.createLinearGradient(0, 0, 0, 260);
-      sky.addColorStop(0, '#9fd3ff');
-      sky.addColorStop(1, '#fff0c7');
-      s.fillStyle = sky;
-      s.fillRect(0, 0, c.width, c.height);
-      s.fillStyle = '#f6c85f';
-      s.beginPath();
-      s.arc(520, 96, 46, 0, Math.PI * 2);
-      s.fill();
-      s.fillStyle = '#7566d8';
-      s.beginPath();
-      s.moveTo(58, 345);
-      s.lineTo(236, 170);
-      s.lineTo(398, 345);
-      s.closePath();
-      s.fill();
-      s.fillStyle = '#28b67a';
-      s.beginPath();
-      s.moveTo(210, 345);
-      s.lineTo(372, 142);
-      s.lineTo(590, 345);
-      s.closePath();
-      s.fill();
-      s.fillStyle = '#17201d';
-      s.fillRect(0, 345, 640, 135);
-      s.fillStyle = '#f07167';
-      s.fillRect(300, 285, 150, 90);
-      s.fillStyle = '#fff6da';
-      s.fillRect(342, 318, 28, 42);
-      s.fillRect(385, 318, 28, 42);
-      s.fillStyle = '#f07167';
-      s.fillRect(444, 302, 86, 73);
-      s.fillStyle = '#fff6da';
-      s.fillRect(486, 330, 20, 45);
-      s.fillStyle = '#28b67a';
-      s.fillRect(540, 330, 54, 45);
-      s.fillStyle = '#0f7c55';
-      s.fillRect(590, 350, 34, 25);
-      return c;
-    }
-
-    function pixelateCanvasData(sourceCanvas, style) {
-      const out = document.createElement('canvas');
-      const w = 96;
-      const h = Math.round(sourceCanvas.height * (w / sourceCanvas.width));
-      out.width = w;
-      out.height = h;
-      const outCtx = out.getContext('2d', { willReadFrequently: true });
-      outCtx.imageSmoothingEnabled = false;
-      outCtx.drawImage(sourceCanvas, 0, 0, w, h);
-      const paletteList = palettes[style] || palettes.gameboy;
-      const rgbPalette = paletteList.map(hexToRgb);
-      const image = outCtx.getImageData(0, 0, w, h);
-      const data = image.data;
-      for (let i = 0; i < data.length; i += 4) {
-        const next = nearestColor([data[i], data[i + 1], data[i + 2]], rgbPalette);
-        data[i] = next[0];
-        data[i + 1] = next[1];
-        data[i + 2] = next[2];
-      }
-      outCtx.putImageData(image, 0, 0);
-      return out.toDataURL('image/png');
-    }
-
-    function updateHeroSlider(range) {
-      const value = Number(range.value);
-      const pixelLayer = document.getElementById('heroAfter');
-      const handle = document.getElementById('heroHandle');
-      if (pixelLayer) pixelLayer.style.clipPath = `inset(0 0 0 ${value}%)`;
-      if (handle) handle.style.left = `${value}%`;
-    }
+    const HERO_IMAGES = {
+      gameboy: { before: 'images/hero/hero-gameboy-before.png', after: 'images/hero/hero-gameboy-after.png' },
+      nes: { before: 'images/hero/hero-nes-before.png', after: 'images/hero/hero-nes-after.png' },
+      minecraft: { before: 'images/hero/hero-minecraft-before.png', after: 'images/hero/hero-minecraft-after.png' },
+      pico8: { before: 'images/hero/hero-pico8-before.png', after: 'images/hero/hero-pico8-after.png' },
+      grayscale: { before: 'images/hero/hero-bw-before.png', after: 'images/hero/hero-bw-after.png' },
+    };
 
     function renderHeroDemo(style = 'gameboy') {
       const before = document.getElementById('heroBefore');
       const after = document.getElementById('heroAfter');
       const label = document.getElementById('heroStyleName');
-      const source = drawHeroSource();
-      if (before) before.innerHTML = `<img src="${source.toDataURL('image/png')}" alt="Original landscape sample">`;
-      if (after) after.innerHTML = `<img src="${pixelateCanvasData(source, style)}" alt="${styleNames[style] || style} pixel art sample">`;
+      const imgs = HERO_IMAGES[style] || HERO_IMAGES.gameboy;
+      if (before) before.innerHTML = '<img src="' + imgs.before + '" alt="Original photo" fetchpriority="high">';
+      if (after) after.innerHTML = '<img src="' + imgs.after + '" alt="' + (styleNames[style] || style) + ' pixel art">';
       if (label) label.textContent = styleNames[style] || style;
       document.querySelectorAll('[data-style-demo]').forEach((button) => {
         button.classList.toggle('active', button.dataset.styleDemo === style);
