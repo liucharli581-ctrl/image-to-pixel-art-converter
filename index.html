@@ -1050,6 +1050,51 @@
       gap: 18px;
     }
 
+    .live-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .live-card {
+      display: flex;
+      flex-direction: column;
+      border: 2px solid #17372d;
+      background: #fff;
+      box-shadow: 4px 4px 0 rgba(23,32,29,.12);
+      overflow: hidden;
+    }
+
+    .live-label {
+      font-family: "Press Start 2P", Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 9px;
+      line-height: 1;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      background: #17372d;
+      color: #fffef8;
+      letter-spacing: 0;
+    }
+
+    .live-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .live-body img,
+    .live-body canvas {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+
+
     .compare-slider {
       position: relative;
       aspect-ratio: 16 / 10;
@@ -1686,6 +1731,7 @@
       .grid-3, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr 1fr; }
       .share-row { grid-template-columns: repeat(3, 1fr); margin-top: -22px; }
       .faq { grid-template-columns: 1fr; }
+      .live-compare { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 620px) {
@@ -1856,62 +1902,22 @@
           </div>
         </div>
         <div class="canvas-zone" id="canvasZone">
-          <div class="compare-slider" id="liveCompare" data-showcase="live">
-            <span class="compare-label before">Original</span><span class="compare-label after">Pixel Art</span>
-            <div class="compare-layer before">
-              <div class="empty" id="originalEmpty" aria-label="Upload your image"></div>
-              <img class="original-preview" id="originalPreview" alt="Uploaded original image" hidden>
-            </div>
-            <div class="compare-layer pixel">
-              <div class="empty" id="empty" aria-label="Pixel art result"></div>
-              <canvas id="canvas" hidden></canvas>
-            </div>
-            <span class="compare-handle"></span>
-            <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare original vs pixel art">
-          </div>
-          <section id="showcase">
-            <div class="wrap">
-              <h2 class="section-title title-accent">Real Photo to Pixel Art Showcase</h2>
-              <div class="showcase-grid">
-                <article class="showcase-card">
-                  <div class="compare-slider" data-showcase="portrait">
-                    <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
-                    <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
-                    <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare portrait pixel art">
-                  </div>
-                  <h3>Portrait Photo to Pixel Art</h3>
-                  <p>Turn a realistic portrait into a clean avatar-style pixel illustration with controlled skin tones and shadows.</p>
-                </article>
-                <article class="showcase-card">
-                  <div class="compare-slider" data-showcase="city">
-                    <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
-                    <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
-                    <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare city pixel art">
-                  </div>
-                  <h3>City Night Pixel Art</h3>
-                  <p>Convert neon signs, windows, and street lights into a punchy retro game background.</p>
-                </article>
-                <article class="showcase-card">
-                  <div class="compare-slider" data-showcase="food">
-                    <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
-                    <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
-                    <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare food pixel art">
-                  </div>
-                  <h3>Food Photo Pixel Art</h3>
-                  <p>Pixelate plates, drinks, and tabletop photos into cozy social posts or game inventory references.</p>
-                </article>
-                <article class="showcase-card">
-                  <div class="compare-slider" data-showcase="nature">
-                    <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
-                    <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
-                    <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare nature pixel art">
-                  </div>
-                  <h3>Nature Image to Pixel Art</h3>
-                  <p>Reduce mountains, forests, and sunset gradients into readable pixel scenery with a limited palette.</p>
-                </article>
+          <div class="live-compare">
+            <div class="live-card">
+              <div class="live-label">Original <span id="originalMeta" style="font-family:Inter,sans-serif;font-size:10px;text-transform:none;margin-left:6px;opacity:.7"></span></div>
+              <div class="live-body">
+                <div class="empty" id="originalEmpty" aria-label="Upload your image"></div>
+                <img class="original-preview" id="originalPreview" alt="Uploaded original image" hidden>
               </div>
             </div>
-          </section>
+            <div class="live-card">
+              <div class="live-label">Pixel Art</div>
+              <div class="live-body">
+                <div class="empty" id="empty" aria-label="Pixel art result"></div>
+                <canvas id="canvas" hidden></canvas>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="stage-foot">
           <span id="privacy">Basic conversion is local. Optional AI restyling would require a separate upload step.</span>
@@ -1919,6 +1925,51 @@
         </div>
       </div>
     </div>
+    <div class="divider-pixel" aria-hidden="true"></div>
+
+    <section id="showcase">
+      <div class="wrap">
+        <h2 class="section-title title-accent">Real Photo to Pixel Art Showcase</h2>
+        <div class="showcase-grid">
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="portrait">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare portrait pixel art">
+            </div>
+            <h3>Portrait Photo to Pixel Art</h3>
+            <p>Turn a realistic portrait into a clean avatar-style pixel illustration with controlled skin tones and shadows.</p>
+          </article>
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="city">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare city pixel art">
+            </div>
+            <h3>City Night Pixel Art</h3>
+            <p>Convert neon signs, windows, and street lights into a punchy retro game background.</p>
+          </article>
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="food">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare food pixel art">
+            </div>
+            <h3>Food Photo Pixel Art</h3>
+            <p>Pixelate plates, drinks, and tabletop photos into cozy social posts or game inventory references.</p>
+          </article>
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="nature">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare nature pixel art">
+            </div>
+            <h3>Nature Image to Pixel Art</h3>
+            <p>Reduce mountains, forests, and sunset gradients into readable pixel scenery with a limited palette.</p>
+          </article>
+        </div>
+      </div>
+    </section>
     <div class="divider-pixel" aria-hidden="true"></div>
 
     <div class="wrap share-row label-pixel" aria-label="Share Photo2PixelArt">
