@@ -151,3 +151,130 @@
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
+
+/* ── Pixel style additions ── */
+
+.brand-pixel {
+  font-family: "Press Start 2P", Inter, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.nav-pixel a {
+  font-family: "Press Start 2P", Inter, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0;
+  font-size: 10px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.label-pixel {
+  font-family: "Press Start 2P", Inter, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.label-pixel output {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.drop-pixel {
+  border-radius: 0 !important;
+  border-style: solid !important;
+}
+
+.preset-pixel {
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(23,32,29,.08) !important;
+  transition: transform .1s ease, box-shadow .1s ease !important;
+}
+.preset-pixel:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 rgba(23,32,29,.14);
+}
+
+.toggle-pixel {
+  border-radius: 0 !important;
+  border-color: rgba(23,32,29,.14) !important;
+  box-shadow: 2px 2px 0 rgba(23,32,29,.06) !important;
+  transition: transform .1s ease, box-shadow .1s ease !important;
+}
+
+.checkbox-pixel {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid var(--pixel-ink) !important;
+  border-radius: 0 !important;
+  background: var(--pixel-paper) !important;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.checkbox-pixel:checked {
+  background: var(--pixel-green) !important;
+}
+.checkbox-pixel:checked::after {
+  content: "";
+  width: 6px;
+  height: 10px;
+  border: solid #061812;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 2px;
+}
+
+.step-pixel .step-icon {
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 var(--pixel-ink);
+}
+
+.legal-pixel {
+  border-radius: 0 !important;
+}
+
+.title-accent::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, #28b67a 0 10px, #f6c85f 10px 22px, #f07167 22px 34px, #73a9ff 34px 44px);
+}
+
+/* Additional pixel card styles */
+.showcase-card {
+  border-radius: 0 !important;
+}
+
+.benefit-card {
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(23,32,29,.08) !important;
+}
+
+.use-card {
+  border-radius: 0 !important;
+}
+
+.faq-item {
+  border-radius: 0 !important;
+}
+
+.style-card {
+  border-radius: 0 !important;
+}
+
+.hero-style-tabs button {
+  border-radius: 0 !important;
+}
+
+.share-row a {
+  border-radius: 0 !important;
+}
