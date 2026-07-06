@@ -898,13 +898,7 @@
     }
 
     .empty {
-      width: min(500px, 100%);
-      aspect-ratio: 1 / 1;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      border: 1px solid rgba(23,32,29,.18);
-      background: #fff;
-      overflow: hidden;
+      display: none;
     }
 
     .empty i { min-height: 28px; }
@@ -937,6 +931,10 @@
       grid-template-columns: 1.05fr repeat(5, 1fr);
       gap: 10px;
       margin: -28px auto 56px;
+    }
+    .canvas-zone .share-row {
+      margin: 0;
+      padding: 12px 0;
     }
 
     .share-row button,
@@ -1904,19 +1902,25 @@
         <div class="canvas-zone" id="canvasZone">
           <div class="live-compare">
             <div class="live-card">
-              <div class="live-label">Original <span id="originalMeta" style="font-family:Inter,sans-serif;font-size:10px;text-transform:none;margin-left:6px;opacity:.7"></span></div>
               <div class="live-body">
                 <div class="empty" id="originalEmpty" aria-label="Upload your image"></div>
                 <img class="original-preview" id="originalPreview" alt="Uploaded original image" hidden>
               </div>
             </div>
             <div class="live-card">
-              <div class="live-label">Pixel Art</div>
               <div class="live-body">
                 <div class="empty" id="empty" aria-label="Pixel art result"></div>
                 <canvas id="canvas" hidden></canvas>
               </div>
             </div>
+          </div>
+          <div class="share-row label-pixel" aria-label="Share Photo2PixelArt">
+            <button type="button" id="copyLink">Copy link</button>
+            <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">Facebook</a>
+            <a class="x" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">X</a>
+            <a class="whatsapp" href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">Pinterest</a>
           </div>
         </div>
         <div class="stage-foot">
@@ -1972,14 +1976,7 @@
     </section>
     <div class="divider-pixel" aria-hidden="true"></div>
 
-    <div class="wrap share-row label-pixel" aria-label="Share Photo2PixelArt">
-      <button type="button" id="copyLink">Copy link</button>
-      <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">Facebook</a>
-      <a class="x" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">X</a>
-      <a class="whatsapp" href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">Pinterest</a>
-    </div>
+
 
     <section class="how-section">
       <div class="wrap how-layout">
@@ -2199,7 +2196,7 @@
     const scaleNumber = document.getElementById('scaleNumber');
     const originalPreview = document.getElementById('originalPreview');
     const originalEmpty = document.getElementById('originalEmpty');
-    const originalMeta = document.getElementById('originalMeta');
+    const originalMeta = document.getElementById('originalMeta') || {};
     const resultMeta = document.getElementById('resultMeta');
     const usage = document.getElementById('usage');
     const downloadNudge = document.getElementById('downloadNudge');
