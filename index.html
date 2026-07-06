@@ -188,7 +188,7 @@
       grid-template-columns: minmax(0, .9fr) minmax(360px, .78fr);
       gap: clamp(28px, 4vw, 54px);
       align-items: center;
-      padding: 38px 0 42px;
+      padding: 24px 0 32px;
     }
 
     .hero-copy {
@@ -387,10 +387,11 @@
 
     .tool {
       display: grid;
-      grid-template-columns: minmax(300px, 420px) 1fr;
+      grid-template-columns: 380px 1fr;
       gap: 22px;
       align-items: stretch;
-      margin: 28px auto 56px;
+      margin: 20px auto 56px;
+      min-height: calc(100vh - 88px);
     }
 
     .panel {
@@ -402,13 +403,15 @@
 
     .controls {
       padding: 18px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
     }
 
     .drop {
       position: relative;
       display: grid;
       place-items: center;
-      min-height: 180px;
+      min-height: 140px;
       border: 2px dashed #b8c9c1;
       border-radius: 8px;
       background: linear-gradient(135deg, rgba(115,169,255,.16), rgba(40,182,122,.12));
@@ -441,7 +444,7 @@
     }
 
     .field {
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .field label {
@@ -489,7 +492,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .preset {
@@ -511,7 +514,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .toggle {
@@ -532,13 +535,13 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .sample-top {
       width: 100%;
       min-height: 42px;
-      margin-top: 10px;
+      margin-top: 8px;
       border: 2px solid #17372d;
       border-radius: 4px;
       background: #fff;
@@ -793,9 +796,10 @@
     }
 
     .stage {
-      min-height: 590px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 620px;
+      max-height: calc(100vh - 120px);
       overflow: hidden;
     }
 
@@ -838,7 +842,8 @@
 
     .canvas-zone {
       display: grid;
-      min-height: 420px;
+      flex: 1;
+      min-height: 200px;
       padding: 18px;
       background-color: #f3f1eb;
       background-image:
@@ -926,34 +931,36 @@
       border-radius: 4px;
     }
 
-    .share-row {
-      display: grid;
-      grid-template-columns: 1.05fr repeat(5, 1fr);
-      gap: 10px;
-      max-width: 1160px;
-      margin: 0 auto 56px;
-      padding: 0 20px;
+    .share-row-subtle {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
     }
 
-    .share-row button,
-    .share-row a {
-      min-height: 48px;
-      display: inline-grid;
-      place-items: center;
-      border: 2px solid #17372d;
-      border-radius: 6px;
-      background: #fff;
-      color: var(--ink);
+    .share-row-subtle button,
+    .share-row-subtle a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--muted);
       text-decoration: none;
-      font-weight: 900;
-      box-shadow: 4px 4px 0 rgba(23,32,29,.14);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 8px;
+      cursor: pointer;
+      transition: background .15s, color .15s;
     }
 
-    .share-row .facebook { background: #1877f2; color: #fff; }
-    .share-row .x { background: #050505; color: #fff; }
-    .share-row .whatsapp { background: #25d366; color: #fff; }
-    .share-row .linkedin { background: #0a66c2; color: #fff; }
-    .share-row .pinterest { background: #e60023; color: #fff; }
+    .share-row-subtle button:hover,
+    .share-row-subtle a:hover {
+      background: rgba(255,255,255,.8);
+      color: var(--ink);
+      border-color: var(--line);
+    }
 
     main > section {
       padding: 56px 0;
@@ -1051,46 +1058,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       width: 100%;
-    }
-    .stage-top-styles {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 0 0 14px;
-      border: 2px solid rgba(23,32,29,.12);
-      border-radius: 8px;
-      background: rgba(255,255,255,.82);
-      padding: 8px 14px;
-    }
-    .stage-top-styles .style-head {
-      margin-bottom: 0;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .stage-top-styles .style-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .stage-top-styles .style-card {
-      min-height: 0;
-      padding: 6px 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 2px 2px 0 rgba(23,32,29,.06);
-    }
-    .stage-top-styles .style-card .style-icon {
-      margin: 0;
-      width: 24px;
-      height: 24px;
-      font-size: 10px;
-    }
-    .stage-top-styles .style-card b {
-      font-size: 12px;
-    }
-    .stage-top-styles .style-note {
-      display: none;
     }
 
     .live-card {
@@ -1749,17 +1716,33 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    .controls-section {
+      margin-top: 14px;
+    }
+    .section-label {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .stage-foot-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .hero-demo { max-width: 620px; }
       .tool { grid-template-columns: 1fr; }
-      .stage { min-height: auto; }
+      .controls { max-height: none; }
+      .stage { max-height: none; min-height: auto; }
       .grid-3, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr 1fr; }
-      .share-row { grid-template-columns: repeat(3, 1fr); margin-top: -22px; }
       .faq { grid-template-columns: 1fr; }
-      .stage-top-styles .style-grid {
-        flex-wrap: wrap;
-      }
       .live-compare { grid-template-columns: 1fr; }
     }
 
@@ -1770,7 +1753,7 @@
       .nav { gap: 10px; font-size: 12px; }
       .hero { padding-top: 20px; }
       .hero-style-tabs { grid-template-columns: repeat(2, 1fr); }
-      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .share-row, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr; }
+      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr; }
       .style-grid { grid-template-columns: repeat(2, 1fr); }
       .use-card { grid-template-columns: 1fr; }
       .use-art { width: 100%; height: auto; aspect-ratio: 16 / 9; }
@@ -1840,59 +1823,60 @@
         </label>
         <button class="sample-top btn-pixel" id="sample" type="button">Try a sample image</button>
 
-        <div class="field">
-          <label class="label-pixel" for="pixelSize">Pixel art width <output id="pixelSizeOut">96 px</output></label>
-          <div class="range-row">
-            <input class="slider-pixel" id="pixelSize" type="range" min="24" max="256" step="4" value="96">
-            <input class="number" id="pixelSizeNumber" type="number" min="24" max="256" step="4" value="96" aria-label="Pixel art width in pixels">
+        <div class="controls-section">
+          <div class="section-label">Style</div>
+          <div class="style-grid">
+            <button class="style-card active" type="button" data-style="gameboy"><span class="style-icon">GB</span><b>Game Boy</b><span>Green handheld look</span></button>
+            <button class="style-card" type="button" data-style="nes"><span class="style-icon">NES</span><b>NES</b><span>Bold 8-bit colors</span></button>
+            <button class="style-card" type="button" data-style="minecraft"><span class="style-icon">MC</span><b>Minecraft</b><span>Blocky craft palette</span></button>
+            <button class="style-card" type="button" data-style="pico8"><span class="style-icon">P8</span><b>PICO-8</b><span>Fantasy console</span></button>
+            <button class="style-card" type="button" data-style="grayscale"><span class="style-icon">BW</span><b>B/W</b><span>Monochrome output</span></button>
+            <button class="style-card" type="button" data-style="auto"><span class="style-icon">A</span><b>Auto</b><span>Source colors</span></button>
           </div>
         </div>
 
-        <div class="field">
-          <label class="label-pixel" for="colorCount">Color count <output id="colorCountOut">4</output></label>
-          <div class="range-row">
-            <input class="slider-pixel" id="colorCount" type="range" min="4" max="64" step="4" value="4">
-            <input class="number" id="colorCountNumber" type="number" min="4" max="64" step="4" value="4" aria-label="Color count">
+        <div class="controls-section">
+          <div class="section-label">Settings</div>
+          <div class="field">
+            <label class="label-pixel" for="pixelSize">Pixel art width <output id="pixelSizeOut">96 px</output></label>
+            <div class="range-row">
+              <input class="slider-pixel" id="pixelSize" type="range" min="24" max="256" step="4" value="96">
+              <input class="number" id="pixelSizeNumber" type="number" min="24" max="256" step="4" value="96" aria-label="Pixel art width in pixels">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label-pixel" for="colorCount">Color count <output id="colorCountOut">4</output></label>
+            <div class="range-row">
+              <input class="slider-pixel" id="colorCount" type="range" min="4" max="64" step="4" value="4">
+              <input class="number" id="colorCountNumber" type="number" min="4" max="64" step="4" value="4" aria-label="Color count">
+            </div>
+          </div>
+          <div class="preset-row" aria-label="Pixel art presets">
+            <button class="preset preset-pixel" type="button" data-preset="sprite">Sprite</button>
+            <button class="preset preset-pixel" type="button" data-preset="avatar">Avatar</button>
+            <button class="preset preset-pixel" type="button" data-preset="craft">Craft grid</button>
+          </div>
+          <div class="toggles">
+            <label class="toggle toggle-pixel"><input class="checkbox-pixel" id="grid" type="checkbox" checked> Show grid</label>
+            <label class="toggle toggle-pixel"><input class="checkbox-pixel" id="transparent" type="checkbox"> Keep transparent</label>
           </div>
         </div>
 
-        <div class="field">
-          <label class="label-pixel" for="scale">Export scale <output id="scaleOut">5x</output></label>
-          <div class="range-row">
-            <input class="slider-pixel" id="scale" type="range" min="1" max="8" value="5">
-            <input class="number" id="scaleNumber" type="number" min="1" max="8" value="5" aria-label="Export scale">
+        <div class="controls-section">
+          <div class="section-label">Export</div>
+          <div class="field">
+            <label class="label-pixel" for="scale">Export scale <output id="scaleOut">5x</output></label>
+            <div class="range-row">
+              <input class="slider-pixel" id="scale" type="range" min="1" max="8" value="5">
+              <input class="number" id="scaleNumber" type="number" min="1" max="8" value="5" aria-label="Export scale">
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn primary btn-pixel" id="download" type="button" disabled>Download PNG</button>
+            <button class="btn secondary btn-pixel" id="copyPng" type="button" disabled>Copy PNG</button>
           </div>
         </div>
 
-        <div class="preset-row" aria-label="Pixel art presets">
-          <button class="preset preset-pixel" type="button" data-preset="sprite">Sprite</button>
-          <button class="preset preset-pixel" type="button" data-preset="avatar">Avatar</button>
-          <button class="preset preset-pixel" type="button" data-preset="craft">Craft grid</button>
-        </div>
-
-        <div class="field" id="paletteField" hidden>
-          <label class="label-pixel" for="palette">Palette</label>
-          <select id="palette">
-            <option value="auto">Auto from image</option>
-            <option value="wplace">Wplace inspired</option>
-            <option value="pico8">PICO-8</option>
-            <option value="gameboy" selected>Game Boy</option>
-            <option value="nes">NES inspired</option>
-            <option value="minecraft">Minecraft inspired</option>
-            <option value="c64">C64 inspired</option>
-            <option value="grayscale">Grayscale</option>
-          </select>
-        </div>
-
-        <div class="toggles">
-          <label class="toggle toggle-pixel"><input class="checkbox-pixel" id="grid" type="checkbox" checked> Show grid</label>
-          <label class="toggle toggle-pixel"><input class="checkbox-pixel" id="transparent" type="checkbox"> Keep transparent</label>
-        </div>
-
-        <div class="actions">
-          <button class="btn primary btn-pixel" id="download" type="button" disabled>Download PNG</button>
-          <button class="btn secondary btn-pixel" id="copyPng" type="button" disabled>Copy PNG</button>
-        </div>
         <div class="download-hint" id="downloadHint">Upload an image to enable download.</div>
         <div class="usage" id="usage"><b>Free local conversions:</b> 0 completed</div>
         <div class="history" id="history">
@@ -1917,18 +1901,6 @@
             <span>No image yet</span>
           </div>
         </div>
-        <div class="style-panel stage-top-styles" aria-label="Pixel art style presets">
-          <div class="style-head"><span>Apply style</span><strong id="selectedStyle">Game Boy</strong></div>
-          <div class="style-grid">
-            <button class="style-card active" type="button" data-style="gameboy"><span class="style-icon">GB</span><b>Game Boy</b><span>Green handheld look</span></button>
-            <button class="style-card" type="button" data-style="nes"><span class="style-icon">NES</span><b>NES</b><span>Bold 8-bit colors</span></button>
-            <button class="style-card" type="button" data-style="minecraft"><span class="style-icon">MC</span><b>Minecraft</b><span>Blocky craft palette</span></button>
-            <button class="style-card" type="button" data-style="pico8"><span class="style-icon">P8</span><b>PICO-8</b><span>Fantasy console</span></button>
-            <button class="style-card" type="button" data-style="grayscale"><span class="style-icon">BW</span><b>B/W</b><span>Monochrome output</span></button>
-            <button class="style-card" type="button" data-style="auto"><span class="style-icon">A</span><b>Auto</b><span>Source colors</span></button>
-          </div>
-          <p class="style-note">Applies to the uploaded image, live preview, and exported PNG.</p>
-        </div>
         <div class="canvas-zone" id="canvasZone">
           <div class="live-compare">
             <div class="live-card">
@@ -1946,19 +1918,22 @@
           </div>
         </div>
         <div class="stage-foot">
-          <span id="privacy">Basic conversion is local. Optional AI restyling would require a separate upload step.</span>
+          <div class="stage-foot-row">
+            <span id="privacy">All processing runs locally in your browser. Your image never leaves your device.</span>
+            <div class="share-row-subtle" id="shareRow">
+              <button type="button" id="copyLink">Copy link</button>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" aria-label="Share on Facebook">Facebook</a>
+              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener" aria-label="Share on X">X</a>
+              <a href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" aria-label="Share on WhatsApp">WhatsApp</a>
+              <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn">LinkedIn</a>
+              <a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener" aria-label="Share on Pinterest">Pinterest</a>
+            </div>
+          </div>
           <div class="swatches" id="swatches" aria-label="Generated palette"></div>
         </div>
       </div>
     </div>
-    <div class="share-row label-pixel" aria-label="Share your pixel art">
-      <button type="button" id="copyLink">Copy link</button>
-      <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">Facebook</a>
-      <a class="x" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">X</a>
-      <a class="whatsapp" href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">Pinterest</a>
-    </div>
+
     <div class="divider-pixel" aria-hidden="true"></div>
 
     <section id="showcase">
