@@ -377,6 +377,14 @@
       box-shadow: 4px 4px 0 rgba(23,32,29,.18);
     }
 
+    .demo-note,
+    .style-note {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
     .tool {
       display: grid;
       grid-template-columns: minmax(300px, 420px) 1fr;
@@ -1382,6 +1390,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
+      align-items: start;
     }
 
     .faq-item {
@@ -1731,7 +1740,7 @@
       </div>
       <div class="hero-demo" aria-label="Interactive before and after pixel art demo">
         <div class="hero-demo-head">
-          <b>Before / after style demo</b>
+          <b>Example style preview</b>
           <span id="heroStyleName">Game Boy</span>
         </div>
         <div class="hero-compare" id="heroCompare">
@@ -1742,13 +1751,14 @@
           <span class="hero-handle" id="heroHandle"></span>
           <input class="hero-range" id="heroRange" type="range" min="0" max="100" value="52" aria-label="Drag to compare original and pixelated demo">
         </div>
-        <div class="hero-style-tabs" aria-label="Choose demo pixel style">
+        <div class="hero-style-tabs" aria-label="Choose example preview style">
           <button class="active" type="button" data-style-demo="gameboy">Game Boy</button>
           <button type="button" data-style-demo="nes">NES</button>
           <button type="button" data-style-demo="minecraft">Minecraft</button>
           <button type="button" data-style-demo="pico8">PICO-8</button>
           <button type="button" data-style-demo="grayscale">B/W</button>
         </div>
+        <p class="demo-note">Demo only. Use the controls below to style your uploaded image.</p>
       </div>
     </div>
 
@@ -1764,7 +1774,7 @@
         <button class="sample-top btn-pixel" id="sample" type="button">Try a sample image</button>
 
         <div class="style-panel" aria-label="Pixel art style presets">
-          <div class="style-head"><span>Choose a style</span><strong id="selectedStyle">Game Boy</strong></div>
+          <div class="style-head"><span>Apply style to your image</span><strong id="selectedStyle">Game Boy</strong></div>
           <div class="style-grid">
             <button class="style-card active" type="button" data-style="gameboy"><span class="style-icon">GB</span><b>Game Boy</b><span>Green handheld look</span></button>
             <button class="style-card" type="button" data-style="nes"><span class="style-icon">NES</span><b>NES</b><span>Bold 8-bit colors</span></button>
@@ -1773,6 +1783,7 @@
             <button class="style-card" type="button" data-style="grayscale"><span class="style-icon">BW</span><b>B/W</b><span>Monochrome output</span></button>
             <button class="style-card" type="button" data-style="auto"><span class="style-icon">A</span><b>Auto</b><span>Source colors</span></button>
           </div>
+          <p class="style-note">Applies to the uploaded image, live preview, and exported PNG.</p>
         </div>
 
         <div class="field">
@@ -2960,7 +2971,6 @@
       button.addEventListener('click', () => {
         const style = button.dataset.style;
         applyPaletteStyle(style);
-        renderHeroDemo(style === 'auto' ? 'gameboy' : style);
       });
     });
 
@@ -2973,7 +2983,6 @@
       button.addEventListener('click', () => {
         const style = button.dataset.styleDemo;
         renderHeroDemo(style);
-        applyPaletteStyle(style);
       });
     });
 
