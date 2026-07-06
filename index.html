@@ -286,12 +286,6 @@
       clip-path: inset(0 50% 0 0);
     }
 
-    .hero-layer picture {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
     .hero-layer img {
       width: 100%;
       height: 100%;
@@ -2290,9 +2284,8 @@
       const after = document.getElementById('heroAfter');
       const label = document.getElementById('heroStyleName');
       const imgs = HERO_IMAGES[style] || HERO_IMAGES.gameboy;
-      const webpExt = imgs.before.replace('.png', '.webp');
-      if (before) before.innerHTML = '<picture><source srcset="' + webpExt + '" type="image/webp"><img src="' + imgs.before + '" alt="Original photo" fetchpriority="high"></picture>';
-      if (after) after.innerHTML = '<picture><source srcset="' + imgs.after.replace('.png', '.webp') + '" type="image/webp"><img src="' + imgs.after + '" alt="' + (styleNames[style] || style) + ' pixel art"></picture>';
+      if (before) before.innerHTML = '<img src="' + imgs.before + '" width="800" height="450" alt="Original photo" fetchpriority="high">';
+      if (after) after.innerHTML = '<img src="' + imgs.after + '" width="800" height="450" alt="' + (styleNames[style] || style) + ' pixel art">';
       if (label) label.textContent = styleNames[style] || style;
       document.querySelectorAll('[data-style-demo]').forEach((button) => {
         button.classList.toggle('active', button.dataset.styleDemo === style);
