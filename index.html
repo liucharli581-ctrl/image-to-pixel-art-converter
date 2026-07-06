@@ -690,11 +690,11 @@
     }
 
     .style-panel {
-      margin-top: 18px;
+      margin-top: 14px;
       border: 2px solid rgba(23,32,29,.12);
       border-radius: 8px;
       background: rgba(255,255,255,.82);
-      padding: 12px;
+      padding: 10px;
     }
 
     .style-head {
@@ -702,7 +702,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-size: 12px;
       color: var(--muted);
       font-weight: 850;
@@ -719,27 +719,37 @@
 
     .style-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
     }
 
     .style-card {
-      min-height: 86px;
+      min-height: 52px;
       border: 2px solid rgba(23,32,29,.14);
       border-radius: 6px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
-      text-align: left;
-      padding: 10px;
+      text-align: center;
+      padding: 8px 6px;
       box-shadow: 3px 3px 0 rgba(23,32,29,.06);
+      transition: transform .12s, box-shadow .12s, background .12s;
     }
 
     .style-card:hover,
     .style-card.active {
       border-color: #17372d;
-      background: rgba(246,200,95,.18);
+      background: var(--sun);
       box-shadow: 3px 3px 0 var(--sun);
+    }
+
+    .style-card:hover {
+      transform: translate(-1px, -1px);
+    }
+
+    .style-card:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 rgba(23,32,29,.18);
     }
 
     .style-card .style-icon {
@@ -747,7 +757,7 @@
       place-items: center;
       width: 28px;
       height: 28px;
-      margin-bottom: 7px;
+      margin: 0 auto 5px;
       border: 2px solid #17372d;
       border-radius: 4px;
       background: #fff;
@@ -767,6 +777,7 @@
     }
 
     .style-card span:last-child {
+      display: none;
       margin-top: 3px;
       color: var(--muted);
       font-size: 11px;
@@ -979,6 +990,16 @@
       background: rgba(255,255,255,.78);
       padding: 18px;
       box-shadow: 4px 4px 0 rgba(23,32,29,.06);
+    }
+
+    .showcase-card {
+      transition: transform .16s, box-shadow .16s, border-color .16s;
+    }
+
+    .showcase-card:hover {
+      transform: translate(-4px, -4px);
+      border-color: #17372d;
+      box-shadow: 9px 9px 0 rgba(23,32,29,.14);
     }
 
     .palette-card {
@@ -1245,58 +1266,116 @@
       display: block;
     }
 
-    .steps {
+    .how-section {
+      padding: 76px 0;
+      background: linear-gradient(180deg, rgba(40,182,122,.07), transparent 72%);
+    }
+
+    .how-layout {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr);
+      gap: clamp(30px, 5vw, 74px);
+      align-items: center;
+    }
+
+    .how-copy .section-title {
+      margin-bottom: 14px;
+      font-size: clamp(38px, 5vw, 64px);
+    }
+
+    .how-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .steps {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
       counter-reset: step;
     }
 
+    .steps::before {
+      content: "";
+      position: absolute;
+      left: 9%;
+      right: 9%;
+      top: 50%;
+      height: 8px;
+      background: repeating-linear-gradient(90deg, #17372d 0 14px, transparent 14px 24px);
+      opacity: .16;
+      pointer-events: none;
+    }
+
     .step {
+      position: relative;
       counter-increment: step;
-      border-left: 4px solid var(--mint);
-      background: rgba(255,255,255,.68);
-      padding: 12px 14px;
+      min-height: 176px;
+      border: 2px solid #17372d;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,255,255,.84)),
+        #fff;
+      padding: 20px;
+      box-shadow: 5px 5px 0 rgba(23,32,29,.14);
+      transition: transform .16s, box-shadow .16s;
+      z-index: 1;
+    }
+
+    .step:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 9px 9px 0 rgba(23,32,29,.16);
+    }
+
+    .step::before {
+      content: counter(step);
+      position: absolute;
+      top: -14px;
+      left: 18px;
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 2px solid #17372d;
+      border-radius: 6px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 950;
+      font-size: 14px;
+      box-shadow: 3px 3px 0 var(--sun);
     }
 
     .step-icon {
       display: inline-grid;
       place-items: center;
-      width: 34px;
-      height: 34px;
-      margin: 0 0 10px 8px;
+      width: 56px;
+      height: 56px;
+      margin: 10px 0 16px;
       border: 2px solid #17372d;
-      border-radius: 4px;
-      background: #fff;
+      border-radius: 5px;
+      background:
+        repeating-linear-gradient(135deg, rgba(40,182,122,.14) 0 8px, transparent 8px 16px),
+        #fff;
       color: var(--mint-dark);
-      font-size: 11px;
-      font-weight: 950;
-      box-shadow: 3px 3px 0 rgba(23,32,29,.12);
-    }
-
-    .step::before {
-      content: counter(step);
-      display: inline-grid;
-      place-items: center;
-      width: 26px;
-      height: 26px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      background: var(--ink);
-      color: #fff;
-      font-weight: 900;
       font-size: 13px;
+      font-weight: 950;
+      box-shadow: 4px 4px 0 rgba(23,32,29,.16);
     }
 
     .step b {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
+      font-size: 22px;
     }
 
     .step p {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
+      line-height: 1.45;
     }
 
     .faq {
@@ -1351,25 +1430,33 @@
     .use-case-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 22px;
+      gap: 22px;
+      margin-top: 24px;
     }
 
     .use-card {
       display: grid;
-      grid-template-columns: 92px 1fr;
+      grid-template-columns: 128px 1fr;
       align-items: center;
-      gap: 16px;
-      border: 2px solid rgba(23,32,29,.12);
-      border-radius: 6px;
-      background: rgba(255,255,255,.78);
-      box-shadow: 4px 4px 0 rgba(23,32,29,.06);
-      padding: 14px;
+      gap: 22px;
+      border: 2px solid #17372d;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.82)),
+        #fff;
+      box-shadow: 5px 5px 0 rgba(23,32,29,.12);
+      padding: 20px;
+      transition: transform .16s, box-shadow .16s;
+    }
+
+    .use-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 9px 9px 0 rgba(23,32,29,.15);
     }
 
     .use-art {
-      width: 92px;
-      height: 92px;
+      width: 128px;
+      height: 128px;
       display: grid;
       grid-template-columns: repeat(10, 1fr);
       background: #fff;
@@ -1390,13 +1477,42 @@
 
     .use-card h3 {
       margin: 0 0 6px;
-      font-size: 17px;
+      font-size: 22px;
     }
 
     .use-card p {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .section-cta {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .section-cta a {
+      min-height: 48px;
+      display: inline-grid;
+      place-items: center;
+      border: 2px solid #17372d;
+      border-radius: 5px;
+      padding: 0 22px;
+      background: var(--mint);
+      color: #061812;
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 4px 4px 0 rgba(23,32,29,.18);
+      transition: transform .12s, box-shadow .12s;
+    }
+
+    .section-cta a:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 rgba(23,32,29,.2);
     }
 
     .seo-copy {
@@ -1565,7 +1681,8 @@
       .tool { grid-template-columns: 1fr; }
       .stage { min-height: auto; }
       .compare-grid { grid-template-columns: 1fr; }
-      .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr 1fr; }
+      .how-layout { grid-template-columns: 1fr; }
+      .grid-3, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr 1fr; }
       .share-row { grid-template-columns: repeat(3, 1fr); margin-top: -22px; }
       .faq { grid-template-columns: 1fr; }
     }
@@ -1577,7 +1694,10 @@
       .nav { gap: 10px; font-size: 12px; }
       .hero { padding-top: 20px; }
       .hero-style-tabs { grid-template-columns: repeat(2, 1fr); }
-      .toggles, .preset-row, .style-grid, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .share-row, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr; }
+      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .share-row, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr; }
+      .style-grid { grid-template-columns: repeat(2, 1fr); }
+      .use-card { grid-template-columns: 1fr; }
+      .use-art { width: 100%; height: auto; aspect-ratio: 16 / 9; }
       .actions { grid-template-columns: 1fr; }
       .range-row { grid-template-columns: 1fr 76px; }
       .stage-head, .stage-foot { align-items: flex-start; flex-direction: column; }
@@ -1642,6 +1762,18 @@
           </span>
         </label>
         <button class="sample-top btn-pixel" id="sample" type="button">Try a sample image</button>
+
+        <div class="style-panel" aria-label="Pixel art style presets">
+          <div class="style-head"><span>Choose a style</span><strong id="selectedStyle">Game Boy</strong></div>
+          <div class="style-grid">
+            <button class="style-card active" type="button" data-style="gameboy"><span class="style-icon">GB</span><b>Game Boy</b><span>Green handheld look</span></button>
+            <button class="style-card" type="button" data-style="nes"><span class="style-icon">NES</span><b>NES</b><span>Bold 8-bit colors</span></button>
+            <button class="style-card" type="button" data-style="minecraft"><span class="style-icon">MC</span><b>Minecraft</b><span>Blocky craft palette</span></button>
+            <button class="style-card" type="button" data-style="pico8"><span class="style-icon">P8</span><b>PICO-8</b><span>Fantasy console</span></button>
+            <button class="style-card" type="button" data-style="grayscale"><span class="style-icon">BW</span><b>B/W</b><span>Monochrome output</span></button>
+            <button class="style-card" type="button" data-style="auto"><span class="style-icon">A</span><b>Auto</b><span>Source colors</span></button>
+          </div>
+        </div>
 
         <div class="field">
           <label for="pixelSize">Pixel art width <output id="pixelSizeOut">96 px</output></label>
@@ -1755,9 +1887,12 @@
       <a class="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">Pinterest</a>
     </div>
 
-    <section>
-      <div class="wrap">
-        <h2 class="section-title">How to use this image to pixel art converter</h2>
+    <section class="how-section">
+      <div class="wrap how-layout">
+        <div class="how-copy">
+          <h2 class="section-title">How to use this image to pixel art converter</h2>
+          <p>Start with a photo, choose a style, tune the pixel grid, then export a crisp PNG. The core conversion stays fast because it runs directly in your browser.</p>
+        </div>
         <div class="steps">
           <div class="step">
             <span class="step-icon">UP</span>
@@ -1785,43 +1920,43 @@
 
     <section id="showcase">
       <div class="wrap">
-        <h2 class="section-title">Image to Pixel Art Preset Showcase</h2>
+        <h2 class="section-title">Real Photo to Pixel Art Showcase</h2>
         <div class="showcase-grid">
           <article class="showcase-card">
-            <div class="compare-slider" data-showcase="gameboy">
+            <div class="compare-slider" data-showcase="portrait">
               <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
               <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
-              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare Game Boy pixel art">
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare portrait pixel art">
             </div>
-            <h3>Game Boy Pixel Art</h3>
-            <p>Create a classic green handheld look for portraits, icons, and small game references.</p>
+            <h3>Portrait Photo to Pixel Art</h3>
+            <p>Turn a realistic portrait into a clean avatar-style pixel illustration with controlled skin tones and shadows.</p>
           </article>
           <article class="showcase-card">
-            <div class="compare-slider" data-showcase="nes">
+            <div class="compare-slider" data-showcase="city">
               <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
               <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
-              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare NES pixel art">
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare city pixel art">
             </div>
-            <h3>NES Pixel Art</h3>
-            <p>Transform images into bold 8-bit style artwork with high-contrast retro colors.</p>
+            <h3>City Night Pixel Art</h3>
+            <p>Convert neon signs, windows, and street lights into a punchy retro game background.</p>
           </article>
           <article class="showcase-card">
-            <div class="compare-slider" data-showcase="minecraft">
+            <div class="compare-slider" data-showcase="food">
               <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
               <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
-              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare Minecraft pixel art">
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare food pixel art">
             </div>
-            <h3>Minecraft Pixel Art</h3>
-            <p>Use blocky, craft-friendly colors for square-grid references and playful graphics.</p>
+            <h3>Food Photo Pixel Art</h3>
+            <p>Pixelate plates, drinks, and tabletop photos into cozy social posts or game inventory references.</p>
           </article>
           <article class="showcase-card">
-            <div class="compare-slider" data-showcase="pico8">
+            <div class="compare-slider" data-showcase="nature">
               <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
               <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
-              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare PICO-8 pixel art">
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare nature pixel art">
             </div>
-            <h3>PICO-8 Pixel Art</h3>
-            <p>Generate bright fantasy-console style results for sprites, avatars, and social posts.</p>
+            <h3>Nature Image to Pixel Art</h3>
+            <p>Reduce mountains, forests, and sunset gradients into readable pixel scenery with a limited palette.</p>
           </article>
         </div>
       </div>
@@ -1849,6 +1984,9 @@
           <article class="use-card"><div class="use-art" data-use="eightbit"></div><div><h3>8-bit image converter</h3><p>Use low pixel widths and retro palettes for classic game-style graphics.</p></div></article>
           <article class="use-card"><div class="use-art" data-use="sprite"></div><div><h3>Sprite references</h3><p>Create small character, icon, and object references for game prototypes.</p></div></article>
           <article class="use-card"><div class="use-art" data-use="craft"></div><div><h3>Cross-stitch and bead art</h3><p>Enable the grid and limit colors to prepare cleaner craft references.</p></div></article>
+        </div>
+        <div class="section-cta">
+          <a href="#tool">Try these pixel art styles</a>
         </div>
       </div>
     </section>
@@ -1930,13 +2068,6 @@
             <p>You can download the PNG and use it in mockups, prototypes, avatars, and game experiments. Check the rights of your original image.</p>
           </details>
         </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap seo-copy">
-        <h2 class="section-title">Convert images, photos, and pictures into pixel art</h2>
-        <p>An image to pixel art converter helps you transform a regular picture into a retro, low-resolution style. This tool is designed for quick experiments: upload an image, adjust the pixel size, reduce the palette, preview the result instantly, and download the pixel art as PNG. It works well for avatars, icons, game mockups, cross-stitch references, bead art planning, social posts, and simple 8-bit style graphics.</p>
       </div>
     </section>
 
@@ -2201,53 +2332,83 @@
     }
 
     function renderShowcases() {
-      const showcasePalettes = { gameboy: palettes.gameboy, nes: palettes.nes, minecraft: palettes.minecraft, pico8: palettes.pico8 };
+      const showcasePalettes = {
+        portrait: ['#15110f','#3c2a24','#6d4638','#9d6b57','#d09a7f','#f2c7aa','#fff1e8','#2450a4','#73a9ff','#f07167','#28b67a','#f6c85f'],
+        city: ['#050505','#17201d','#1D2B53','#2450a4','#29ADFF','#7566d8','#FF004D','#FFA300','#FFEC27','#FFF1E8'],
+        food: ['#17201d','#3c2c22','#6b4f33','#AB5236','#f07167','#FFA300','#FFEC27','#fff1c9','#28b67a','#f7cfbd','#ffffff'],
+        nature: ['#17201d','#0f380f','#306230','#5d7c36','#8bac0f','#28b67a','#2450a4','#73a9ff','#f6c85f','#fff1c9','#7566d8']
+      };
       const drawSource = (kind) => {
         const c = document.createElement('canvas');
         c.width = 640;
         c.height = 400;
         const s = c.getContext('2d');
-        const sky = s.createLinearGradient(0, 0, 0, 250);
-        sky.addColorStop(0, '#9ed0ff');
-        sky.addColorStop(1, '#fff1c9');
-        s.fillStyle = sky;
-        s.fillRect(0, 0, 640, 400);
-        if (kind === 'gameboy') {
-          s.fillStyle = '#ffe3c8';
-          s.beginPath(); s.arc(320, 150, 82, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#5d382b';
-          s.fillRect(245, 74, 150, 50);
-          s.fillStyle = '#17201d';
-          s.fillRect(276, 142, 24, 28); s.fillRect(340, 142, 24, 28);
-          s.fillStyle = '#f07167';
-          s.fillRect(300, 194, 44, 16);
-          s.fillStyle = '#28b67a';
-          s.fillRect(240, 238, 160, 126);
-        } else if (kind === 'nes') {
-          s.fillStyle = '#f6c85f';
-          s.beginPath(); s.arc(500, 78, 48, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#7566d8';
-          s.beginPath(); s.moveTo(0, 310); s.lineTo(180, 142); s.lineTo(360, 310); s.fill();
-          s.fillStyle = '#28b67a';
-          s.beginPath(); s.moveTo(140, 315); s.lineTo(330, 104); s.lineTo(600, 315); s.fill();
-          s.fillStyle = '#17201d'; s.fillRect(0, 318, 640, 82);
-          s.fillStyle = '#f07167'; s.fillRect(292, 252, 92, 70);
-        } else if (kind === 'minecraft') {
-          s.fillStyle = '#7ecb65'; s.fillRect(0, 245, 640, 155);
-          s.fillStyle = '#7f7f7f'; s.fillRect(0, 312, 640, 88);
-          s.fillStyle = '#6b4f33'; s.fillRect(235, 190, 160, 125);
-          s.fillStyle = '#b83a2f'; s.fillRect(216, 168, 200, 42);
-          s.fillStyle = '#87ceeb'; s.fillRect(270, 224, 36, 36);
-          s.fillStyle = '#3c3c3c'; s.fillRect(330, 244, 38, 71);
-          s.fillStyle = '#5d7c36'; s.fillRect(445, 200, 86, 115);
+        if (kind === 'portrait') {
+          const bg = s.createLinearGradient(0, 0, 640, 400);
+          bg.addColorStop(0, '#d7e4ef'); bg.addColorStop(.55, '#fff4e7'); bg.addColorStop(1, '#6d8fa7');
+          s.fillStyle = bg; s.fillRect(0, 0, 640, 400);
+          s.fillStyle = 'rgba(255,255,255,.35)';
+          for (let i = 0; i < 7; i++) { s.beginPath(); s.arc(70 + i * 88, 70 + (i % 3) * 36, 34 + i * 2, 0, Math.PI * 2); s.fill(); }
+          s.fillStyle = '#2e1f14'; s.beginPath(); s.ellipse(318, 136, 96, 112, 0, 0, Math.PI * 2); s.fill();
+          s.fillStyle = '#f2c7aa'; s.beginPath(); s.ellipse(320, 172, 72, 88, 0, 0, Math.PI * 2); s.fill();
+          s.fillStyle = 'rgba(125,70,48,.2)'; s.beginPath(); s.ellipse(352, 170, 22, 64, -.2, 0, Math.PI * 2); s.fill();
+          s.fillStyle = '#17201d'; s.beginPath(); s.ellipse(292, 164, 9, 13, 0, 0, Math.PI * 2); s.ellipse(348, 164, 9, 13, 0, 0, Math.PI * 2); s.fill();
+          s.fillStyle = '#f07167'; s.beginPath(); s.ellipse(320, 211, 28, 9, 0, 0, Math.PI * 2); s.fill();
+          s.fillStyle = '#2450a4'; s.beginPath(); s.moveTo(220, 390); s.quadraticCurveTo(320, 246, 430, 390); s.closePath(); s.fill();
+          s.fillStyle = '#fff1c9'; s.fillRect(0, 344, 640, 56);
+        } else if (kind === 'city') {
+          const night = s.createLinearGradient(0, 0, 0, 400);
+          night.addColorStop(0, '#10172f'); night.addColorStop(.6, '#1D2B53'); night.addColorStop(1, '#050505');
+          s.fillStyle = night; s.fillRect(0, 0, 640, 400);
+          s.fillStyle = '#FFEC27'; s.beginPath(); s.arc(500, 75, 42, 0, Math.PI * 2); s.fill();
+          const buildings = [[35,150,82,250],[132,95,96,305],[250,135,74,265],[344,80,116,320],[488,128,96,272]];
+          buildings.forEach(([x,y,w,h], idx) => {
+            s.fillStyle = idx % 2 ? '#17201d' : '#0b111f'; s.fillRect(x, y, w, h);
+            for (let yy = y + 20; yy < y + h - 10; yy += 34) for (let xx = x + 16; xx < x + w - 12; xx += 26) {
+              s.fillStyle = (xx + yy + idx) % 3 ? '#29ADFF' : '#FFA300'; s.fillRect(xx, yy, 12, 16);
+            }
+          });
+          s.fillStyle = '#FF004D'; s.fillRect(188, 172, 154, 22); s.fillStyle = '#29ADFF'; s.fillRect(382, 148, 118, 18);
+          s.fillStyle = '#050505'; s.fillRect(0, 336, 640, 64);
+          s.strokeStyle = 'rgba(255,255,255,.22)'; s.lineWidth = 3; s.beginPath(); s.moveTo(0, 356); s.lineTo(640, 382); s.stroke();
+        } else if (kind === 'food') {
+          const table = s.createLinearGradient(0, 0, 640, 400);
+          table.addColorStop(0, '#7b4a30'); table.addColorStop(1, '#2f1d15'); s.fillStyle = table; s.fillRect(0, 0, 640, 400);
+          s.fillStyle = 'rgba(255,255,255,.08)'; for (let x = 0; x < 640; x += 58) s.fillRect(x, 0, 8, 400);
+          s.fillStyle = '#fff1c9'; s.beginPath(); s.ellipse(320, 210, 150, 112, 0, 0, Math.PI * 2); s.fill();
+          s.fillStyle = '#AB5236'; s.beginPath(); s.ellipse(320, 212, 118, 80, 0, 0, Math.PI * 2); s.fill();
+          ['#FFEC27','#28b67a','#f07167','#ffffff','#FFA300'].forEach((color, i) => {
+            s.fillStyle = color; s.beginPath(); s.ellipse(254 + i * 34, 180 + (i % 2) * 48, 28, 18, .5, 0, Math.PI * 2); s.fill();
+          });
+          s.fillStyle = '#15110f'; s.fillRect(78, 78, 88, 142); s.fillStyle = '#f6c85f'; s.fillRect(90, 92, 64, 92);
+          s.fillStyle = '#28b67a'; s.beginPath(); s.arc(494, 106, 48, 0, Math.PI * 2); s.fill(); s.fillStyle = '#fff1c9'; s.beginPath(); s.arc(494, 106, 28, 0, Math.PI * 2); s.fill();
         } else {
-          s.fillStyle = '#1D2B53'; s.fillRect(0, 0, 640, 400);
-          s.fillStyle = '#FFEC27'; s.fillRect(454, 54, 74, 74);
-          s.fillStyle = '#29ADFF'; s.fillRect(98, 236, 160, 68);
-          s.fillStyle = '#FF004D'; s.fillRect(240, 168, 130, 136);
-          s.fillStyle = '#00E436'; s.fillRect(398, 230, 118, 74);
-          s.fillStyle = '#FFF1E8'; s.fillRect(278, 200, 30, 30); s.fillRect(326, 200, 30, 30);
+          const sky = s.createLinearGradient(0, 0, 0, 300);
+          sky.addColorStop(0, '#73a9ff'); sky.addColorStop(.55, '#fff1c9'); sky.addColorStop(1, '#f6c85f'); s.fillStyle = sky; s.fillRect(0, 0, 640, 400);
+          s.fillStyle = '#f6c85f'; s.beginPath(); s.arc(520, 82, 44, 0, Math.PI * 2); s.fill();
+          s.fillStyle = '#7566d8'; s.beginPath(); s.moveTo(0, 308); s.lineTo(170, 122); s.lineTo(350, 308); s.closePath(); s.fill();
+          s.fillStyle = '#28b67a'; s.beginPath(); s.moveTo(118, 312); s.lineTo(348, 92); s.lineTo(640, 312); s.closePath(); s.fill();
+          s.fillStyle = '#2450a4'; s.fillRect(0, 310, 640, 90);
+          s.fillStyle = 'rgba(255,255,255,.35)'; for (let x = 0; x < 640; x += 58) { s.beginPath(); s.ellipse(x + 24, 340 + (x % 3) * 12, 44, 10, 0, 0, Math.PI * 2); s.fill(); }
+          s.fillStyle = '#17201d'; s.fillRect(0, 360, 640, 40);
         }
+        let seed = kind.split('').reduce((sum, char) => sum + char.charCodeAt(0), 17);
+        for (let i = 0; i < 2600; i++) {
+          seed = (seed * 1664525 + 1013904223) % 4294967296;
+          const x = seed % 640;
+          seed = (seed * 1664525 + 1013904223) % 4294967296;
+          const y = seed % 400;
+          seed = (seed * 1664525 + 1013904223) % 4294967296;
+          const light = seed % 2 === 0 ? 255 : 0;
+          const alpha = .018 + (seed % 6) / 1000;
+          s.fillStyle = `rgba(${light},${light},${light},${alpha})`;
+          s.fillRect(x, y, 1, 1);
+        }
+        const vignette = s.createRadialGradient(320, 190, 120, 320, 190, 430);
+        vignette.addColorStop(0, 'rgba(255,255,255,0)');
+        vignette.addColorStop(1, 'rgba(12,18,15,.22)');
+        s.fillStyle = vignette;
+        s.fillRect(0, 0, 640, 400);
         return c;
       };
       const pixelatedDataUrl = (source, paletteList) => {
@@ -2582,9 +2743,7 @@
       downloadHint.textContent = 'Ready to download as PNG.';
       stats.innerHTML = `
         <span class="style-badge" id="styleBadge">Style ${styleNames[palette.value] || palette.value}</span>
-        <span>Source ${sourceImage.naturalWidth}x${sourceImage.naturalHeight}</span>
-        <span>Pixel grid ${smallW}x${smallH}</span>
-        <span>Export ${outW}x${outH}</span>
+        <span>Local browser preview</span>
       `;
       renderSwatches(found);
     }
@@ -2798,7 +2957,11 @@
     });
 
     document.querySelectorAll('[data-style]').forEach((button) => {
-      button.addEventListener('click', () => applyPaletteStyle(button.dataset.style));
+      button.addEventListener('click', () => {
+        const style = button.dataset.style;
+        applyPaletteStyle(style);
+        renderHeroDemo(style === 'auto' ? 'gameboy' : style);
+      });
     });
 
     const heroRange = document.getElementById('heroRange');
