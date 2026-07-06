@@ -184,7 +184,15 @@
     }
 
     .hero {
-      padding: 36px 0 26px;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(360px, .78fr);
+      gap: clamp(28px, 4vw, 54px);
+      align-items: center;
+      padding: 38px 0 42px;
+    }
+
+    .hero-copy {
+      min-width: 0;
     }
 
     .eyebrow {
@@ -213,7 +221,7 @@
     h1 {
       max-width: 870px;
       margin: 18px 0 14px;
-      font-size: clamp(42px, 6vw, 84px);
+      font-size: clamp(42px, 5.3vw, 78px);
       line-height: .98;
       letter-spacing: 0;
     }
@@ -225,58 +233,148 @@
       font-size: clamp(18px, 2.4vw, 23px);
     }
 
-    .hero-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 24px;
-      max-width: 860px;
+    .hero-demo {
+      border: 2px solid #17372d;
+      border-radius: 8px;
+      background: rgba(255,255,255,.86);
+      box-shadow: 6px 6px 0 #17372d, 12px 12px 0 var(--sun);
+      padding: 14px;
+      min-width: 0;
     }
 
-    .sample-card {
-      border: 2px solid rgba(23,32,29,.14);
-      border-radius: 6px;
-      background: rgba(255,255,255,.78);
-      box-shadow: 4px 4px 0 rgba(23,32,29,.08);
-      overflow: hidden;
-    }
-
-    .sample-card b {
-      display: block;
-      padding: 9px 10px;
-      border-bottom: 1px solid var(--line);
+    .hero-demo-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
       font-size: 13px;
+      font-weight: 900;
     }
 
-    .mini-compare {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: rgba(23,32,29,.16);
+    .hero-demo-head span {
+      border: 2px solid #17372d;
+      border-radius: 4px;
+      background: var(--mint);
+      color: #061812;
+      padding: 4px 8px;
+      box-shadow: 2px 2px 0 rgba(23,32,29,.18);
     }
 
-    .mini-art {
-      aspect-ratio: 1 / 1;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      background: #fff;
+    .hero-compare {
+      position: relative;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
+      border: 2px solid #17372d;
+      border-radius: 6px;
+      background:
+        linear-gradient(45deg, #eee7dc 25%, transparent 25%),
+        linear-gradient(-45deg, #eee7dc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #eee7dc 75%),
+        linear-gradient(-45deg, transparent 75%, #eee7dc 75%),
+        #fbfaf6;
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0;
     }
 
-    .mini-art.pixelated {
-      grid-template-columns: repeat(8, 1fr);
+    .hero-layer {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-layer.pixel {
+      clip-path: inset(0 50% 0 0);
+    }
+
+    .hero-layer img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-layer.pixel img {
       image-rendering: pixelated;
     }
 
-    .mini-art i { min-height: 8px; }
+    .hero-label {
+      position: absolute;
+      top: 10px;
+      z-index: 2;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      padding: 4px 8px;
+      background: rgba(23,32,29,.82);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+    }
 
-    .mini-caption {
-      display: flex;
-      justify-content: space-between;
-      padding: 7px 10px 9px;
-      color: var(--muted);
+    .hero-label.before { left: 10px; }
+    .hero-label.after { right: 10px; background: var(--mint); color: #061812; }
+
+    .hero-range {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      width: 100%;
+      opacity: .001;
+      cursor: ew-resize;
+    }
+
+    .hero-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      z-index: 2;
+      width: 3px;
+      background: #fff;
+      box-shadow: 0 0 0 1px rgba(23,32,29,.32);
+    }
+
+    .hero-handle::after {
+      content: "<>";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid #fff;
+      border-radius: 5px;
+      background: #17201d;
+      color: var(--mint);
+      padding: 7px 9px;
       font-size: 11px;
-      font-weight: 750;
+      font-weight: 900;
+    }
+
+    .hero-style-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .hero-style-tabs button {
+      min-height: 42px;
+      border: 2px solid rgba(23,32,29,.16);
+      border-radius: 5px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 900;
+      box-shadow: 3px 3px 0 rgba(23,32,29,.08);
+    }
+
+    .hero-style-tabs button.active {
+      border-color: #17372d;
+      background: var(--sun);
+      box-shadow: 3px 3px 0 #17372d;
+    }
+
+    .hero-style-tabs button:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(23,32,29,.18);
     }
 
     .tool {
@@ -447,7 +545,9 @@
       border: 2px solid #17372d;
       border-radius: 4px;
       padding: 0 14px;
-      background: #fff;
+      background:
+        repeating-linear-gradient(135deg, rgba(23,32,29,.04) 0 8px, transparent 8px 16px),
+        #fff;
       color: var(--ink);
       cursor: pointer;
       font-weight: 850;
@@ -472,6 +572,13 @@
     .btn.primary {
       background: var(--mint);
       color: #061812;
+    }
+
+    .btn.secondary {
+      background:
+        repeating-linear-gradient(135deg, rgba(23,32,29,.06) 0 8px, transparent 8px 16px),
+        #fff;
+      color: var(--ink);
     }
 
     .btn:disabled {
@@ -1243,25 +1350,34 @@
 
     .use-case-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 18px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 22px;
     }
 
     .use-card {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      align-items: center;
+      gap: 16px;
       border: 2px solid rgba(23,32,29,.12);
       border-radius: 6px;
       background: rgba(255,255,255,.78);
       box-shadow: 4px 4px 0 rgba(23,32,29,.06);
-      overflow: hidden;
+      padding: 14px;
     }
 
     .use-art {
-      aspect-ratio: 1 / 1;
+      width: 92px;
+      height: 92px;
       display: grid;
       grid-template-columns: repeat(10, 1fr);
       background: #fff;
+      border: 2px solid #17372d;
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 rgba(23,32,29,.14);
       image-rendering: pixelated;
+      overflow: hidden;
     }
 
     .use-art i {
@@ -1269,7 +1385,7 @@
     }
 
     .use-card div:last-child {
-      padding: 14px;
+      padding: 0;
     }
 
     .use-card h3 {
@@ -1313,7 +1429,7 @@
 
     .site-cta {
       border-top: 1px solid rgba(23,32,29,.08);
-      padding: 64px 0 34px;
+      padding: 70px 0 72px;
     }
 
     .cta-panel {
@@ -1359,11 +1475,29 @@
       text-decoration: none;
       font-weight: 900;
       box-shadow: 4px 4px 0 rgba(23,32,29,.18);
+      transition: transform .12s, box-shadow .12s;
+    }
+
+    .cta-actions a:nth-child(2) {
+      background:
+        repeating-linear-gradient(135deg, rgba(23,32,29,.06) 0 8px, transparent 8px 16px),
+        #fff;
+      color: var(--ink);
+    }
+
+    .cta-actions a:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 rgba(23,32,29,.22);
+    }
+
+    .cta-actions a:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 rgba(23,32,29,.24);
     }
 
     .site-footer {
       border-top: 2px solid rgba(23,32,29,.12);
-      padding: 32px 0 44px;
+      padding: 46px 0 44px;
       color: var(--muted);
       font-size: 14px;
     }
@@ -1426,7 +1560,8 @@
     }
 
     @media (max-width: 900px) {
-      .hero-gallery { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-demo { max-width: 620px; }
       .tool { grid-template-columns: 1fr; }
       .stage { min-height: auto; }
       .compare-grid { grid-template-columns: 1fr; }
@@ -1441,6 +1576,7 @@
       .brand { flex: 0 0 auto; }
       .nav { gap: 10px; font-size: 12px; }
       .hero { padding-top: 20px; }
+      .hero-style-tabs { grid-template-columns: repeat(2, 1fr); }
       .toggles, .preset-row, .style-grid, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .share-row, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr; }
       .actions { grid-template-columns: 1fr; }
       .range-row { grid-template-columns: 1fr 76px; }
@@ -1468,33 +1604,30 @@
 
   <main>
     <div class="wrap hero">
-      <span class="eyebrow"><span class="badge-pixel">FREE</span> online pixel art converter</span>
-      <h1>Image to Pixel Art - Free Online Pixel Art Converter</h1>
-      <p class="lead">Turn any image, photo, or picture into clean pixel art online. Tune pixel size, color count, PICO-8, Game Boy, NES palettes, and grid, then download a crisp PNG.</p>
-      <div class="hero-gallery" aria-label="Before and after pixel art examples">
-        <div class="sample-card">
-          <b>Avatar</b>
-          <div class="mini-compare">
-            <div class="mini-art" data-mini="avatar-soft"></div>
-            <div class="mini-art pixelated" data-mini="avatar-pixel"></div>
-          </div>
-          <div class="mini-caption"><span>Photo</span><span>Pixel art</span></div>
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="badge-pixel">FREE</span> online pixel art converter</span>
+        <h1>Image to Pixel Art - Free Online Pixel Art Converter</h1>
+        <p class="lead">Turn any image, photo, or picture into clean pixel art online. Tune pixel size, color count, PICO-8, Game Boy, NES palettes, and grid, then download a crisp PNG.</p>
+      </div>
+      <div class="hero-demo" aria-label="Interactive before and after pixel art demo">
+        <div class="hero-demo-head">
+          <b>Before / after style demo</b>
+          <span id="heroStyleName">Game Boy</span>
         </div>
-        <div class="sample-card">
-          <b>Landscape</b>
-          <div class="mini-compare">
-            <div class="mini-art" data-mini="land-soft"></div>
-            <div class="mini-art pixelated" data-mini="land-pixel"></div>
-          </div>
-          <div class="mini-caption"><span>Image</span><span>8-bit</span></div>
+        <div class="hero-compare" id="heroCompare">
+          <span class="hero-label before">Original</span>
+          <span class="hero-label after">Pixelated</span>
+          <div class="hero-layer before" id="heroBefore"></div>
+          <div class="hero-layer pixel" id="heroAfter"></div>
+          <span class="hero-handle" id="heroHandle"></span>
+          <input class="hero-range" id="heroRange" type="range" min="0" max="100" value="52" aria-label="Drag to compare original and pixelated demo">
         </div>
-        <div class="sample-card">
-          <b>Craft grid</b>
-          <div class="mini-compare">
-            <div class="mini-art" data-mini="craft-soft"></div>
-            <div class="mini-art pixelated" data-mini="craft-pixel"></div>
-          </div>
-          <div class="mini-caption"><span>Picture</span><span>Grid-ready</span></div>
+        <div class="hero-style-tabs" aria-label="Choose demo pixel style">
+          <button class="active" type="button" data-style-demo="gameboy">Game Boy</button>
+          <button type="button" data-style-demo="nes">NES</button>
+          <button type="button" data-style-demo="minecraft">Minecraft</button>
+          <button type="button" data-style-demo="pico8">PICO-8</button>
+          <button type="button" data-style-demo="grayscale">B/W</button>
         </div>
       </div>
     </div>
@@ -1510,31 +1643,19 @@
         </label>
         <button class="sample-top btn-pixel" id="sample" type="button">Try a sample image</button>
 
-        <div class="style-panel" aria-label="Pixel art style presets">
-          <div class="style-head"><span>Selected style controls the live preview</span><strong id="selectedStyle">Minecraft</strong></div>
-          <div class="style-grid">
-            <button class="style-card" type="button" data-style="gameboy"><span class="style-icon">GB</span><b>Game Boy</b><span>Green handheld look</span></button>
-            <button class="style-card" type="button" data-style="nes"><span class="style-icon">NES</span><b>NES</b><span>Bold 8-bit colors</span></button>
-            <button class="style-card active" type="button" data-style="minecraft"><span class="style-icon">MC</span><b>Minecraft</b><span>Blocky craft palette</span></button>
-            <button class="style-card" type="button" data-style="pico8"><span class="style-icon">P8</span><b>PICO-8</b><span>Fantasy console</span></button>
-            <button class="style-card" type="button" data-style="grayscale"><span class="style-icon">BW</span><b>Monochrome</b><span>Printable black and white</span></button>
-            <button class="style-card" type="button" data-style="auto"><span class="style-icon">A</span><b>Auto</b><span>Keep source mood</span></button>
+        <div class="field">
+          <label for="pixelSize">Pixel art width <output id="pixelSizeOut">96 px</output></label>
+          <div class="range-row">
+            <input class="slider-pixel" id="pixelSize" type="range" min="24" max="256" step="4" value="96">
+            <input class="number" id="pixelSizeNumber" type="number" min="24" max="256" step="4" value="96" aria-label="Pixel art width in pixels">
           </div>
         </div>
 
         <div class="field">
-          <label for="pixelSize">Pixel art width <output id="pixelSizeOut">80 px</output></label>
+          <label for="colorCount">Color count <output id="colorCountOut">4</output></label>
           <div class="range-row">
-            <input class="slider-pixel" id="pixelSize" type="range" min="24" max="256" step="4" value="80">
-            <input class="number" id="pixelSizeNumber" type="number" min="24" max="256" step="4" value="80" aria-label="Pixel art width in pixels">
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="colorCount">Color count <output id="colorCountOut">32</output></label>
-          <div class="range-row">
-            <input class="slider-pixel" id="colorCount" type="range" min="4" max="64" step="4" value="32">
-            <input class="number" id="colorCountNumber" type="number" min="4" max="64" step="4" value="32" aria-label="Color count">
+            <input class="slider-pixel" id="colorCount" type="range" min="4" max="64" step="4" value="4">
+            <input class="number" id="colorCountNumber" type="number" min="4" max="64" step="4" value="4" aria-label="Color count">
           </div>
         </div>
 
@@ -1558,9 +1679,9 @@
             <option value="auto">Auto from image</option>
             <option value="wplace">Wplace inspired</option>
             <option value="pico8">PICO-8</option>
-            <option value="gameboy">Game Boy</option>
+            <option value="gameboy" selected>Game Boy</option>
             <option value="nes">NES inspired</option>
-            <option value="minecraft" selected>Minecraft inspired</option>
+            <option value="minecraft">Minecraft inspired</option>
             <option value="c64">C64 inspired</option>
             <option value="grayscale">Grayscale</option>
           </select>
@@ -1573,7 +1694,7 @@
 
         <div class="actions">
           <button class="btn primary btn-pixel" id="download" type="button" disabled>Download PNG</button>
-          <button class="btn btn-pixel" id="copyPng" type="button" disabled>Copy PNG</button>
+          <button class="btn secondary btn-pixel" id="copyPng" type="button" disabled>Copy PNG</button>
         </div>
         <div class="download-hint" id="downloadHint">Upload an image to enable download.</div>
         <div class="usage" id="usage"><b>Free local conversions:</b> 0 completed</div>
@@ -1595,7 +1716,7 @@
         <div class="stage-head">
           <h2>Live preview</h2>
           <div class="stats" id="stats">
-            <span class="style-badge" id="styleBadge">Style Minecraft</span>
+            <span class="style-badge" id="styleBadge">Style Game Boy</span>
             <span>No image yet</span>
           </div>
         </div>
@@ -1967,6 +2088,98 @@
       });
     }
 
+    function drawHeroSource() {
+      const c = document.createElement('canvas');
+      c.width = 640;
+      c.height = 480;
+      const s = c.getContext('2d');
+      const sky = s.createLinearGradient(0, 0, 0, 260);
+      sky.addColorStop(0, '#9fd3ff');
+      sky.addColorStop(1, '#fff0c7');
+      s.fillStyle = sky;
+      s.fillRect(0, 0, c.width, c.height);
+      s.fillStyle = '#f6c85f';
+      s.beginPath();
+      s.arc(520, 96, 46, 0, Math.PI * 2);
+      s.fill();
+      s.fillStyle = '#7566d8';
+      s.beginPath();
+      s.moveTo(58, 345);
+      s.lineTo(236, 170);
+      s.lineTo(398, 345);
+      s.closePath();
+      s.fill();
+      s.fillStyle = '#28b67a';
+      s.beginPath();
+      s.moveTo(210, 345);
+      s.lineTo(372, 142);
+      s.lineTo(590, 345);
+      s.closePath();
+      s.fill();
+      s.fillStyle = '#17201d';
+      s.fillRect(0, 345, 640, 135);
+      s.fillStyle = '#f07167';
+      s.fillRect(300, 285, 150, 90);
+      s.fillStyle = '#fff6da';
+      s.fillRect(342, 318, 28, 42);
+      s.fillRect(385, 318, 28, 42);
+      s.fillStyle = '#f07167';
+      s.fillRect(444, 302, 86, 73);
+      s.fillStyle = '#fff6da';
+      s.fillRect(486, 330, 20, 45);
+      s.fillStyle = '#28b67a';
+      s.fillRect(540, 330, 54, 45);
+      s.fillStyle = '#0f7c55';
+      s.fillRect(590, 350, 34, 25);
+      return c;
+    }
+
+    function pixelateCanvasData(sourceCanvas, style) {
+      const out = document.createElement('canvas');
+      const w = 96;
+      const h = Math.round(sourceCanvas.height * (w / sourceCanvas.width));
+      out.width = w;
+      out.height = h;
+      const outCtx = out.getContext('2d', { willReadFrequently: true });
+      outCtx.imageSmoothingEnabled = false;
+      outCtx.drawImage(sourceCanvas, 0, 0, w, h);
+      const paletteList = palettes[style] || palettes.gameboy;
+      const rgbPalette = paletteList.map(hexToRgb);
+      const image = outCtx.getImageData(0, 0, w, h);
+      const data = image.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const next = nearestColor([data[i], data[i + 1], data[i + 2]], rgbPalette);
+        data[i] = next[0];
+        data[i + 1] = next[1];
+        data[i + 2] = next[2];
+      }
+      outCtx.putImageData(image, 0, 0);
+      return out.toDataURL('image/png');
+    }
+
+    function updateHeroSlider(range) {
+      const value = Number(range.value);
+      const pixelLayer = document.getElementById('heroAfter');
+      const handle = document.getElementById('heroHandle');
+      if (pixelLayer) pixelLayer.style.clipPath = `inset(0 0 0 ${value}%)`;
+      if (handle) handle.style.left = `${value}%`;
+    }
+
+    function renderHeroDemo(style = 'gameboy') {
+      const before = document.getElementById('heroBefore');
+      const after = document.getElementById('heroAfter');
+      const label = document.getElementById('heroStyleName');
+      const source = drawHeroSource();
+      if (before) before.innerHTML = `<img src="${source.toDataURL('image/png')}" alt="Original landscape sample">`;
+      if (after) after.innerHTML = `<img src="${pixelateCanvasData(source, style)}" alt="${styleNames[style] || style} pixel art sample">`;
+      if (label) label.textContent = styleNames[style] || style;
+      document.querySelectorAll('[data-style-demo]').forEach((button) => {
+        button.classList.toggle('active', button.dataset.styleDemo === style);
+      });
+      const heroRange = document.getElementById('heroRange');
+      if (heroRange) updateHeroSlider(heroRange);
+    }
+
     function renderUseCases() {
       const palettesByUse = {
         avatar: ['#17201d','#f7cfbd','#7b4835','#fff6da','#28b67a','#f07167','#73a9ff'],
@@ -2235,7 +2448,7 @@
       document.querySelectorAll('[data-style]').forEach((button) => {
         button.classList.toggle('active', button.dataset.style === style);
       });
-      selectedStyle.textContent = styleNames[style] || style;
+      if (selectedStyle) selectedStyle.textContent = styleNames[style] || style;
       const currentStyleBadge = document.getElementById('styleBadge');
       if (currentStyleBadge) currentStyleBadge.textContent = `Style ${styleNames[style] || style}`;
       updateOutputs();
@@ -2503,6 +2716,22 @@
       }, 'image/png');
     }
 
+    async function preparePngForSocialShare() {
+      if (!lastImageData || !navigator.clipboard || !window.ClipboardItem) return false;
+      return new Promise((resolve) => {
+        canvas.toBlob(async (blob) => {
+          if (!blob) return resolve(false);
+          try {
+            await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+            showToast('PNG copied. Sign in on the social platform and paste it into your post.');
+            resolve(true);
+          } catch {
+            resolve(false);
+          }
+        }, 'image/png');
+      });
+    }
+
     ['dragenter', 'dragover'].forEach((eventName) => {
       drop.addEventListener(eventName, (event) => {
         event.preventDefault();
@@ -2531,6 +2760,12 @@
       }
     });
 
+    document.querySelectorAll('.share-row a').forEach((link) => {
+      link.addEventListener('click', () => {
+        preparePngForSocialShare();
+      });
+    });
+
     [pixelSize, colorCount, scale, palette, grid, transparent].forEach((control) => {
       control.addEventListener('input', () => {
         updateOutputs();
@@ -2544,7 +2779,7 @@
       document.querySelectorAll('[data-style]').forEach((button) => {
         button.classList.toggle('active', button.dataset.style === style);
       });
-      selectedStyle.textContent = styleNames[style] || style;
+      if (selectedStyle) selectedStyle.textContent = styleNames[style] || style;
     });
 
     [
@@ -2566,6 +2801,19 @@
       button.addEventListener('click', () => applyPaletteStyle(button.dataset.style));
     });
 
+    const heroRange = document.getElementById('heroRange');
+    if (heroRange) {
+      heroRange.addEventListener('input', () => updateHeroSlider(heroRange));
+    }
+
+    document.querySelectorAll('[data-style-demo]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const style = button.dataset.styleDemo;
+        renderHeroDemo(style);
+        applyPaletteStyle(style);
+      });
+    });
+
     document.querySelectorAll('.compare-range').forEach((range) => {
       range.addEventListener('input', () => updateCompareSlider(range));
       updateCompareSlider(range);
@@ -2580,6 +2828,7 @@
 
     fillEmpty();
     renderMiniArt();
+    renderHeroDemo('gameboy');
     renderUseCases();
     renderShowcases();
     renderHistory();
