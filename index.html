@@ -2437,6 +2437,14 @@
       handle.style.left = `${value}%`;
     }
 
+    function updateHeroSlider(range) {
+      const value = Number(range.value);
+      const pixel = document.getElementById('heroAfter');
+      const handle = document.getElementById('heroHandle');
+      if (pixel) pixel.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      if (handle) handle.style.left = `${value}%`;
+    }
+
     function getHistory() {
       try {
         return JSON.parse(localStorage.getItem('pixelArtHistory') || '[]');
