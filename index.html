@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Image to Pixel Art Converter - Free Online Pixel Art Tool</title>
-  <meta name="description" content="Convert any image, photo, or picture into pixel art online. Adjust pixel size, color palette, grid, and download your pixel art as PNG.">
+  <title>Image to Pixel Art - Free Online Pixel Art Converter</title>
+  <meta name="description" content="Convert any image to pixel art online. Upload JPG, PNG or WebP, choose pixel size and retro palettes, preview instantly, and download PNG.">
+  <meta name="date" content="2026-07-05">
+  <meta name="publish_date" content="2026-07-05">
+  <meta name="lastmod" content="2026-07-06">
+  <meta property="article:published_time" content="2026-07-05T00:00:00+08:00">
+  <meta property="article:modified_time" content="2026-07-06T00:00:00+08:00">
   <link rel="canonical" href="https://photo2pixelart.com/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2317201d'/%3E%3Crect x='8' y='8' width='12' height='12' fill='%2328b67a'/%3E%3Crect x='22' y='8' width='12' height='12' fill='%23f6c85f'/%3E%3Crect x='36' y='8' width='12' height='12' fill='%2373a9ff'/%3E%3Crect x='8' y='22' width='12' height='12' fill='%23f07167'/%3E%3Crect x='22' y='22' width='12' height='12' fill='%23fbfaf6'/%3E%3Crect x='36' y='22' width='12' height='12' fill='%2328b67a'/%3E%3Crect x='8' y='36' width='12' height='12' fill='%237566d8'/%3E%3Crect x='22' y='36' width='12' height='12' fill='%23f07167'/%3E%3Crect x='36' y='36' width='12' height='12' fill='%23f6c85f'/%3E%3C/svg%3E">
-  <meta property="og:title" content="Image to Pixel Art Converter">
-  <meta property="og:description" content="Turn photos and images into clean pixel art online. Free, fast, no signup.">
+  <meta property="og:title" content="Image to Pixel Art - Free Online Pixel Art Converter">
+  <meta property="og:description" content="Convert images to pixel art with local browser processing, retro palettes, live preview, and PNG download.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://photo2pixelart.com/">
   <meta property="og:image" content="https://photo2pixelart.com/preview.png">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Image to Pixel Art Converter">
-  <meta name="twitter:description" content="Turn photos and images into clean pixel art online. Free, fast, no signup.">
+  <meta name="twitter:title" content="Image to Pixel Art - Free Online Pixel Art Converter">
+  <meta name="twitter:description" content="Convert images to pixel art with local browser processing, retro palettes, live preview, and PNG download.">
   <meta name="twitter:image" content="https://photo2pixelart.com/preview.png">
   <script type="application/ld+json">
   {
@@ -26,6 +31,8 @@
         "applicationCategory": "DesignApplication",
         "operatingSystem": "Any",
         "url": "https://photo2pixelart.com/",
+        "datePublished": "2026-07-05",
+        "dateModified": "2026-07-06",
         "description": "Convert images, photos, and pictures into pixel art online with adjustable pixel width, colors, retro palettes, grid, and PNG export.",
         "offers": {
           "@type": "Offer",
@@ -714,6 +721,33 @@
       border-radius: 4px;
     }
 
+    .share-row {
+      display: grid;
+      grid-template-columns: 1.05fr repeat(5, 1fr);
+      gap: 10px;
+      margin: -28px auto 56px;
+    }
+
+    .share-row button,
+    .share-row a {
+      min-height: 48px;
+      display: inline-grid;
+      place-items: center;
+      border: 2px solid #17372d;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 4px 4px 0 rgba(23,32,29,.14);
+    }
+
+    .share-row .facebook { background: #1877f2; color: #fff; }
+    .share-row .x { background: #050505; color: #fff; }
+    .share-row .whatsapp { background: #25d366; color: #fff; }
+    .share-row .linkedin { background: #0a66c2; color: #fff; }
+    .share-row .pinterest { background: #e60023; color: #fff; }
+
     main > section {
       padding: 56px 0;
       border-top: 1px solid rgba(23,32,29,.08);
@@ -730,6 +764,165 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
+    }
+
+    .palette-grid,
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .palette-card,
+    .benefit-card,
+    .showcase-card {
+      border: 2px solid rgba(23,32,29,.12);
+      border-radius: 6px;
+      background: rgba(255,255,255,.78);
+      padding: 18px;
+      box-shadow: 4px 4px 0 rgba(23,32,29,.06);
+    }
+
+    .palette-card {
+      min-height: 152px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .palette-card:hover,
+    .palette-card.active {
+      border-color: #17372d;
+      box-shadow: 4px 4px 0 var(--sun);
+    }
+
+    .palette-icon,
+    .benefit-icon {
+      width: 44px;
+      height: 44px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 16px;
+      border: 2px solid #17372d;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--mint-dark);
+      font-weight: 950;
+      box-shadow: 3px 3px 0 rgba(23,32,29,.12);
+    }
+
+    .palette-card h3,
+    .benefit-card h3 {
+      display: block;
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .palette-card p,
+    .benefit-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .compare-slider {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border: 2px solid #17372d;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 4px 4px 0 rgba(23,32,29,.12);
+    }
+
+    .compare-layer {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(16, 1fr);
+      grid-template-rows: repeat(10, 1fr);
+    }
+
+    .compare-layer.pixel {
+      clip-path: inset(0 50% 0 0);
+      image-rendering: pixelated;
+    }
+
+    .compare-layer i {
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .compare-label {
+      position: absolute;
+      top: 10px;
+      z-index: 2;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      padding: 4px 8px;
+      background: rgba(23,32,29,.82);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .compare-label.after {
+      right: 10px;
+      background: var(--mint);
+      color: #061812;
+    }
+
+    .compare-label.before {
+      left: 10px;
+    }
+
+    .compare-range {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      width: 100%;
+      opacity: .001;
+      cursor: ew-resize;
+    }
+
+    .compare-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      z-index: 2;
+      width: 3px;
+      background: #fff;
+      box-shadow: 0 0 0 1px rgba(23,32,29,.32);
+    }
+
+    .compare-handle::after {
+      content: "<>";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid #fff;
+      border-radius: 5px;
+      background: #17201d;
+      color: var(--mint);
+      padding: 7px 9px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .showcase-card h3 {
+      margin: 14px 0 6px;
+      font-size: 20px;
+    }
+
+    .showcase-card p {
+      margin: 0;
+      color: var(--muted);
     }
 
     .feature, .price, .faq-item {
@@ -968,7 +1161,8 @@
       .tool { grid-template-columns: 1fr; }
       .stage { min-height: auto; }
       .compare-grid { grid-template-columns: 1fr; }
-      .grid-3, .steps, .longtail-list, .legal-grid { grid-template-columns: 1fr 1fr; }
+      .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid { grid-template-columns: 1fr 1fr; }
+      .share-row { grid-template-columns: repeat(3, 1fr); margin-top: -22px; }
       .faq { grid-template-columns: 1fr; }
     }
 
@@ -978,7 +1172,7 @@
       .brand { flex: 0 0 auto; }
       .nav { gap: 10px; font-size: 12px; }
       .hero { padding-top: 20px; }
-      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid { grid-template-columns: 1fr; }
+      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .share-row { grid-template-columns: 1fr; }
       .actions { grid-template-columns: 1fr; }
       .range-row { grid-template-columns: 1fr 76px; }
       .stage-head, .stage-foot { align-items: flex-start; flex-direction: column; }
@@ -995,6 +1189,9 @@
     </a>
     <nav class="nav" aria-label="Primary navigation">
       <a href="#tool">Tool</a>
+      <a href="#palettes">Palettes</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#benefits">Benefits</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -1003,7 +1200,7 @@
   <main>
     <div class="wrap hero">
       <span class="eyebrow"><span class="badge-pixel">FREE</span> online pixel art converter</span>
-      <h1>Image to Pixel Art Converter</h1>
+      <h1>Image to Pixel Art - Free Online Pixel Art Converter</h1>
       <p class="lead">Turn any image, photo, or picture into clean pixel art online. Tune pixel size, color count, PICO-8, Game Boy, NES palettes, and grid, then download a crisp PNG.</p>
       <div class="hero-gallery" aria-label="Before and after pixel art examples">
         <div class="sample-card">
@@ -1078,9 +1275,12 @@
           <label for="palette">Palette</label>
           <select id="palette">
             <option value="auto">Auto from image</option>
+            <option value="wplace">Wplace inspired</option>
             <option value="pico8">PICO-8</option>
             <option value="gameboy">Game Boy</option>
             <option value="nes">NES inspired</option>
+            <option value="minecraft">Minecraft inspired</option>
+            <option value="c64">C64 inspired</option>
             <option value="grayscale">Grayscale</option>
           </select>
         </div>
@@ -1143,6 +1343,29 @@
     </div>
     <div class="divider-pixel" aria-hidden="true"></div>
 
+    <div class="wrap share-row" aria-label="Share Photo2PixelArt">
+      <button type="button" id="copyLink">Copy link</button>
+      <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">Facebook</a>
+      <a class="x" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">X</a>
+      <a class="whatsapp" href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">Pinterest</a>
+    </div>
+
+    <section id="palettes">
+      <div class="wrap">
+        <h2 class="section-title">Select a Pixel Art Palette</h2>
+        <div class="palette-grid" aria-label="Pixel art palette presets">
+          <button class="palette-card active" type="button" data-style="auto"><span class="palette-icon">A</span><h3>Auto Pixel Art</h3><p>Reduce colors from the uploaded image while keeping the original mood.</p></button>
+          <button class="palette-card" type="button" data-style="gameboy"><span class="palette-icon">GB</span><h3>Game Boy Pixel Art</h3><p>Classic green monochrome palette for handheld retro pixel art.</p></button>
+          <button class="palette-card" type="button" data-style="nes"><span class="palette-icon">NES</span><h3>NES Pixel Art</h3><p>Bold 8-bit colors inspired by classic console game graphics.</p></button>
+          <button class="palette-card" type="button" data-style="minecraft"><span class="palette-icon">MC</span><h3>Minecraft Pixel Art</h3><p>Blocky earth, grass, stone, sky, and item-style colors.</p></button>
+          <button class="palette-card" type="button" data-style="pico8"><span class="palette-icon">P8</span><h3>PICO-8 Pixel Art</h3><p>Vibrant fantasy console colors for sprites, icons, and avatars.</p></button>
+          <button class="palette-card" type="button" data-style="grayscale"><span class="palette-icon">BW</span><h3>Monochrome Pixel Art</h3><p>Black-and-white pixel art for simple icons and printable references.</p></button>
+        </div>
+      </div>
+    </section>
+
     <section>
       <div class="wrap">
         <h2 class="section-title">How to use this image to pixel art converter</h2>
@@ -1167,22 +1390,60 @@
       </div>
     </section>
 
-    <section>
+    <section id="showcase">
       <div class="wrap">
-        <h2 class="section-title">Built for quick pixel art exports</h2>
-        <div class="grid-3">
-          <div class="feature">
-            <b>Photo to pixel art</b>
-            <p>Convert portraits, product shots, icons, pets, screenshots, and game references into blocky pixel art in seconds.</p>
-          </div>
-          <div class="feature">
-            <b>Palette control</b>
-            <p>Use automatic colors or pick retro palettes like PICO-8, Game Boy, NES inspired, and grayscale.</p>
-          </div>
-          <div class="feature">
-            <b>Clean PNG download</b>
-            <p>Export a sharp PNG with adjustable scale. Enable the grid when you want a reference sheet or turn it off for final art.</p>
-          </div>
+        <h2 class="section-title">Image to Pixel Art Preset Showcase</h2>
+        <div class="showcase-grid">
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="gameboy">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare Game Boy pixel art">
+            </div>
+            <h3>Game Boy Pixel Art</h3>
+            <p>Create a classic green handheld look for portraits, icons, and small game references.</p>
+          </article>
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="nes">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare NES pixel art">
+            </div>
+            <h3>NES Pixel Art</h3>
+            <p>Transform images into bold 8-bit style artwork with high-contrast retro colors.</p>
+          </article>
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="minecraft">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare Minecraft pixel art">
+            </div>
+            <h3>Minecraft Pixel Art</h3>
+            <p>Use blocky, craft-friendly colors for square-grid references and playful graphics.</p>
+          </article>
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="pico8">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare PICO-8 pixel art">
+            </div>
+            <h3>PICO-8 Pixel Art</h3>
+            <p>Generate bright fantasy-console style results for sprites, avatars, and social posts.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits">
+      <div class="wrap">
+        <h2 class="section-title">Key Benefits of the Image to Pixel Art Converter</h2>
+        <div class="benefit-grid">
+          <div class="benefit-card"><span class="benefit-icon">OK</span><h3>Private Browser-Based Conversion</h3><p>The core converter runs locally with HTML canvas, so your image stays on your device.</p></div>
+          <div class="benefit-card"><span class="benefit-icon">AB</span><h3>Real Before/After Preview</h3><p>Compare the original image and pixel art result while tuning width, colors, scale, and grid.</p></div>
+          <div class="benefit-card"><span class="benefit-icon">PX</span><h3>Precise Pixel Size Control</h3><p>Choose the pixel art width and export scale for avatars, game assets, icons, and craft patterns.</p></div>
+          <div class="benefit-card"><span class="benefit-icon">PAL</span><h3>Retro Palette Presets</h3><p>Apply PICO-8, Game Boy, NES, Minecraft, and monochrome-style palettes with one click.</p></div>
+          <div class="benefit-card"><span class="benefit-icon">PNG</span><h3>Clean PNG Export</h3><p>Download or copy a crisp PNG with no signup and no watermark in the free local converter.</p></div>
+          <div class="benefit-card"><span class="benefit-icon">PRO</span><h3>Built for Creators and Makers</h3><p>Useful for indie game developers, pixel art fans, avatar makers, bead art, and cross-stitch references.</p></div>
         </div>
       </div>
     </section>
@@ -1349,11 +1610,15 @@
     const historyList = document.getElementById('historyList');
     const historyCount = document.getElementById('historyCount');
     const checkoutStatus = document.getElementById('checkoutStatus');
+    const copyLink = document.getElementById('copyLink');
 
     const palettes = {
+      wplace: ['#000000','#3c3c3c','#787878','#d2d2d2','#ffffff','#ff4500','#ffa800','#ffd635','#00a368','#7eed56','#2450a4','#3690ea','#51e9f4','#811e9f','#b44ac0','#ff99aa'],
       pico8: ['#000000','#1D2B53','#7E2553','#008751','#AB5236','#5F574F','#C2C3C7','#FFF1E8','#FF004D','#FFA300','#FFEC27','#00E436','#29ADFF','#83769C','#FF77A8','#FFCCAA'],
       gameboy: ['#0f380f','#306230','#8bac0f','#9bbc0f'],
       nes: ['#000000','#7c7c7c','#ffffff','#0000fc','#0078f8','#3cbcfc','#940084','#f83800','#f87858','#a80020','#e45c10','#fca044','#503000','#ac7c00','#f8b800','#007800','#00b800','#b8f818'],
+      minecraft: ['#2e1f14','#6b4f33','#8fca5c','#5d7c36','#3f76b5','#87ceeb','#c2b280','#7f7f7f','#3c3c3c','#f2f2f2','#b83a2f','#d99b3d','#2f7f5f','#7b4ab0','#1f8f8f','#d8c16a'],
+      c64: ['#000000','#ffffff','#68372b','#70a4b2','#6f3d86','#588d43','#352879','#b8c76f','#6f4f25','#433900','#9a6759','#444444','#6c6c6c','#9ad284','#6c5eb5','#959595'],
       grayscale: ['#111111','#333333','#666666','#999999','#cccccc','#f7f7f7']
     };
 
@@ -1391,6 +1656,51 @@
         const key = name.includes('land') ? 'land' : name.includes('craft') ? 'craft' : 'avatar';
         node.innerHTML = patterns[key].map((n) => `<i style="background:${paletteSet[n % paletteSet.length]}"></i>`).join('');
       });
+    }
+
+    function renderShowcases() {
+      const beforePalette = ['#73a9ff','#9bc5ff','#fff1c9','#f6c85f','#f07167','#28b67a','#0f7c55','#7566d8','#17201d','#fbfaf6'];
+      const showcasePalettes = {
+        gameboy: palettes.gameboy,
+        nes: palettes.nes,
+        minecraft: palettes.minecraft,
+        pico8: palettes.pico8
+      };
+      document.querySelectorAll('.compare-slider').forEach((card) => {
+        const kind = card.dataset.showcase;
+        const afterPalette = showcasePalettes[kind] || palettes.pico8;
+        const before = card.querySelector('.compare-layer.before');
+        const after = card.querySelector('.compare-layer.pixel');
+        const beforeCells = [];
+        const afterCells = [];
+        for (let y = 0; y < 10; y += 1) {
+          for (let x = 0; x < 16; x += 1) {
+            const hill = y > 5 + Math.sin(x / 2) * 1.2;
+            const sun = (x - 12) * (x - 12) + (y - 2) * (y - 2) < 7;
+            const house = x > 5 && x < 10 && y > 5;
+            const roof = y === 5 && x > 4 && x < 11;
+            let idx = hill ? 5 : 0;
+            if (sun) idx = 3;
+            if (roof) idx = 4;
+            if (house) idx = 9;
+            if (y > 8) idx = 8;
+            beforeCells.push(`<i style="background:${beforePalette[idx]}"></i>`);
+            const blockIdx = (idx + x + Math.floor(y / 2)) % afterPalette.length;
+            afterCells.push(`<i style="background:${afterPalette[blockIdx]}"></i>`);
+          }
+        }
+        before.innerHTML = beforeCells.join('');
+        after.innerHTML = afterCells.join('');
+      });
+    }
+
+    function updateCompareSlider(range) {
+      const card = range.closest('.compare-slider');
+      const value = Number(range.value);
+      const pixel = card.querySelector('.compare-layer.pixel');
+      const handle = card.querySelector('.compare-handle');
+      pixel.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      handle.style.left = `${value}%`;
     }
 
     function getHistory() {
@@ -1528,6 +1838,29 @@
       updateOutputs();
       pixelate();
       showToast(`${name.charAt(0).toUpperCase() + name.slice(1)} preset applied.`);
+    }
+
+    function applyPaletteStyle(style) {
+      const styleMap = {
+        auto: { palette: 'auto', colors: 24, width: 128 },
+        wplace: { palette: 'wplace', colors: 32, width: 128 },
+        gameboy: { palette: 'gameboy', colors: 4, width: 96 },
+        nes: { palette: 'nes', colors: 24, width: 96 },
+        minecraft: { palette: 'minecraft', colors: 32, width: 80 },
+        pico8: { palette: 'pico8', colors: 16, width: 96 },
+        grayscale: { palette: 'grayscale', colors: 6, width: 128 }
+      };
+      const config = styleMap[style];
+      if (!config) return;
+      palette.value = config.palette;
+      colorCount.value = config.colors;
+      pixelSize.value = config.width;
+      document.querySelectorAll('[data-style]').forEach((button) => {
+        button.classList.toggle('active', button.dataset.style === style);
+      });
+      updateOutputs();
+      pixelate();
+      showToast(`${style === 'auto' ? 'Auto' : style.toUpperCase()} palette applied.`);
     }
 
     function clampSize(width, height) {
@@ -1808,6 +2141,14 @@
     download.addEventListener('click', downloadPng);
     copyPng.addEventListener('click', copyPngToClipboard);
     sample.addEventListener('click', () => createSample());
+    copyLink.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('https://photo2pixelart.com/');
+        showToast('Link copied to clipboard.');
+      } catch {
+        showToast('Copy failed. Use https://photo2pixelart.com/');
+      }
+    });
 
     [pixelSize, colorCount, scale, palette, grid, transparent].forEach((control) => {
       control.addEventListener('input', () => {
@@ -1832,6 +2173,15 @@
       button.addEventListener('click', () => applyPreset(button.dataset.preset));
     });
 
+    document.querySelectorAll('[data-style]').forEach((button) => {
+      button.addEventListener('click', () => applyPaletteStyle(button.dataset.style));
+    });
+
+    document.querySelectorAll('.compare-range').forEach((range) => {
+      range.addEventListener('input', () => updateCompareSlider(range));
+      updateCompareSlider(range);
+    });
+
     document.addEventListener('click', (event) => {
       const checkoutTrigger = event.target.closest('[data-checkout]');
       if (!checkoutTrigger) return;
@@ -1841,6 +2191,7 @@
 
     fillEmpty();
     renderMiniArt();
+    renderShowcases();
     renderHistory();
     updateOutputs();
     createSample({ count: false, notify: false });
