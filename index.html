@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -2340,116 +2340,12 @@
     }
 
     function renderShowcases() {
-      const showcasePalettes = {
-        portrait: ['#15110f','#3c2a24','#6d4638','#9d6b57','#d09a7f','#f2c7aa','#fff1e8','#2450a4','#73a9ff','#f07167','#28b67a','#f6c85f'],
-        city: ['#050505','#17201d','#1D2B53','#2450a4','#29ADFF','#7566d8','#FF004D','#FFA300','#FFEC27','#FFF1E8'],
-        food: ['#17201d','#3c2c22','#6b4f33','#AB5236','#f07167','#FFA300','#FFEC27','#fff1c9','#28b67a','#f7cfbd','#ffffff'],
-        nature: ['#17201d','#0f380f','#306230','#5d7c36','#8bac0f','#28b67a','#2450a4','#73a9ff','#f6c85f','#fff1c9','#7566d8']
-      };
-      const drawSource = (kind) => {
-        const c = document.createElement('canvas');
-        c.width = 640;
-        c.height = 400;
-        const s = c.getContext('2d');
-        if (kind === 'portrait') {
-          const bg = s.createLinearGradient(0, 0, 640, 400);
-          bg.addColorStop(0, '#d7e4ef'); bg.addColorStop(.55, '#fff4e7'); bg.addColorStop(1, '#6d8fa7');
-          s.fillStyle = bg; s.fillRect(0, 0, 640, 400);
-          s.fillStyle = 'rgba(255,255,255,.35)';
-          for (let i = 0; i < 7; i++) { s.beginPath(); s.arc(70 + i * 88, 70 + (i % 3) * 36, 34 + i * 2, 0, Math.PI * 2); s.fill(); }
-          s.fillStyle = '#2e1f14'; s.beginPath(); s.ellipse(318, 136, 96, 112, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#f2c7aa'; s.beginPath(); s.ellipse(320, 172, 72, 88, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = 'rgba(125,70,48,.2)'; s.beginPath(); s.ellipse(352, 170, 22, 64, -.2, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#17201d'; s.beginPath(); s.ellipse(292, 164, 9, 13, 0, 0, Math.PI * 2); s.ellipse(348, 164, 9, 13, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#f07167'; s.beginPath(); s.ellipse(320, 211, 28, 9, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#2450a4'; s.beginPath(); s.moveTo(220, 390); s.quadraticCurveTo(320, 246, 430, 390); s.closePath(); s.fill();
-          s.fillStyle = '#fff1c9'; s.fillRect(0, 344, 640, 56);
-        } else if (kind === 'city') {
-          const night = s.createLinearGradient(0, 0, 0, 400);
-          night.addColorStop(0, '#10172f'); night.addColorStop(.6, '#1D2B53'); night.addColorStop(1, '#050505');
-          s.fillStyle = night; s.fillRect(0, 0, 640, 400);
-          s.fillStyle = '#FFEC27'; s.beginPath(); s.arc(500, 75, 42, 0, Math.PI * 2); s.fill();
-          const buildings = [[35,150,82,250],[132,95,96,305],[250,135,74,265],[344,80,116,320],[488,128,96,272]];
-          buildings.forEach(([x,y,w,h], idx) => {
-            s.fillStyle = idx % 2 ? '#17201d' : '#0b111f'; s.fillRect(x, y, w, h);
-            for (let yy = y + 20; yy < y + h - 10; yy += 34) for (let xx = x + 16; xx < x + w - 12; xx += 26) {
-              s.fillStyle = (xx + yy + idx) % 3 ? '#29ADFF' : '#FFA300'; s.fillRect(xx, yy, 12, 16);
-            }
-          });
-          s.fillStyle = '#FF004D'; s.fillRect(188, 172, 154, 22); s.fillStyle = '#29ADFF'; s.fillRect(382, 148, 118, 18);
-          s.fillStyle = '#050505'; s.fillRect(0, 336, 640, 64);
-          s.strokeStyle = 'rgba(255,255,255,.22)'; s.lineWidth = 3; s.beginPath(); s.moveTo(0, 356); s.lineTo(640, 382); s.stroke();
-        } else if (kind === 'food') {
-          const table = s.createLinearGradient(0, 0, 640, 400);
-          table.addColorStop(0, '#7b4a30'); table.addColorStop(1, '#2f1d15'); s.fillStyle = table; s.fillRect(0, 0, 640, 400);
-          s.fillStyle = 'rgba(255,255,255,.08)'; for (let x = 0; x < 640; x += 58) s.fillRect(x, 0, 8, 400);
-          s.fillStyle = '#fff1c9'; s.beginPath(); s.ellipse(320, 210, 150, 112, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#AB5236'; s.beginPath(); s.ellipse(320, 212, 118, 80, 0, 0, Math.PI * 2); s.fill();
-          ['#FFEC27','#28b67a','#f07167','#ffffff','#FFA300'].forEach((color, i) => {
-            s.fillStyle = color; s.beginPath(); s.ellipse(254 + i * 34, 180 + (i % 2) * 48, 28, 18, .5, 0, Math.PI * 2); s.fill();
-          });
-          s.fillStyle = '#15110f'; s.fillRect(78, 78, 88, 142); s.fillStyle = '#f6c85f'; s.fillRect(90, 92, 64, 92);
-          s.fillStyle = '#28b67a'; s.beginPath(); s.arc(494, 106, 48, 0, Math.PI * 2); s.fill(); s.fillStyle = '#fff1c9'; s.beginPath(); s.arc(494, 106, 28, 0, Math.PI * 2); s.fill();
-        } else {
-          const sky = s.createLinearGradient(0, 0, 0, 300);
-          sky.addColorStop(0, '#73a9ff'); sky.addColorStop(.55, '#fff1c9'); sky.addColorStop(1, '#f6c85f'); s.fillStyle = sky; s.fillRect(0, 0, 640, 400);
-          s.fillStyle = '#f6c85f'; s.beginPath(); s.arc(520, 82, 44, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#7566d8'; s.beginPath(); s.moveTo(0, 308); s.lineTo(170, 122); s.lineTo(350, 308); s.closePath(); s.fill();
-          s.fillStyle = '#28b67a'; s.beginPath(); s.moveTo(118, 312); s.lineTo(348, 92); s.lineTo(640, 312); s.closePath(); s.fill();
-          s.fillStyle = '#2450a4'; s.fillRect(0, 310, 640, 90);
-          s.fillStyle = 'rgba(255,255,255,.35)'; for (let x = 0; x < 640; x += 58) { s.beginPath(); s.ellipse(x + 24, 340 + (x % 3) * 12, 44, 10, 0, 0, Math.PI * 2); s.fill(); }
-          s.fillStyle = '#17201d'; s.fillRect(0, 360, 640, 40);
-        }
-        let seed = kind.split('').reduce((sum, char) => sum + char.charCodeAt(0), 17);
-        for (let i = 0; i < 2600; i++) {
-          seed = (seed * 1664525 + 1013904223) % 4294967296;
-          const x = seed % 640;
-          seed = (seed * 1664525 + 1013904223) % 4294967296;
-          const y = seed % 400;
-          seed = (seed * 1664525 + 1013904223) % 4294967296;
-          const light = seed % 2 === 0 ? 255 : 0;
-          const alpha = .018 + (seed % 6) / 1000;
-          s.fillStyle = `rgba(${light},${light},${light},${alpha})`;
-          s.fillRect(x, y, 1, 1);
-        }
-        const vignette = s.createRadialGradient(320, 190, 120, 320, 190, 430);
-        vignette.addColorStop(0, 'rgba(255,255,255,0)');
-        vignette.addColorStop(1, 'rgba(12,18,15,.22)');
-        s.fillStyle = vignette;
-        s.fillRect(0, 0, 640, 400);
-        return c;
-      };
-      const pixelatedDataUrl = (source, paletteList) => {
-        const smallW = 96;
-        const smallH = Math.round(smallW * source.height / source.width);
-        const tiny = document.createElement('canvas');
-        tiny.width = smallW;
-        tiny.height = smallH;
-        const t = tiny.getContext('2d', { willReadFrequently: true });
-        t.drawImage(source, 0, 0, smallW, smallH);
-        const imageData = t.getImageData(0, 0, smallW, smallH);
-        const data = imageData.data;
-        const paletteRgb = paletteList.map(hexToRgb);
-        for (let i = 0; i < data.length; i += 4) {
-          const rgb = nearestColor([data[i], data[i + 1], data[i + 2]], paletteRgb);
-          data[i] = rgb[0]; data[i + 1] = rgb[1]; data[i + 2] = rgb[2]; data[i + 3] = 255;
-        }
-        t.putImageData(imageData, 0, 0);
-        const out = document.createElement('canvas');
-        out.width = 640;
-        out.height = 400;
-        const o = out.getContext('2d');
-        o.imageSmoothingEnabled = false;
-        o.drawImage(tiny, 0, 0, out.width, out.height);
-        return out.toDataURL('image/png');
-      };
       document.querySelectorAll('.compare-slider').forEach((card) => {
         const kind = card.dataset.showcase;
-        const source = drawSource(kind);
         const before = card.querySelector('.compare-layer.before');
         const after = card.querySelector('.compare-layer.pixel');
-        before.innerHTML = `<img src="${source.toDataURL('image/png')}" alt="Original ${kind} sample">`;
-        after.innerHTML = `<img src="${pixelatedDataUrl(source, showcasePalettes[kind] || palettes.pico8)}" alt="Pixelated ${kind} sample">`;
+        before.innerHTML = '<img src="images/showcase/' + kind + '-before.webp" alt="Original ' + kind + '" loading="lazy">';
+        after.innerHTML = '<img src="images/showcase/' + kind + '-after.webp" alt="Pixelated ' + kind + '" loading="lazy">';
       });
     }
 
@@ -3014,3 +2910,5 @@
   </script>
 </body>
 </html>
+
+
