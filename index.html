@@ -294,7 +294,7 @@
     }
 
     .hero-layer.pixel {
-      clip-path: inset(0 50% 0 0);
+      clip-path: inset(0 0 0 50%);
     }
 
     .hero-layer img {
@@ -1195,7 +1195,7 @@
     }
 
     .compare-layer.pixel {
-      clip-path: inset(0 50% 0 0);
+      clip-path: inset(0 0 0 50%);
       image-rendering: pixelated;
     }
 
@@ -2439,7 +2439,7 @@
       const value = Number(range.value);
       const pixel = card.querySelector('.compare-layer.pixel');
       const handle = card.querySelector('.compare-handle');
-      pixel.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      pixel.style.clipPath = `inset(0 0 0 ${value}%)`;
       handle.style.left = `${value}%`;
     }
 
@@ -2447,7 +2447,7 @@
       const value = Number(range.value);
       const pixel = document.getElementById('heroAfter');
       const handle = document.getElementById('heroHandle');
-      if (pixel) pixel.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      if (pixel) pixel.style.clipPath = `inset(0 0 0 ${value}%)`;
       if (handle) handle.style.left = `${value}%`;
     }
 
