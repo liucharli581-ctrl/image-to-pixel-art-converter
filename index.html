@@ -221,7 +221,7 @@
       box-shadow: 10px 0 0 var(--sun), 20px 0 0 var(--coral);
     }
 
-    h1, h2, h3, h4, .section-title {
+    h1 {
       font-family: "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-weight: 400;
       text-rendering: optimizeLegibility;
@@ -970,12 +970,6 @@
       object-fit: contain;
     }
 
-    .empty {
-      display: none;
-    }
-
-    .empty i { min-height: 28px; }
-
     .stage-foot {
       display: flex;
       justify-content: space-between;
@@ -1049,9 +1043,10 @@
 
     .section-title {
       margin: 0 0 18px;
-      font-size: clamp(14px, 1.6vw, 19px);
-      line-height: 1.4;
-      letter-spacing: 0;
+      font-size: clamp(22px, 2.6vw, 32px);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      font-weight: 850;
     }
 
     .grid-3 {
@@ -1063,12 +1058,30 @@
     .palette-grid,
     .benefit-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
 
     .palette-card,
     .benefit-card,
+    .showcase-card {
+      border: 2px solid rgba(23,32,29,.12);
+      border-radius: 6px;
+      background: rgba(255,255,255,.78);
+      padding: 18px;
+      box-shadow: 4px 4px 0 rgba(23,32,29,.06);
+    }
+
+    .showcase-card {
+      transition: transform .16s, box-shadow .16s, border-color .16s;
+    }
+
+    .showcase-card:hover {
+      transform: translate(-4px, -4px);
+      border-color: #17372d;
+      box-shadow: 9px 9px 0 rgba(23,32,29,.14);
+    }
+
     .palette-card {
       min-height: 152px;
       cursor: pointer;
@@ -1109,116 +1122,163 @@
       color: var(--muted);
     }
 
-    .live-compare {
+    .showcase-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      width: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
     }
 
-    .live-card {
-      display: flex;
-      flex-direction: column;
-      border: 2px solid #17372d;
-      background: #fff;
-      box-shadow: 4px 4px 0 rgba(23,32,29,.12);
-      overflow: hidden;
-    }
-
-
-
-    .live-body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .live-body img,
-    .live-body canvas {
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-    }
-
-
-    .showcase-carousel {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .showcase-carousel .hero-compare {
-      aspect-ratio: 4 / 3;
-    }
-
-    .showcase-ctrls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .showcase-arrow {
-      width: 40px;
-      height: 40px;
+    /* Tool area empty state */
+    #originalEmpty {
       display: grid;
       place-items: center;
+      min-height: 360px;
+      padding: 40px;
+    }
+    #originalEmpty[hidden] {
+      display: none;
+    }
+    #originalEmpty i {
+      min-height: 28px;
+    }
+
+    /* Tool area comparison slider */
+    #toolCompare.compare-slider {
+      aspect-ratio: unset;
+      min-height: 300px;
+      width: 100%;
+      max-height: 68vh;
+    }
+    #toolCompare .compare-layer.before {
+      position: relative;
+    }
+    #toolCompare .compare-layer.before img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 68vh;
+      object-fit: contain;
+    }
+    #toolCompare .compare-layer.pixel {
+      position: absolute;
+      inset: 0;
+    }
+    #toolCompare .compare-layer.pixel canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+
+
+    .compare-slider {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
       border: 2px solid #17372d;
       border-radius: 6px;
-      background: #fff;
-      color: #17372d;
-      font-size: 22px;
+      background:
+        linear-gradient(45deg, #e8e4db 25%, transparent 25%),
+        linear-gradient(-45deg, #e8e4db 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e8e4db 75%),
+        linear-gradient(-45deg, transparent 75%, #e8e4db 75%),
+        #fbfaf6;
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+      box-shadow: 4px 4px 0 rgba(23,32,29,.12);
+    }
+
+    .compare-layer {
+      position: absolute;
+      inset: 0;
+    }
+
+    .compare-layer.pixel {
+      clip-path: inset(0 50% 0 0);
+      image-rendering: pixelated;
+    }
+
+    .compare-layer i {
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .compare-layer img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+    .compare-layer.pixel img {
+      image-rendering: pixelated;
+    }
+
+    .compare-label {
+      position: absolute;
+      top: 10px;
+      z-index: 2;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      padding: 4px 8px;
+      background: rgba(23,32,29,.82);
+      color: #fff;
+      font-size: 12px;
       font-weight: 900;
-      cursor: pointer;
-      transition: transform .12s, box-shadow .12s;
-      box-shadow: 3px 3px 0 rgba(23,32,29,.12);
-      line-height: 1;
     }
 
-    .showcase-arrow:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0 rgba(23,32,29,.18);
+    .compare-label.after {
+      right: 10px;
+      background: var(--mint);
+      color: #061812;
     }
 
-    .showcase-arrow:active {
-      transform: translate(1px, 1px);
-      box-shadow: 1px 1px 0 rgba(23,32,29,.12);
+    .compare-label.before {
+      left: 10px;
     }
 
-    .showcase-dots {
-      display: flex;
-      gap: 8px;
+    .compare-range {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      width: 100%;
+      opacity: .001;
+      cursor: ew-resize;
     }
 
-    .showcase-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: 2px solid rgba(23,32,29,.24);
-      background: transparent;
-      cursor: pointer;
-      transition: background .15s, border-color .15s;
+    .compare-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      z-index: 2;
+      width: 3px;
+      background: #fff;
+      box-shadow: 0 0 0 1px rgba(23,32,29,.32);
     }
 
-    .showcase-dot.active {
-      background: #17372d;
-      border-color: #17372d;
+    .compare-handle::after {
+      content: "<>";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid #fff;
+      border-radius: 5px;
+      background: #17201d;
+      color: var(--mint);
+      padding: 7px 9px;
+      font-size: 11px;
+      font-weight: 900;
     }
 
-    .showcase-meta {
-      text-align: center;
-      margin-top: 16px;
+    .showcase-card h3 {
+      margin: 14px 0 6px;
+      font-size: 20px;
     }
 
-    .showcase-meta h3 {
-      margin: 0 0 6px;
-      font-size: 18px;
-    }
-
-    .showcase-meta p {
+    .showcase-card p {
       margin: 0;
       color: var(--muted);
     }
@@ -1549,7 +1609,7 @@
 
     .use-card h3 {
       margin: 0 0 6px;
-      font-size: 22px;
+      font-size: 18px;
     }
 
     .use-card p {
@@ -1637,8 +1697,8 @@
 
     .cta-panel h2 {
       margin: 0 0 10px;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1;
+      font-size: clamp(22px, 2.8vw, 32px);
+      line-height: 1.25;
     }
 
     .cta-panel p {
@@ -1772,9 +1832,8 @@
       .tool { grid-template-columns: 1fr; }
       .controls { max-height: none; }
       .stage { max-height: none; min-height: auto; }
-      .grid-3, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr 1fr; }
+      .grid-3, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr 1fr; }
       .faq { grid-template-columns: 1fr; }
-      .live-compare { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 620px) {
@@ -1784,7 +1843,7 @@
       .nav { gap: 10px; font-size: 12px; }
       .hero { padding-top: 20px; }
       .hero-style-tabs { grid-template-columns: repeat(2, 1fr); }
-      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr; }
+      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr; }
       .style-grid { grid-template-columns: repeat(2, 1fr); }
       .use-card { grid-template-columns: 1fr; }
       .use-art { width: 100%; height: auto; aspect-ratio: 16 / 9; }
@@ -1950,19 +2009,18 @@
           </div>
         </div>
         <div class="canvas-zone" id="canvasZone">
-          <div class="live-compare">
-            <div class="live-card">
-              <div class="live-body">
-                <div class="empty" id="originalEmpty" aria-label="Upload your image"></div>
-                <img class="original-preview" id="originalPreview" alt="Uploaded original image" hidden>
-              </div>
+          <div id="originalEmpty" aria-label="Upload your image"></div>
+          <div class="compare-slider" id="toolCompare" hidden>
+            <span class="compare-label before">Original</span>
+            <span class="compare-label after">Pixelated</span>
+            <div class="compare-layer before">
+              <img class="original-preview" id="originalPreview" alt="Uploaded original image">
             </div>
-            <div class="live-card">
-              <div class="live-body">
-                <div class="empty" id="empty" aria-label="Pixel art result"></div>
-                <canvas id="canvas" hidden></canvas>
-              </div>
+            <div class="compare-layer pixel" id="toolAfter">
+              <canvas id="canvas" hidden></canvas>
             </div>
+            <span class="compare-handle" id="toolHandle"></span>
+            <input class="compare-range" id="toolRange" type="range" min="0" max="100" value="50" aria-label="Drag to compare original and pixel art result">
           </div>
         </div>
         <div class="stage-foot">
@@ -1993,24 +2051,43 @@
     <section id="showcase">
       <div class="wrap">
         <h2 class="section-title title-accent">Real Photo to Pixel Art Showcase</h2>
-        <div class="showcase-carousel">
-          <div class="hero-compare" id="showcaseCompare">
-            <span class="hero-label before">Original</span>
-            <span class="hero-label after">Pixelated</span>
-            <div class="hero-layer before" id="showcaseOrig"></div>
-            <div class="hero-layer pixel" id="showcasePixel"></div>
-            <span class="hero-handle" id="showcaseHandle"></span>
-            <input class="hero-range" type="range" min="0" max="100" value="50" id="showcaseRange" aria-label="Compare original and pixel art">
-          </div>
-          <div class="showcase-ctrls">
-            <button class="showcase-arrow" id="showcasePrev" aria-label="Previous example">&#8249;</button>
-            <div class="showcase-dots" id="showcaseDots"></div>
-            <button class="showcase-arrow" id="showcaseNext" aria-label="Next example">&#8250;</button>
-          </div>
-          <div class="showcase-meta">
-            <h3 id="showcaseTitle"></h3>
-            <p id="showcaseDesc"></p>
-          </div>
+        <div class="showcase-grid">
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="portrait">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare portrait pixel art">
+            </div>
+            <h3>Portrait Photo to Pixel Art</h3>
+            <p>Turn a realistic portrait into a clean avatar-style pixel illustration with controlled skin tones and shadows.</p>
+          </article>
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="city">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare city pixel art">
+            </div>
+            <h3>City Night Pixel Art</h3>
+            <p>Convert neon signs, windows, and street lights into a punchy retro game background.</p>
+          </article>
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="food">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare food pixel art">
+            </div>
+            <h3>Food Photo Pixel Art</h3>
+            <p>Pixelate plates, drinks, and tabletop photos into cozy social posts or game inventory references.</p>
+          </article>
+          <article class="showcase-card">
+            <div class="compare-slider" data-showcase="nature">
+              <span class="compare-label before">Original</span><span class="compare-label after">Pixelated</span>
+              <div class="compare-layer before"></div><div class="compare-layer pixel"></div>
+              <span class="compare-handle"></span><input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare nature pixel art">
+            </div>
+            <h3>Nature Image to Pixel Art</h3>
+            <p>Reduce mountains, forests, and sunset gradients into readable pixel scenery with a limited palette.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -2221,7 +2298,6 @@
     const transparent = document.getElementById('transparent');
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    const empty = document.getElementById('empty');
     const stats = document.getElementById('stats');
     const swatches = document.getElementById('swatches');
     const download = document.getElementById('download');
@@ -2279,7 +2355,6 @@
       const colors = ['#17201d','#28b67a','#f07167','#f6c85f','#73a9ff','#7566d8','#fbfaf6'];
       const pattern = [0,0,1,1,1,0,0,0,2,2,0,0,0,1,3,3,3,1,0,2,4,4,2,0,1,3,5,5,3,1,2,4,6,6,4,2,1,3,5,5,3,1,2,4,6,6,4,2,0,1,3,3,3,1,0,2,4,4,2,0,0,0,1,1,1,0,0,0,2,2,0,0,6,6,0,0,0,6,6,0,0,0,6,6,6,0,0,0,6,6,0,0,0,6,6,6,0,0,0,6,6,0,0,0,6,6,6,0,0,6,6,0,0,6,6,0,0,6,6,0,0,0,6,6,6,6,0,0,0,6,6,0,0,0,0,6,6,0,0,0,0,6,6,0,0,0];
       const blocks = pattern.map((n) => `<i style="background:${colors[n]}"></i>`).join('');
-      empty.innerHTML = blocks;
       originalEmpty.innerHTML = blocks;
     }
 
@@ -2350,62 +2425,22 @@
     }
 
     function renderShowcases() {
-      const items = [
-        { key: 'portrait', title: 'Portrait Photo to Pixel Art', desc: 'Turn a realistic portrait into a clean avatar-style pixel illustration with controlled skin tones and shadows.' },
-        { key: 'city', title: 'City Night Pixel Art', desc: 'Convert neon signs, windows, and street lights into a punchy retro game background.' },
-        { key: 'food', title: 'Food Photo Pixel Art', desc: 'Pixelate plates, drinks, and tabletop photos into cozy social posts or game inventory references.' },
-        { key: 'nature', title: 'Nature Image to Pixel Art', desc: 'Reduce mountains, forests, and sunset gradients into readable pixel scenery with a limited palette.' }
-      ];
-      let current = 0;
-      const origEl = document.getElementById('showcaseOrig');
-      const pixelEl = document.getElementById('showcasePixel');
-      const titleEl = document.getElementById('showcaseTitle');
-      const descEl = document.getElementById('showcaseDesc');
-      const dotsEl = document.getElementById('showcaseDots');
-      const range = document.getElementById('showcaseRange');
-      const handle = document.getElementById('showcaseHandle');
-
-      function updateSlider() {
-        const value = Number(range.value);
-        pixelEl.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
-        handle.style.left = `${value}%`;
-      }
-
-      function render(index) {
-        const item = items[index];
-        origEl.innerHTML = '<img src="images/showcase/' + item.key + '-after.webp" alt="Original ' + item.key + '" loading="lazy">';
-        pixelEl.innerHTML = '<img src="images/showcase/' + item.key + '-before.webp" alt="Pixelated ' + item.key + '" loading="lazy">';
-        titleEl.textContent = item.title;
-        descEl.textContent = item.desc;
-        dotsEl.querySelectorAll('.showcase-dot').forEach((dot, i) => {
-          dot.classList.toggle('active', i === index);
-        });
-        range.value = 50;
-        updateSlider();
-      }
-
-      function goTo(index) {
-        if (index < 0) index = items.length - 1;
-        if (index >= items.length) index = 0;
-        current = index;
-        render(current);
-      }
-
-      // Create dots
-      items.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.className = 'showcase-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goTo(i));
-        dotsEl.appendChild(dot);
+      document.querySelectorAll('.compare-slider[data-showcase]').forEach((card) => {
+        const kind = card.dataset.showcase;
+        const before = card.querySelector('.compare-layer.before');
+        const after = card.querySelector('.compare-layer.pixel');
+        before.innerHTML = '<img src="images/showcase/' + kind + '-after.webp" alt="Original ' + kind + '" loading="lazy">';
+        after.innerHTML = '<img src="images/showcase/' + kind + '-before.webp" alt="Pixelated ' + kind + '" loading="lazy">';
       });
+    }
 
-      // Wire controls
-      document.getElementById('showcasePrev').addEventListener('click', () => goTo(current - 1));
-      document.getElementById('showcaseNext').addEventListener('click', () => goTo(current + 1));
-      range.addEventListener('input', updateSlider);
-
-      // Render first
-      render(0);
+    function updateCompareSlider(range) {
+      const card = range.closest('.compare-slider');
+      const value = Number(range.value);
+      const pixel = card.querySelector('.compare-layer.pixel');
+      const handle = card.querySelector('.compare-handle');
+      pixel.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      handle.style.left = `${value}%`;
     }
 
     function updateHeroSlider(range) {
@@ -2735,7 +2770,6 @@
 
       lastImageData = { outW, outH, smallW, smallH, colors: found.size };
       canvas.hidden = false;
-      empty.hidden = true;
       resultMeta.textContent = `${smallW}x${smallH} pixels`;
       download.disabled = false;
       copyPng.disabled = false;
@@ -2766,8 +2800,8 @@
       img.onload = () => {
         sourceImage = img;
         originalPreview.src = url;
-        originalPreview.hidden = false;
         originalEmpty.hidden = true;
+        document.getElementById('toolCompare').hidden = false;
         originalMeta.textContent = `${img.naturalWidth}x${img.naturalHeight}`;
         downloadNudge.classList.remove('show');
         pixelate();
@@ -2824,8 +2858,8 @@
         sourceImage = img;
         sourceName = 'sample-pixel-art';
         originalPreview.src = img.src;
-        originalPreview.hidden = false;
         originalEmpty.hidden = true;
+        document.getElementById('toolCompare').hidden = false;
         originalMeta.textContent = `${img.naturalWidth}x${img.naturalHeight}`;
         downloadNudge.classList.remove('show');
         pixelate();
@@ -2980,6 +3014,11 @@
         const style = button.dataset.styleDemo;
         renderHeroDemo(style);
       });
+    });
+
+    document.querySelectorAll('.compare-range').forEach((range) => {
+      range.addEventListener('input', () => updateCompareSlider(range));
+      updateCompareSlider(range);
     });
 
     document.addEventListener('click', (event) => {
