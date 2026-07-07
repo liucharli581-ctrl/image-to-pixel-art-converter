@@ -411,7 +411,7 @@
       position: relative;
       display: grid;
       place-items: center;
-      min-height: 140px;
+      min-height: 120px;
       border: 2px dashed #b8c9c1;
       border-radius: 8px;
       background: linear-gradient(135deg, rgba(115,169,255,.16), rgba(40,182,122,.12));
@@ -425,15 +425,40 @@
       transform: translateY(-1px);
     }
 
+    .drop-icon {
+      font-size: 22px;
+      font-weight: 950;
+      margin-bottom: 2px;
+      color: var(--mint-dark);
+    }
+
     .drop strong {
       display: block;
-      margin-bottom: 5px;
-      font-size: 18px;
+      margin-bottom: 3px;
+      font-size: 16px;
     }
 
     .drop span {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
+    }
+
+    .drop-formats {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .drop-formats i {
+      border: 1px solid rgba(23,32,29,.14);
+      border-radius: 3px;
+      background: rgba(255,255,255,.7);
+      padding: 1px 6px;
+      font-size: 10px;
+      font-weight: 850;
+      font-style: normal;
+      color: var(--mint-dark);
     }
 
     .drop input {
@@ -515,6 +540,38 @@
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 14px;
+    }
+
+    .algo-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .algo-chip {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 2px solid rgba(23,32,29,.14);
+      border-radius: 999px;
+      background: #fff;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: background .12s, border-color .12s;
+      text-align: center;
+    }
+    .algo-chip:hover,
+    .algo-chip.active {
+      border-color: #17372d;
+      background: var(--sun);
+    }
+    .algo-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .toggle {
@@ -1106,7 +1163,14 @@
       overflow: hidden;
       border: 2px solid #17372d;
       border-radius: 6px;
-      background: #fff;
+      background:
+        linear-gradient(45deg, #e8e4db 25%, transparent 25%),
+        linear-gradient(-45deg, #e8e4db 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e8e4db 75%),
+        linear-gradient(-45deg, transparent 75%, #e8e4db 75%),
+        #fbfaf6;
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0;
       box-shadow: 4px 4px 0 rgba(23,32,29,.12);
     }
 
@@ -1129,7 +1193,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .compare-layer.pixel img {
@@ -1829,8 +1893,10 @@
         <label class="drop drop-pixel" id="drop">
           <input id="file" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
           <span>
+            <div class="drop-icon">+_</div>
             <strong>Upload an image</strong>
-            JPG, PNG, WebP, or GIF. Everything runs in your browser.
+            <span>Drop or click — JPG, PNG, WebP, GIF</span>
+            <div class="drop-formats"><i>JPG</i><i>PNG</i><i>WebP</i><i>GIF</i></div>
           </span>
         </label>
         <button class="sample-top btn-pixel" id="sample" type="button">Try a sample image</button>
@@ -1878,6 +1944,14 @@
           <div class="toggles">
             <label class="toggle toggle-pixel"><input class="checkbox-pixel" id="grid" type="checkbox" checked> Show grid</label>
             <label class="toggle toggle-pixel"><input class="checkbox-pixel" id="transparent" type="checkbox"> Keep transparent</label>
+          </div>
+        </div>
+
+        <div class="controls-section">
+          <div class="section-label">Dithering</div>
+          <div class="algo-row">
+            <label class="algo-chip active"><input class="algo-input" type="radio" name="algorithm" value="nearest" checked> None</label>
+            <label class="algo-chip"><input class="algo-input" type="radio" name="algorithm" value="floyd"> Floyd-Steinberg</label>
           </div>
         </div>
 
@@ -2607,17 +2681,54 @@
       const levels = Math.ceil(Math.cbrt(limit));
       const found = new Map();
 
-      for (let i = 0; i < data.length; i += 4) {
-        if (transparent.checked && data[i + 3] < 20) continue;
-        let rgb = chosenPalette
-          ? nearestColor([data[i], data[i + 1], data[i + 2]], chosenPalette)
-          : quantizeColor(data[i], data[i + 1], data[i + 2], levels);
-        data[i] = rgb[0];
-        data[i + 1] = rgb[1];
-        data[i + 2] = rgb[2];
-        if (!transparent.checked) data[i + 3] = 255;
-        const hex = rgbToHex(rgb);
-        found.set(hex, (found.get(hex) || 0) + 1);
+      const algorithm = document.querySelector('input[name="algorithm"]:checked').value;
+
+      if (algorithm === 'floyd') {
+        const copy = new Uint8ClampedArray(data);
+        for (let y = 0; y < smallH; y++) {
+          for (let x = 0; x < smallW; x++) {
+            const idx = (y * smallW + x) * 4;
+            if (transparent.checked && data[idx + 3] < 20) continue;
+            const r = copy[idx], g = copy[idx + 1], b = copy[idx + 2];
+            let newRgb = chosenPalette
+              ? nearestColor([r, g, b], chosenPalette)
+              : quantizeColor(r, g, b, levels);
+            data[idx] = newRgb[0]; data[idx + 1] = newRgb[1]; data[idx + 2] = newRgb[2];
+            if (!transparent.checked) data[idx + 3] = 255;
+            const errR = r - newRgb[0], errG = g - newRgb[1], errB = b - newRgb[2];
+            if (x + 1 < smallW) {
+              const ri = idx + 4;
+              copy[ri] += errR * 7 / 16; copy[ri + 1] += errG * 7 / 16; copy[ri + 2] += errB * 7 / 16;
+            }
+            if (x - 1 >= 0 && y + 1 < smallH) {
+              const ri = ((y + 1) * smallW + (x - 1)) * 4;
+              copy[ri] += errR * 3 / 16; copy[ri + 1] += errG * 3 / 16; copy[ri + 2] += errB * 3 / 16;
+            }
+            if (y + 1 < smallH) {
+              const ri = ((y + 1) * smallW + x) * 4;
+              copy[ri] += errR * 5 / 16; copy[ri + 1] += errG * 5 / 16; copy[ri + 2] += errB * 5 / 16;
+            }
+            if (x + 1 < smallW && y + 1 < smallH) {
+              const ri = ((y + 1) * smallW + (x + 1)) * 4;
+              copy[ri] += errR * 1 / 16; copy[ri + 1] += errG * 1 / 16; copy[ri + 2] += errB * 1 / 16;
+            }
+            const hex = rgbToHex(newRgb);
+            found.set(hex, (found.get(hex) || 0) + 1);
+          }
+        }
+      } else {
+        for (let i = 0; i < data.length; i += 4) {
+          if (transparent.checked && data[i + 3] < 20) continue;
+          let rgb = chosenPalette
+            ? nearestColor([data[i], data[i + 1], data[i + 2]], chosenPalette)
+            : quantizeColor(data[i], data[i + 1], data[i + 2], levels);
+          data[i] = rgb[0];
+          data[i + 1] = rgb[1];
+          data[i + 2] = rgb[2];
+          if (!transparent.checked) data[i + 3] = 255;
+          const hex = rgbToHex(rgb);
+          found.set(hex, (found.get(hex) || 0) + 1);
+        }
       }
 
       tinyCtx.putImageData(imageData, 0, 0);
@@ -2851,6 +2962,14 @@
         button.classList.toggle('active', button.dataset.style === style);
       });
       if (selectedStyle) selectedStyle.textContent = styleNames[style] || style;
+    });
+
+    document.querySelectorAll('.algo-input').forEach((input) => {
+      input.addEventListener('change', () => {
+        document.querySelectorAll('.algo-chip').forEach((chip) => chip.classList.remove('active'));
+        input.closest('.algo-chip').classList.add('active');
+        pixelate();
+      });
     });
 
     [
