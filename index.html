@@ -931,35 +931,46 @@
       border-radius: 4px;
     }
 
-    .share-row-subtle {
+    .share-section {
+      padding: 40px 0;
+      text-align: center;
+      border-top: 0;
+    }
+    .share-heading {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0 0 4px;
+      color: var(--ink);
+    }
+    .share-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+    .share-row {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: 6px;
+      justify-content: center;
+      gap: 8px;
     }
-
-    .share-row-subtle button,
-    .share-row-subtle a {
+    .share-btn {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      background: transparent;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 4px 8px;
-      cursor: pointer;
-      transition: background .15s, color .15s;
-    }
-
-    .share-row-subtle button:hover,
-    .share-row-subtle a:hover {
-      background: rgba(255,255,255,.8);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
       color: var(--ink);
-      border-color: var(--line);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background .15s, box-shadow .15s;
+    }
+    .share-btn:hover {
+      background: rgba(255,255,255,.8);
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
     }
 
     main > section {
@@ -1927,19 +1938,26 @@
         <div class="stage-foot">
           <div class="stage-foot-row">
             <span id="privacy">All processing runs locally in your browser. Your image never leaves your device.</span>
-            <div class="share-row-subtle" id="shareRow">
-              <button type="button" id="copyLink">Copy link</button>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" aria-label="Share on Facebook">Facebook</a>
-              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener" aria-label="Share on X">X</a>
-              <a href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" aria-label="Share on WhatsApp">WhatsApp</a>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn">LinkedIn</a>
-              <a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener" aria-label="Share on Pinterest">Pinterest</a>
-            </div>
           </div>
           <div class="swatches" id="swatches" aria-label="Generated palette"></div>
         </div>
       </div>
     </div>
+
+    <section class="share-section" id="shareSection">
+      <div class="wrap">
+        <h2 class="share-heading">Share your pixel art</h2>
+        <p class="share-note">The PNG is copied to your clipboard — just paste it into your post.</p>
+        <div class="share-row" id="shareRow">
+          <button type="button" class="share-btn" id="copyLink">Copy link</button>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" class="share-btn" aria-label="Share on Facebook">Facebook</a>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener" class="share-btn" aria-label="Share on X">X</a>
+          <a href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" class="share-btn" aria-label="Share on WhatsApp">WhatsApp</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" class="share-btn" aria-label="Share on LinkedIn">LinkedIn</a>
+          <a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener" class="share-btn" aria-label="Share on Pinterest">Pinterest</a>
+        </div>
+      </div>
+    </section>
 
     <div class="divider-pixel" aria-hidden="true"></div>
 
