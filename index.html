@@ -98,7 +98,7 @@
       --sun: #f6c85f;
       --sky: #73a9ff;
       --plum: #7566d8;
-      --shadow: 0 16px 40px rgba(34, 48, 42, .12);
+      --shadow: 4px 4px 0 rgba(34,48,42,.08);
     }
 
     * { box-sizing: border-box; }
@@ -139,9 +139,9 @@
       margin-top: 10px;
       padding: 12px 14px;
       border: 2px solid rgba(23,32,29,.12);
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(251,250,246,.86);
-      box-shadow: 4px 4px 0 rgba(23,32,29,.08), 0 14px 32px rgba(34,48,42,.10);
+      box-shadow: 4px 4px 0 rgba(23,32,29,.08), 8px 8px 0 rgba(34,48,42,.06);
       backdrop-filter: blur(12px);
     }
 
@@ -204,7 +204,7 @@
       gap: 8px;
       border: 2px solid rgba(23,32,29,.16);
       background: rgba(255,255,255,.78);
-      border-radius: 4px;
+      border-radius: 2px;
       padding: 7px 12px;
       color: var(--mint-dark);
       font-size: 14px;
@@ -246,7 +246,7 @@
 
     .hero-demo {
       border: 2px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(255,255,255,.86);
       box-shadow: 6px 6px 0 #17372d, 12px 12px 0 var(--sun);
       padding: 14px;
@@ -265,7 +265,7 @@
 
     .hero-demo-head span {
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: var(--mint);
       color: #061812;
       padding: 4px 8px;
@@ -277,7 +277,7 @@
       aspect-ratio: 4 / 3;
       overflow: hidden;
       border: 2px solid #17372d;
-      border-radius: 6px;
+      border-radius: 2px;
       background:
         linear-gradient(45deg, #eee7dc 25%, transparent 25%),
         linear-gradient(-45deg, #eee7dc 25%, transparent 25%),
@@ -313,7 +313,7 @@
       top: 10px;
       z-index: 2;
       border: 2px solid #fff;
-      border-radius: 4px;
+      border-radius: 2px;
       padding: 4px 8px;
       background: rgba(23,32,29,.82);
       color: #fff;
@@ -351,7 +351,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       border: 2px solid #fff;
-      border-radius: 5px;
+      border-radius: 2px;
       background: #17201d;
       color: var(--mint);
       padding: 7px 9px;
@@ -369,7 +369,7 @@
     .hero-style-tabs button {
       min-height: 42px;
       border: 2px solid rgba(23,32,29,.16);
-      border-radius: 5px;
+      border-radius: 2px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
@@ -408,7 +408,7 @@
     .panel {
       background: rgba(255,255,255,.88);
       border: 2px solid rgba(23,32,29,.12);
-      border-radius: 8px;
+      border-radius: 2px;
       box-shadow: 6px 6px 0 rgba(23,32,29,.08), var(--shadow);
     }
 
@@ -424,7 +424,7 @@
       place-items: center;
       min-height: 120px;
       border: 2px dashed #b8c9c1;
-      border-radius: 8px;
+      border-radius: 2px;
       background: linear-gradient(135deg, rgba(115,169,255,.16), rgba(40,182,122,.12));
       text-align: center;
       cursor: pointer;
@@ -463,7 +463,7 @@
 
     .drop-formats i {
       border: 1px solid rgba(23,32,29,.14);
-      border-radius: 3px;
+      border-radius: 2px;
       background: rgba(255,255,255,.7);
       padding: 1px 6px;
       font-size: 10px;
@@ -513,7 +513,7 @@
       width: 100%;
       height: 42px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 0 12px;
       color: var(--ink);
@@ -534,7 +534,7 @@
     .preset {
       min-height: 38px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
@@ -565,7 +565,7 @@
       justify-content: center;
       gap: 6px;
       border: 2px solid rgba(23,32,29,.14);
-      border-radius: 999px;
+      border-radius: 2px;
       background: #fff;
       padding: 8px 12px;
       font-size: 12px;
@@ -590,7 +590,7 @@
       align-items: center;
       gap: 9px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 10px;
       font-size: 14px;
@@ -611,7 +611,7 @@
       min-height: 42px;
       margin-top: 8px;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
@@ -622,7 +622,7 @@
     .btn {
       min-height: 46px;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       padding: 0 14px;
       background:
         repeating-linear-gradient(135deg, rgba(23,32,29,.04) 0 8px, transparent 8px 16px),
@@ -670,7 +670,7 @@
     .usage {
       margin-top: 12px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 10px 12px;
       color: var(--muted);
@@ -696,7 +696,7 @@
       display: none;
       margin-top: 12px;
       border: 1px solid rgba(15,124,85,.34);
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(40,182,122,.10);
       padding: 12px;
       color: #254139;
@@ -722,7 +722,7 @@
 
     .nudge-actions a {
       border: 1px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 7px 10px;
       color: var(--ink);
@@ -734,7 +734,7 @@
       display: none;
       margin-top: 12px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 10px;
     }
@@ -762,7 +762,7 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       border: 1px solid rgba(23,32,29,.14);
-      border-radius: 4px;
+      border-radius: 2px;
       object-fit: contain;
       image-rendering: pixelated;
       background: #f3f1eb;
@@ -771,7 +771,7 @@
     .style-panel {
       margin-top: 14px;
       border: 2px solid rgba(23,32,29,.12);
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(255,255,255,.82);
       padding: 10px;
     }
@@ -789,7 +789,7 @@
 
     .style-head strong {
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: var(--sun);
       color: #061812;
       padding: 4px 8px;
@@ -805,7 +805,7 @@
     .style-card {
       min-height: 52px;
       border: 2px solid rgba(23,32,29,.14);
-      border-radius: 6px;
+      border-radius: 2px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
@@ -838,7 +838,7 @@
       height: 28px;
       margin: 0 auto 5px;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: #fff;
       color: var(--mint-dark);
       font-size: 11px;
@@ -896,7 +896,7 @@
 
     .stats span {
       border: 1px solid var(--line);
-      border-radius: 999px;
+      border-radius: 2px;
       background: #fff;
       padding: 5px 8px;
     }
@@ -931,7 +931,7 @@
       min-width: 0;
       overflow: hidden;
       border: 1px solid rgba(23,32,29,.14);
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(255,255,255,.78);
     }
 
@@ -990,7 +990,7 @@
       width: 18px;
       height: 18px;
       border: 1px solid rgba(23,32,29,.18);
-      border-radius: 4px;
+      border-radius: 2px;
     }
 
     .share-section {
@@ -1017,7 +1017,7 @@
       align-items: center;
       gap: 5px;
       border: 1px solid var(--line);
-      border-radius: 5px;
+      border-radius: 2px;
       background: var(--surface);
       color: var(--ink);
       text-decoration: none;
@@ -1065,7 +1065,7 @@
     .benefit-card,
     .showcase-card {
       border: 2px solid rgba(23,32,29,.12);
-      border-radius: 6px;
+      border-radius: 2px;
       background: rgba(255,255,255,.78);
       padding: 18px;
       box-shadow: 4px 4px 0 rgba(23,32,29,.06);
@@ -1101,7 +1101,7 @@
       place-items: center;
       margin-bottom: 16px;
       border: 2px solid #17372d;
-      border-radius: 6px;
+      border-radius: 2px;
       background: #fff;
       color: var(--mint-dark);
       font-weight: 950;
@@ -1176,7 +1176,7 @@
       aspect-ratio: 16 / 10;
       overflow: hidden;
       border: 2px solid #17372d;
-      border-radius: 6px;
+      border-radius: 2px;
       background:
         linear-gradient(45deg, #e8e4db 25%, transparent 25%),
         linear-gradient(-45deg, #e8e4db 25%, transparent 25%),
@@ -1219,7 +1219,7 @@
       top: 10px;
       z-index: 2;
       border: 2px solid #fff;
-      border-radius: 5px;
+      border-radius: 2px;
       padding: 4px 8px;
       background: rgba(23,32,29,.82);
       color: #fff;
@@ -1264,7 +1264,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       border: 2px solid #fff;
-      border-radius: 5px;
+      border-radius: 2px;
       background: #17201d;
       color: var(--mint);
       padding: 7px 9px;
@@ -1284,7 +1284,7 @@
 
     .feature, .price, .faq-item {
       border: 2px solid rgba(23,32,29,.10);
-      border-radius: 6px;
+      border-radius: 2px;
       background: rgba(255,255,255,.78);
       padding: 18px;
       box-shadow: 4px 4px 0 rgba(23,32,29,.04);
@@ -1369,7 +1369,7 @@
 
     .ai-demo .mini-art {
       border: 1px solid rgba(23,32,29,.16);
-      border-radius: 4px;
+      border-radius: 2px;
     }
 
     .ai-demo-label {
@@ -1446,7 +1446,7 @@
       counter-increment: step;
       min-height: 176px;
       border: 2px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background:
         linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,255,255,.84)),
         #fff;
@@ -1471,7 +1471,7 @@
       width: 34px;
       height: 34px;
       border: 2px solid #17372d;
-      border-radius: 6px;
+      border-radius: 2px;
       background: var(--ink);
       color: #fff;
       font-weight: 950;
@@ -1486,7 +1486,7 @@
       height: 56px;
       margin: 10px 0 16px;
       border: 2px solid #17372d;
-      border-radius: 5px;
+      border-radius: 2px;
       background:
         repeating-linear-gradient(135deg, rgba(40,182,122,.14) 0 8px, transparent 8px 16px),
         #fff;
@@ -1545,7 +1545,7 @@
       width: 26px;
       height: 26px;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: var(--sun);
       color: #061812;
       box-shadow: 2px 2px 0 rgba(23,32,29,.18);
@@ -1572,7 +1572,7 @@
       align-items: center;
       gap: 22px;
       border: 2px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background:
         linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.82)),
         #fff;
@@ -1593,7 +1593,7 @@
       grid-template-columns: repeat(10, 1fr);
       background: #fff;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       box-shadow: 3px 3px 0 rgba(23,32,29,.14);
       image-rendering: pixelated;
       overflow: hidden;
@@ -1632,7 +1632,7 @@
       display: inline-grid;
       place-items: center;
       border: 2px solid #17372d;
-      border-radius: 5px;
+      border-radius: 2px;
       padding: 0 22px;
       background: var(--mint);
       color: #061812;
@@ -1661,7 +1661,7 @@
 
     .legal-copy {
       border: 2px solid rgba(23,32,29,.10);
-      border-radius: 6px;
+      border-radius: 2px;
       background: rgba(255,255,255,.72);
       padding: 18px;
     }
@@ -1686,7 +1686,7 @@
       gap: 24px;
       align-items: center;
       border: 2px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background:
         linear-gradient(135deg, rgba(40,182,122,.16), transparent 42%),
         linear-gradient(225deg, rgba(246,200,95,.22), transparent 34%),
@@ -1717,7 +1717,7 @@
       display: inline-grid;
       place-items: center;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: var(--mint);
       color: #061812;
       text-decoration: none;
@@ -1791,7 +1791,7 @@
       bottom: 22px;
       transform: translateX(-50%) translateY(20px);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #17201d;
       color: #fff;
       padding: 10px 14px;
