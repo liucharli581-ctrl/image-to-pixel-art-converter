@@ -1025,10 +1025,22 @@
       font-weight: 700;
       padding: 5px 11px;
       cursor: pointer;
-      transition: background .15s;
+      transition: transform .12s, box-shadow .12s, background .15s;
     }
     .share-btn:hover {
+      transform: translate(-1px, -1px);
       background: rgba(255,255,255,.8);
+      box-shadow: 2px 2px 0 rgba(23,32,29,.12);
+    }
+
+    .share-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+
+    .share-btn:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 2px;
     }
     .share-btn svg {
       width: 14px;
@@ -1647,6 +1659,16 @@
       box-shadow: 6px 6px 0 rgba(23,32,29,.2);
     }
 
+    .section-cta a:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 rgba(23,32,29,.24);
+    }
+
+    .section-cta a:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 2px;
+    }
+
     .seo-copy {
       max-width: 860px;
       color: var(--muted);
@@ -2089,6 +2111,9 @@
             <p>Reduce mountains, forests, and sunset gradients into readable pixel scenery with a limited palette.</p>
           </article>
         </div>
+        <div class="section-cta">
+          <a href="#tool">Convert your photo to pixel art now</a>
+        </div>
       </div>
     </section>
     <div class="divider-pixel" aria-hidden="true"></div>
@@ -2123,6 +2148,9 @@
             <p>Export the finished pixel art as a crisp PNG file.</p>
           </div>
         </div>
+        <div class="section-cta">
+          <a href="#tool">Try the pixel art converter</a>
+        </div>
       </div>
     </section>
 
@@ -2136,6 +2164,9 @@
           <div class="benefit-card"><span class="benefit-icon">PAL</span><h3>Retro Palette Presets</h3><p>Apply PICO-8, Game Boy, NES, Minecraft, and monochrome-style palettes with one click.</p></div>
           <div class="benefit-card"><span class="benefit-icon">PNG</span><h3>Clean PNG Export</h3><p>Download or copy a crisp PNG with no signup and no watermark in the free local converter.</p></div>
           <div class="benefit-card"><span class="benefit-icon">PRO</span><h3>Built for Creators and Makers</h3><p>Useful for indie game developers, pixel art fans, avatar makers, bead art, and cross-stitch references.</p></div>
+        </div>
+        <div class="section-cta">
+          <a href="#tool">Start converting your image</a>
         </div>
       </div>
     </section>
@@ -2886,6 +2917,7 @@
         </div>
       `;
       showToast('PNG downloaded. Batch and AI options are below.');
+      flashBtn(download, '✓ Downloaded!');
     }
 
     async function copyPngToClipboard() {
@@ -2901,11 +2933,25 @@
         try {
           await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
           saveHistory();
+          flashBtn(copyPng, '✓ Copied!');
           showToast('PNG copied to clipboard.');
         } catch {
           showToast('Clipboard permission was blocked. Download PNG instead.');
         }
       }, 'image/png');
+
+    function flashBtn(btn, text) {
+      const orig = btn.textContent;
+      btn.textContent = text;
+      btn.style.opacity = '.8';
+      btn.style.transform = 'scale(.96)';
+      window.clearTimeout(flashBtn.timer);
+      flashBtn.timer = window.setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.opacity = '';
+        btn.style.transform = '';
+      }, 1800);
+    }
     }
 
     async function preparePngForSocialShare() {
