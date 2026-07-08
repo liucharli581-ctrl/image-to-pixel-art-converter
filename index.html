@@ -1874,6 +1874,46 @@
       .stage-head, .stage-foot { align-items: flex-start; flex-direction: column; }
       .stats { justify-content: flex-start; }
       canvas, .original-preview { max-height: 58vh; }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 50;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #17372d;
+      border-radius: 2px;
+      background: var(--mint);
+      color: #061812;
+      box-shadow: 3px 3px 0 rgba(23,32,29,.18), 6px 6px 0 var(--sun);
+      cursor: pointer;
+      transition: transform .12s, box-shadow .12s, opacity .2s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .back-to-top:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(23,32,29,.22), 7px 7px 0 var(--sun);
+    }
+    .back-to-top:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 rgba(23,32,29,.24), 1px 1px 0 var(--sun);
+    }
+    .back-to-top:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 2px;
+    }
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+    }
     }
   </style>
 </head>
@@ -2318,6 +2358,9 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <button type="button" id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l-7 7h4.5v6h5V8H15L8 1z"/></svg>
+  </button>
   <script>
     const fileInput = document.getElementById('file');
     const drop = document.getElementById('drop');
@@ -3082,8 +3125,14 @@
     renderHistory();
     updateOutputs();
     createSample({ count: false, notify: false });
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 300);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
-
-
