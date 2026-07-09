@@ -11,6 +11,9 @@
   <meta property="article:published_time" content="2026-07-05T00:00:00+08:00">
   <meta property="article:modified_time" content="2026-07-06T00:00:00+08:00">
   <link rel="canonical" href="https://photo2pixelart.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2317201d'/%3E%3Crect x='8' y='8' width='12' height='12' fill='%2328b67a'/%3E%3Crect x='22' y='8' width='12' height='12' fill='%23f6c85f'/%3E%3Crect x='36' y='8' width='12' height='12' fill='%2373a9ff'/%3E%3Crect x='8' y='22' width='12' height='12' fill='%23f07167'/%3E%3Crect x='22' y='22' width='12' height='12' fill='%23fbfaf6'/%3E%3Crect x='36' y='22' width='12' height='12' fill='%2328b67a'/%3E%3Crect x='8' y='36' width='12' height='12' fill='%237566d8'/%3E%3Crect x='22' y='36' width='12' height='12' fill='%23f07167'/%3E%3Crect x='36' y='36' width='12' height='12' fill='%23f6c85f'/%3E%3C/svg%3E">
   <meta property="og:title" content="Image to Pixel Art - Free Online Pixel Art Converter">
   <meta property="og:description" content="Convert images to pixel art with local browser processing, retro palettes, live preview, and PNG download.">
@@ -95,7 +98,7 @@
       --sun: #f6c85f;
       --sky: #73a9ff;
       --plum: #7566d8;
-      --shadow: 0 16px 40px rgba(34, 48, 42, .12);
+      --shadow: 4px 4px 0 rgba(34,48,42,.08);
     }
 
     * { box-sizing: border-box; }
@@ -138,9 +141,9 @@
       margin-top: 10px;
       padding: 12px 14px;
       border: 2px solid rgba(23,32,29,.12);
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(251,250,246,.86);
-      box-shadow: 4px 4px 0 rgba(23,32,29,.08), 0 14px 32px rgba(34,48,42,.10);
+      box-shadow: 4px 4px 0 rgba(23,32,29,.08), 8px 8px 0 rgba(34,48,42,.06);
       backdrop-filter: blur(12px);
     }
 
@@ -190,7 +193,7 @@
       grid-template-columns: minmax(0, .9fr) minmax(360px, .78fr);
       gap: clamp(28px, 4vw, 54px);
       align-items: center;
-      padding: 38px 0 42px;
+      padding: 24px 0 32px;
     }
 
     .hero-copy {
@@ -203,7 +206,7 @@
       gap: 8px;
       border: 2px solid rgba(23,32,29,.16);
       background: rgba(255,255,255,.78);
-      border-radius: 4px;
+      border-radius: 2px;
       padding: 7px 12px;
       color: var(--mint-dark);
       font-size: 14px;
@@ -220,11 +223,19 @@
       box-shadow: 10px 0 0 var(--sun), 20px 0 0 var(--coral);
     }
 
+    h1, h2, h3, h4 {
+      font-family: "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-weight: 400;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
     h1 {
-      max-width: 870px;
-      margin: 18px 0 14px;
-      font-size: clamp(42px, 5.3vw, 78px);
-      line-height: .98;
+      max-width: 100%;
+      margin: 16px 0 12px;
+      font-size: clamp(26px, 3.5vw, 42px);
+      line-height: 1.35;
       letter-spacing: 0;
     }
 
@@ -237,7 +248,7 @@
 
     .hero-demo {
       border: 2px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(255,255,255,.86);
       box-shadow: 6px 6px 0 #17372d, 12px 12px 0 var(--sun);
       padding: 14px;
@@ -256,7 +267,7 @@
 
     .hero-demo-head span {
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: var(--mint);
       color: #061812;
       padding: 4px 8px;
@@ -268,7 +279,7 @@
       aspect-ratio: 4 / 3;
       overflow: hidden;
       border: 2px solid #17372d;
-      border-radius: 6px;
+      border-radius: 2px;
       background:
         linear-gradient(45deg, #eee7dc 25%, transparent 25%),
         linear-gradient(-45deg, #eee7dc 25%, transparent 25%),
@@ -285,7 +296,7 @@
     }
 
     .hero-layer.pixel {
-      clip-path: inset(0 50% 0 0);
+      clip-path: inset(0 0 0 50%);
     }
 
     .hero-layer img {
@@ -304,7 +315,7 @@
       top: 10px;
       z-index: 2;
       border: 2px solid #fff;
-      border-radius: 4px;
+      border-radius: 2px;
       padding: 4px 8px;
       background: rgba(23,32,29,.82);
       color: #fff;
@@ -342,7 +353,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       border: 2px solid #fff;
-      border-radius: 5px;
+      border-radius: 2px;
       background: #17201d;
       color: var(--mint);
       padding: 7px 9px;
@@ -360,7 +371,7 @@
     .hero-style-tabs button {
       min-height: 42px;
       border: 2px solid rgba(23,32,29,.16);
-      border-radius: 5px;
+      border-radius: 2px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
@@ -389,30 +400,33 @@
 
     .tool {
       display: grid;
-      grid-template-columns: minmax(300px, 420px) 1fr;
+      grid-template-columns: 380px 1fr;
       gap: 22px;
       align-items: start;
-      margin: 28px auto 56px;
+      margin: 20px auto 56px;
+      min-height: calc(100vh - 88px);
     }
 
     .panel {
       background: rgba(255,255,255,.88);
       border: 2px solid rgba(23,32,29,.12);
-      border-radius: 8px;
+      border-radius: 2px;
       box-shadow: 6px 6px 0 rgba(23,32,29,.08), var(--shadow);
     }
 
     .controls {
       padding: 18px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
     }
 
     .drop {
       position: relative;
       display: grid;
       place-items: center;
-      min-height: 180px;
+      min-height: 120px;
       border: 2px dashed #b8c9c1;
-      border-radius: 8px;
+      border-radius: 2px;
       background: linear-gradient(135deg, rgba(115,169,255,.16), rgba(40,182,122,.12));
       text-align: center;
       cursor: pointer;
@@ -424,15 +438,40 @@
       transform: translateY(-1px);
     }
 
+    .drop-icon {
+      font-size: 22px;
+      font-weight: 950;
+      margin-bottom: 2px;
+      color: var(--mint-dark);
+    }
+
     .drop strong {
       display: block;
-      margin-bottom: 5px;
-      font-size: 18px;
+      margin-bottom: 3px;
+      font-size: 16px;
     }
 
     .drop span {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
+    }
+
+    .drop-formats {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .drop-formats i {
+      border: 1px solid rgba(23,32,29,.14);
+      border-radius: 2px;
+      background: rgba(255,255,255,.7);
+      padding: 1px 6px;
+      font-size: 10px;
+      font-weight: 850;
+      font-style: normal;
+      color: var(--mint-dark);
     }
 
     .drop input {
@@ -443,7 +482,7 @@
     }
 
     .field {
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .field label {
@@ -476,7 +515,7 @@
       width: 100%;
       height: 42px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 0 12px;
       color: var(--ink);
@@ -491,13 +530,13 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .preset {
       min-height: 38px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
@@ -513,7 +552,39 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 14px;
+    }
+
+    .algo-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .algo-chip {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 2px solid rgba(23,32,29,.14);
+      border-radius: 2px;
+      background: #fff;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: background .12s, border-color .12s;
+      text-align: center;
+    }
+    .algo-chip:hover,
+    .algo-chip.active {
+      border-color: #17372d;
+      background: var(--sun);
+    }
+    .algo-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .toggle {
@@ -521,7 +592,7 @@
       align-items: center;
       gap: 9px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 10px;
       font-size: 14px;
@@ -534,15 +605,15 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .sample-top {
       width: 100%;
       min-height: 42px;
-      margin-top: 10px;
+      margin-top: 8px;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
@@ -553,7 +624,7 @@
     .btn {
       min-height: 46px;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       padding: 0 14px;
       background:
         repeating-linear-gradient(135deg, rgba(23,32,29,.04) 0 8px, transparent 8px 16px),
@@ -601,7 +672,7 @@
     .usage {
       margin-top: 12px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 10px 12px;
       color: var(--muted);
@@ -627,7 +698,7 @@
       display: none;
       margin-top: 12px;
       border: 1px solid rgba(15,124,85,.34);
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(40,182,122,.10);
       padding: 12px;
       color: #254139;
@@ -653,7 +724,7 @@
 
     .nudge-actions a {
       border: 1px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 7px 10px;
       color: var(--ink);
@@ -665,7 +736,7 @@
       display: none;
       margin-top: 12px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #fff;
       padding: 10px;
     }
@@ -693,7 +764,7 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       border: 1px solid rgba(23,32,29,.14);
-      border-radius: 4px;
+      border-radius: 2px;
       object-fit: contain;
       image-rendering: pixelated;
       background: #f3f1eb;
@@ -702,7 +773,7 @@
     .style-panel {
       margin-top: 14px;
       border: 2px solid rgba(23,32,29,.12);
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(255,255,255,.82);
       padding: 10px;
     }
@@ -720,7 +791,7 @@
 
     .style-head strong {
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: var(--sun);
       color: #061812;
       padding: 4px 8px;
@@ -736,7 +807,7 @@
     .style-card {
       min-height: 52px;
       border: 2px solid rgba(23,32,29,.14);
-      border-radius: 6px;
+      border-radius: 2px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
@@ -769,7 +840,7 @@
       height: 28px;
       margin: 0 auto 5px;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: #fff;
       color: var(--mint-dark);
       font-size: 11px;
@@ -795,9 +866,10 @@
     }
 
     .stage {
-      min-height: 590px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
+      display: flex;
+      flex-direction: column;
+      min-height: auto;
+      align-self: start;
       overflow: hidden;
     }
 
@@ -812,7 +884,7 @@
 
     .stage-head h2 {
       margin: 0;
-      font-size: 16px;
+      font-size: 12px;
     }
 
     .stats {
@@ -826,7 +898,7 @@
 
     .stats span {
       border: 1px solid var(--line);
-      border-radius: 999px;
+      border-radius: 2px;
       background: #fff;
       padding: 5px 8px;
     }
@@ -840,7 +912,8 @@
 
     .canvas-zone {
       display: grid;
-      min-height: 360px;
+      flex: 1;
+      min-height: 200px;
       padding: 18px;
       background-color: #f3f1eb;
       background-image:
@@ -852,13 +925,7 @@
       background-position: 0 0, 0 14px, 14px -14px, -14px 0;
     }
 
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      width: 100%;
-      align-items: stretch;
-    }
+
 
     .preview-card {
       display: grid;
@@ -866,7 +933,7 @@
       min-width: 0;
       overflow: hidden;
       border: 1px solid rgba(23,32,29,.14);
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(255,255,255,.78);
     }
 
@@ -905,18 +972,6 @@
       object-fit: contain;
     }
 
-    .empty {
-      width: min(500px, 100%);
-      aspect-ratio: 1 / 1;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      border: 1px solid rgba(23,32,29,.18);
-      background: #fff;
-      overflow: hidden;
-    }
-
-    .empty i { min-height: 28px; }
-
     .stage-foot {
       display: flex;
       justify-content: space-between;
@@ -937,35 +992,63 @@
       width: 18px;
       height: 18px;
       border: 1px solid rgba(23,32,29,.18);
-      border-radius: 4px;
+      border-radius: 2px;
     }
 
+    .share-section {
+      padding: 12px 0 28px;
+      text-align: center;
+      border-top: 0;
+    }
+    .share-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      margin: 0 0 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
     .share-row {
-      display: grid;
-      grid-template-columns: 1.05fr repeat(5, 1fr);
-      gap: 10px;
-      margin: -28px auto 56px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
     }
-
-    .share-row button,
-    .share-row a {
-      min-height: 48px;
-      display: inline-grid;
-      place-items: center;
-      border: 2px solid #17372d;
-      border-radius: 6px;
-      background: #fff;
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      background: var(--surface);
       color: var(--ink);
       text-decoration: none;
-      font-weight: 900;
-      box-shadow: 4px 4px 0 rgba(23,32,29,.14);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 11px;
+      cursor: pointer;
+      transition: transform .12s, box-shadow .12s, background .15s;
+    }
+    .share-btn:hover {
+      transform: translate(-1px, -1px);
+      background: rgba(255,255,255,.8);
+      box-shadow: 2px 2px 0 rgba(23,32,29,.12);
     }
 
-    .share-row .facebook { background: #1877f2; color: #fff; }
-    .share-row .x { background: #050505; color: #fff; }
-    .share-row .whatsapp { background: #25d366; color: #fff; }
-    .share-row .linkedin { background: #0a66c2; color: #fff; }
-    .share-row .pinterest { background: #e60023; color: #fff; }
+    .share-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+
+    .share-btn:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 2px;
+    }
+    .share-btn svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
 
     main > section {
       padding: 56px 0;
@@ -974,8 +1057,8 @@
 
     .section-title {
       margin: 0 0 18px;
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.05;
+      font-size: clamp(18px, 2.6vw, 28px);
+      line-height: 1.4;
       letter-spacing: 0;
     }
 
@@ -988,7 +1071,7 @@
     .palette-grid,
     .benefit-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
 
@@ -996,7 +1079,7 @@
     .benefit-card,
     .showcase-card {
       border: 2px solid rgba(23,32,29,.12);
-      border-radius: 6px;
+      border-radius: 2px;
       background: rgba(255,255,255,.78);
       padding: 18px;
       box-shadow: 4px 4px 0 rgba(23,32,29,.06);
@@ -1032,7 +1115,7 @@
       place-items: center;
       margin-bottom: 16px;
       border: 2px solid #17372d;
-      border-radius: 6px;
+      border-radius: 2px;
       background: #fff;
       color: var(--mint-dark);
       font-weight: 950;
@@ -1043,7 +1126,7 @@
     .benefit-card h3 {
       display: block;
       margin: 0 0 8px;
-      font-size: 18px;
+      font-size: clamp(15px, 1.6vw, 20px);
     }
 
     .palette-card p,
@@ -1058,13 +1141,64 @@
       gap: 18px;
     }
 
+    /* Tool area empty state */
+    #originalEmpty {
+      display: grid;
+      place-items: center;
+      min-height: 360px;
+      padding: 40px;
+    }
+    #originalEmpty[hidden] {
+      display: none;
+    }
+    #originalEmpty i {
+      min-height: 28px;
+    }
+
+    /* Tool area comparison slider */
+    #toolCompare.compare-slider {
+      aspect-ratio: unset;
+      min-height: 300px;
+      width: 100%;
+      max-height: 68vh;
+    }
+    #toolCompare .compare-layer.before {
+      position: relative;
+    }
+    #toolCompare .compare-layer.before img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 68vh;
+      object-fit: contain;
+    }
+    #toolCompare .compare-layer.pixel {
+      position: absolute;
+      inset: 0;
+    }
+    #toolCompare .compare-layer.pixel canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+
+
     .compare-slider {
       position: relative;
       aspect-ratio: 16 / 10;
       overflow: hidden;
       border: 2px solid #17372d;
-      border-radius: 6px;
-      background: #fff;
+      border-radius: 2px;
+      background:
+        linear-gradient(45deg, #e8e4db 25%, transparent 25%),
+        linear-gradient(-45deg, #e8e4db 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e8e4db 75%),
+        linear-gradient(-45deg, transparent 75%, #e8e4db 75%),
+        #fbfaf6;
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0;
       box-shadow: 4px 4px 0 rgba(23,32,29,.12);
     }
 
@@ -1074,7 +1208,7 @@
     }
 
     .compare-layer.pixel {
-      clip-path: inset(0 50% 0 0);
+      clip-path: inset(0 0 0 50%);
       image-rendering: pixelated;
     }
 
@@ -1087,7 +1221,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .compare-layer.pixel img {
@@ -1099,7 +1233,7 @@
       top: 10px;
       z-index: 2;
       border: 2px solid #fff;
-      border-radius: 5px;
+      border-radius: 2px;
       padding: 4px 8px;
       background: rgba(23,32,29,.82);
       color: #fff;
@@ -1144,7 +1278,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       border: 2px solid #fff;
-      border-radius: 5px;
+      border-radius: 2px;
       background: #17201d;
       color: var(--mint);
       padding: 7px 9px;
@@ -1154,7 +1288,7 @@
 
     .showcase-card h3 {
       margin: 14px 0 6px;
-      font-size: 20px;
+      font-size: clamp(15px, 1.6vw, 20px);
     }
 
     .showcase-card p {
@@ -1164,7 +1298,7 @@
 
     .feature, .price, .faq-item {
       border: 2px solid rgba(23,32,29,.10);
-      border-radius: 6px;
+      border-radius: 2px;
       background: rgba(255,255,255,.78);
       padding: 18px;
       box-shadow: 4px 4px 0 rgba(23,32,29,.04);
@@ -1249,7 +1383,7 @@
 
     .ai-demo .mini-art {
       border: 1px solid rgba(23,32,29,.16);
-      border-radius: 4px;
+      border-radius: 2px;
     }
 
     .ai-demo-label {
@@ -1290,7 +1424,8 @@
 
     .how-copy .section-title {
       margin-bottom: 14px;
-      font-size: clamp(38px, 5vw, 64px);
+      font-size: clamp(20px, 3vw, 32px);
+      line-height: 1.4;
     }
 
     .how-copy p {
@@ -1325,7 +1460,7 @@
       counter-increment: step;
       min-height: 176px;
       border: 2px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background:
         linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,255,255,.84)),
         #fff;
@@ -1350,7 +1485,7 @@
       width: 34px;
       height: 34px;
       border: 2px solid #17372d;
-      border-radius: 6px;
+      border-radius: 2px;
       background: var(--ink);
       color: #fff;
       font-weight: 950;
@@ -1365,7 +1500,7 @@
       height: 56px;
       margin: 10px 0 16px;
       border: 2px solid #17372d;
-      border-radius: 5px;
+      border-radius: 2px;
       background:
         repeating-linear-gradient(135deg, rgba(40,182,122,.14) 0 8px, transparent 8px 16px),
         #fff;
@@ -1424,7 +1559,7 @@
       width: 26px;
       height: 26px;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: var(--sun);
       color: #061812;
       box-shadow: 2px 2px 0 rgba(23,32,29,.18);
@@ -1451,7 +1586,7 @@
       align-items: center;
       gap: 22px;
       border: 2px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background:
         linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.82)),
         #fff;
@@ -1472,7 +1607,7 @@
       grid-template-columns: repeat(10, 1fr);
       background: #fff;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       box-shadow: 3px 3px 0 rgba(23,32,29,.14);
       image-rendering: pixelated;
       overflow: hidden;
@@ -1488,7 +1623,7 @@
 
     .use-card h3 {
       margin: 0 0 6px;
-      font-size: 22px;
+      font-size: clamp(15px, 1.6vw, 20px);
     }
 
     .use-card p {
@@ -1511,7 +1646,7 @@
       display: inline-grid;
       place-items: center;
       border: 2px solid #17372d;
-      border-radius: 5px;
+      border-radius: 2px;
       padding: 0 22px;
       background: var(--mint);
       color: #061812;
@@ -1524,6 +1659,16 @@
     .section-cta a:hover {
       transform: translate(-2px, -2px);
       box-shadow: 6px 6px 0 rgba(23,32,29,.2);
+    }
+
+    .section-cta a:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 rgba(23,32,29,.24);
+    }
+
+    .section-cta a:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 2px;
     }
 
     .seo-copy {
@@ -1540,14 +1685,14 @@
 
     .legal-copy {
       border: 2px solid rgba(23,32,29,.10);
-      border-radius: 6px;
+      border-radius: 2px;
       background: rgba(255,255,255,.72);
       padding: 18px;
     }
 
     .legal-copy h2 {
       margin: 0 0 10px;
-      font-size: 22px;
+      font-size: clamp(16px, 2vw, 22px);
     }
 
     .legal-copy p + p {
@@ -1565,7 +1710,7 @@
       gap: 24px;
       align-items: center;
       border: 2px solid #17372d;
-      border-radius: 8px;
+      border-radius: 2px;
       background:
         linear-gradient(135deg, rgba(40,182,122,.16), transparent 42%),
         linear-gradient(225deg, rgba(246,200,95,.22), transparent 34%),
@@ -1576,8 +1721,8 @@
 
     .cta-panel h2 {
       margin: 0 0 10px;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1;
+      font-size: clamp(18px, 2.8vw, 28px);
+      line-height: 1.4;
     }
 
     .cta-panel p {
@@ -1596,7 +1741,7 @@
       display: inline-grid;
       place-items: center;
       border: 2px solid #17372d;
-      border-radius: 4px;
+      border-radius: 2px;
       background: var(--mint);
       color: #061812;
       text-decoration: none;
@@ -1670,7 +1815,7 @@
       bottom: 22px;
       transform: translateX(-50%) translateY(20px);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 2px;
       background: #17201d;
       color: #fff;
       padding: 10px 14px;
@@ -1686,15 +1831,32 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    .controls-section {
+      margin-top: 14px;
+    }
+    .section-label {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .stage-foot-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .hero-demo { max-width: 620px; }
       .tool { grid-template-columns: 1fr; }
-      .stage { min-height: auto; }
-      .compare-grid { grid-template-columns: 1fr; }
-      .how-layout { grid-template-columns: 1fr; }
+      .controls { max-height: none; }
+      .stage { max-height: none; min-height: auto; }
       .grid-3, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr 1fr; }
-      .share-row { grid-template-columns: repeat(3, 1fr); margin-top: -22px; }
       .faq { grid-template-columns: 1fr; }
     }
 
@@ -1705,7 +1867,7 @@
       .nav { gap: 10px; font-size: 12px; }
       .hero { padding-top: 20px; }
       .hero-style-tabs { grid-template-columns: repeat(2, 1fr); }
-      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .share-row, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr; }
+      .toggles, .preset-row, .grid-3, .steps, .longtail-list, .legal-grid, .palette-grid, .benefit-grid, .showcase-grid, .use-case-grid, .footer-grid, .cta-panel { grid-template-columns: 1fr; }
       .style-grid { grid-template-columns: repeat(2, 1fr); }
       .use-card { grid-template-columns: 1fr; }
       .use-art { width: 100%; height: auto; aspect-ratio: 16 / 9; }
@@ -1714,16 +1876,56 @@
       .stage-head, .stage-foot { align-items: flex-start; flex-direction: column; }
       .stats { justify-content: flex-start; }
       canvas, .original-preview { max-height: 58vh; }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 50;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #17372d;
+      border-radius: 2px;
+      background: var(--mint);
+      color: #061812;
+      box-shadow: 3px 3px 0 rgba(23,32,29,.18), 6px 6px 0 var(--sun);
+      cursor: pointer;
+      transition: transform .12s, box-shadow .12s, opacity .2s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .back-to-top:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(23,32,29,.22), 7px 7px 0 var(--sun);
+    }
+    .back-to-top:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 rgba(23,32,29,.24), 1px 1px 0 var(--sun);
+    }
+    .back-to-top:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 2px;
+    }
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+    }
     }
   </style>
 </head>
 <body>
   <header class="wrap topbar">
-    <a class="brand" href="#" aria-label="Image to Pixel Art Converter home">
+    <a class="brand brand-pixel" href="#" aria-label="Image to Pixel Art Converter home">
       <span class="logo icon-pixel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
       Photo2PixelArt
     </a>
-    <nav class="nav" aria-label="Primary navigation">
+    <nav class="nav nav-pixel" aria-label="Primary navigation">
       <a href="#tool">Tool</a>
       <a href="#tool">Styles</a>
       <a href="#showcase">Showcase</a>
@@ -1738,7 +1940,7 @@
       <div class="hero-copy">
         <span class="eyebrow"><span class="badge-pixel">FREE</span> online pixel art converter</span>
         <h1>Image to Pixel Art - Free Online Pixel Art Converter</h1>
-        <p class="lead">Turn any image, photo, or picture into clean pixel art online. Tune pixel size, color count, PICO-8, Game Boy, NES palettes, and grid, then download a crisp PNG.</p>
+        <p class="lead">Free online pixel art converter. Turn any image, photo, or picture into pixel art. Tune pixel size, color count, PICO-8, Game Boy, NES palettes, and grid, then download a crisp PNG.</p>
       </div>
       <div class="hero-demo" aria-label="Interactive before and after pixel art demo">
         <div class="hero-demo-head">
@@ -1766,17 +1968,23 @@
 
     <div class="wrap tool" id="tool">
       <aside class="panel controls" aria-label="Pixel art controls">
-        <label class="drop" id="drop">
+        <label class="drop drop-pixel" id="drop">
           <input id="file" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
           <span>
+            <div class="drop-icon">+_</div>
             <strong>Upload an image</strong>
-            JPG, PNG, WebP, or GIF. Everything runs in your browser.
+            <span>Drop or click — JPG, PNG, WebP, GIF</span>
+            <div class="drop-formats"><i>JPG</i><i>PNG</i><i>WebP</i><i>GIF</i></div>
           </span>
         </label>
         <button class="sample-top btn-pixel" id="sample" type="button">Try a sample image</button>
 
-        <div class="style-panel" aria-label="Pixel art style presets">
-          <div class="style-head"><span>Apply style to your image</span><strong id="selectedStyle">Game Boy</strong></div>
+        <div class="controls-section">
+          <div class="style-head">
+            <span>Apply style to your image</span>
+            <strong id="selectedStyle">Game Boy</strong>
+          </div>
+          <p class="style-note">Applies to the uploaded image, live preview, and exported PNG.</p>
           <div class="style-grid">
             <button class="style-card active" type="button" data-style="gameboy"><span class="style-icon">GB</span><b>Game Boy</b><span>Green handheld look</span></button>
             <button class="style-card" type="button" data-style="nes"><span class="style-icon">NES</span><b>NES</b><span>Bold 8-bit colors</span></button>
@@ -1785,69 +1993,74 @@
             <button class="style-card" type="button" data-style="grayscale"><span class="style-icon">BW</span><b>B/W</b><span>Monochrome output</span></button>
             <button class="style-card" type="button" data-style="auto"><span class="style-icon">A</span><b>Auto</b><span>Source colors</span></button>
           </div>
-          <p class="style-note">Applies to the uploaded image, live preview, and exported PNG.</p>
         </div>
 
-        <div class="field">
-          <label for="pixelSize">Pixel art width <output id="pixelSizeOut">96 px</output></label>
-          <div class="range-row">
-            <input class="slider-pixel" id="pixelSize" type="range" min="24" max="256" step="4" value="96">
-            <input class="number" id="pixelSizeNumber" type="number" min="24" max="256" step="4" value="96" aria-label="Pixel art width in pixels">
+        <div class="controls-section">
+          <div class="section-label">Settings</div>
+          <div class="field">
+            <label class="label-pixel" for="pixelSize">Pixel art width <output id="pixelSizeOut">96 px</output></label>
+            <div class="range-row">
+              <input class="slider-pixel" id="pixelSize" type="range" min="24" max="256" step="4" value="96">
+              <input class="number" id="pixelSizeNumber" type="number" min="24" max="256" step="4" value="96" aria-label="Pixel art width in pixels">
+            </div>
           </div>
-        </div>
-
-        <div class="field">
-          <label for="colorCount">Color count <output id="colorCountOut">4</output></label>
-          <div class="range-row">
-            <input class="slider-pixel" id="colorCount" type="range" min="4" max="64" step="4" value="4">
-            <input class="number" id="colorCountNumber" type="number" min="4" max="64" step="4" value="4" aria-label="Color count">
+          <div class="field">
+            <label class="label-pixel" for="colorCount">Color count <output id="colorCountOut">4</output></label>
+            <div class="range-row">
+              <input class="slider-pixel" id="colorCount" type="range" min="4" max="64" step="4" value="4">
+              <input class="number" id="colorCountNumber" type="number" min="4" max="64" step="4" value="4" aria-label="Color count">
+            </div>
           </div>
-        </div>
-
-        <div class="field">
-          <label for="scale">Export scale <output id="scaleOut">5x</output></label>
-          <div class="range-row">
-            <input class="slider-pixel" id="scale" type="range" min="1" max="8" value="5">
-            <input class="number" id="scaleNumber" type="number" min="1" max="8" value="5" aria-label="Export scale">
+          <div class="preset-row" aria-label="Pixel art presets">
+            <button class="preset preset-pixel" type="button" data-preset="sprite">Sprite</button>
+            <button class="preset preset-pixel" type="button" data-preset="avatar">Avatar</button>
+            <button class="preset preset-pixel" type="button" data-preset="craft">Craft grid</button>
           </div>
-        </div>
-
-        <div class="preset-row" aria-label="Pixel art presets">
-          <button class="preset" type="button" data-preset="sprite">Sprite</button>
-          <button class="preset" type="button" data-preset="avatar">Avatar</button>
-          <button class="preset" type="button" data-preset="craft">Craft grid</button>
-        </div>
-
-        <div class="field">
-          <label for="palette">Palette</label>
-          <select id="palette">
+          <select id="palette" hidden>
             <option value="auto">Auto from image</option>
             <option value="wplace">Wplace inspired</option>
             <option value="pico8">PICO-8</option>
             <option value="gameboy" selected>Game Boy</option>
             <option value="nes">NES inspired</option>
             <option value="minecraft">Minecraft inspired</option>
-            <option value="c64">C64 inspired</option>
-            <option value="grayscale">Grayscale</option>
+            <option value="grayscale">Black and white</option>
           </select>
+          <div class="toggles">
+            <label class="toggle toggle-pixel"><input class="checkbox-pixel" id="grid" type="checkbox" checked> Show grid</label>
+            <label class="toggle toggle-pixel"><input class="checkbox-pixel" id="transparent" type="checkbox"> Keep transparent</label>
+          </div>
         </div>
 
-        <div class="toggles">
-          <label class="toggle"><input id="grid" type="checkbox" checked> Show grid</label>
-          <label class="toggle"><input id="transparent" type="checkbox"> Keep transparent</label>
+        <div class="controls-section">
+          <div class="section-label">Dithering</div>
+          <div class="algo-row">
+            <label class="algo-chip active"><input class="algo-input" type="radio" name="algorithm" value="nearest" checked> None</label>
+            <label class="algo-chip"><input class="algo-input" type="radio" name="algorithm" value="floyd"> Floyd-Steinberg</label>
+          </div>
         </div>
 
-        <div class="actions">
-          <button class="btn primary btn-pixel" id="download" type="button" disabled>Download PNG</button>
-          <button class="btn secondary btn-pixel" id="copyPng" type="button" disabled>Copy PNG</button>
+        <div class="controls-section">
+          <div class="section-label">Export</div>
+          <div class="field">
+            <label class="label-pixel" for="scale">Export scale <output id="scaleOut">5x</output></label>
+            <div class="range-row">
+              <input class="slider-pixel" id="scale" type="range" min="1" max="8" value="5">
+              <input class="number" id="scaleNumber" type="number" min="1" max="8" value="5" aria-label="Export scale">
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn primary btn-pixel" id="download" type="button" disabled>Download PNG</button>
+            <button class="btn secondary btn-pixel" id="copyPng" type="button" disabled>Copy PNG</button>
+          </div>
         </div>
+
         <div class="download-hint" id="downloadHint">Upload an image to enable download.</div>
         <div class="usage" id="usage"><b>Free local conversions:</b> 0 completed</div>
         <div class="history" id="history">
           <div class="history-head"><span>Recent local exports</span><span id="historyCount">0</span></div>
           <div class="history-list" id="historyList"></div>
         </div>
-        <div class="nudge" id="downloadNudge">
+        <div class="nudge card-pixel" id="downloadNudge">
           <b>Nice result. Want to go further?</b>
           Keep using the free converter, or unlock AI restyles for more visual styles and Batch/API for repeated exports.
           <div class="nudge-actions">
@@ -1866,74 +2079,48 @@
           </div>
         </div>
         <div class="canvas-zone" id="canvasZone">
-          <div class="compare-grid">
-            <div class="preview-card">
-              <div class="preview-title">Original image <span id="originalMeta">Upload first</span></div>
-              <div class="preview-body">
-                <div class="empty" id="originalEmpty" aria-label="Original image placeholder"></div>
-                <img class="original-preview" id="originalPreview" alt="Uploaded original image preview" hidden>
-              </div>
+          <div id="originalEmpty" aria-label="Upload your image"></div>
+          <div class="compare-slider" id="toolCompare" hidden>
+            <span class="compare-label before">Original</span>
+            <span class="compare-label after">Pixelated</span>
+            <div class="compare-layer before">
+              <img class="original-preview" id="originalPreview" alt="Uploaded original image">
             </div>
-            <div class="preview-card">
-              <div class="preview-title">Pixel art result <span id="resultMeta">Live preview</span></div>
-              <div class="preview-body">
-                <div class="empty" id="empty" aria-label="Sample pixel art placeholder"></div>
-                <canvas id="canvas" hidden></canvas>
-              </div>
+            <div class="compare-layer pixel" id="toolAfter">
+              <canvas id="canvas" hidden></canvas>
             </div>
+            <span class="compare-handle" id="toolHandle"></span>
+            <input class="compare-range" id="toolRange" type="range" min="0" max="100" value="50" aria-label="Drag to compare original and pixel art result">
           </div>
         </div>
         <div class="stage-foot">
-          <span id="privacy">Basic conversion is local. Optional AI restyling would require a separate upload step.</span>
+          <div class="stage-foot-row">
+            <span id="privacy">All processing runs locally in your browser. Your image never leaves your device.</span>
+          </div>
           <div class="swatches" id="swatches" aria-label="Generated palette"></div>
         </div>
       </div>
     </div>
-    <div class="divider-pixel" aria-hidden="true"></div>
 
-    <div class="wrap share-row" aria-label="Share Photo2PixelArt">
-      <button type="button" id="copyLink">Copy link</button>
-      <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">Facebook</a>
-      <a class="x" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">X</a>
-      <a class="whatsapp" href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener">Pinterest</a>
-    </div>
-
-    <section class="how-section">
-      <div class="wrap how-layout">
-        <div class="how-copy">
-          <h2 class="section-title">How to use this image to pixel art converter</h2>
-          <p>Start with a photo, choose a style, tune the pixel grid, then export a crisp PNG. The core conversion stays fast because it runs directly in your browser.</p>
-        </div>
-        <div class="steps">
-          <div class="step">
-            <span class="step-icon">UP</span>
-            <b>Upload</b>
-            <p>Drop a photo, image, or picture into the converter.</p>
-          </div>
-          <div class="step">
-            <span class="step-icon">PX</span>
-            <b>Adjust</b>
-            <p>Pick a preset or tune pixel width, colors, scale, palette, and grid.</p>
-          </div>
-          <div class="step">
-            <span class="step-icon">AB</span>
-            <b>Compare</b>
-            <p>Check the original image beside the live pixel art result.</p>
-          </div>
-          <div class="step">
-            <span class="step-icon">PNG</span>
-            <b>Download</b>
-            <p>Export the finished pixel art as a crisp PNG file.</p>
-          </div>
+    <section class="share-section" id="shareSection">
+      <div class="wrap">
+        <div class="share-label">Share</div>
+        <div class="share-row" id="shareRow">
+          <button type="button" class="share-btn" id="copyLink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Copy link</button>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" class="share-btn" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</a>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphoto2pixelart.com%2F&text=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener" class="share-btn" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+          <a href="https://api.whatsapp.com/send?text=Free%20image%20to%20pixel%20art%20converter%20https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" class="share-btn" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fphoto2pixelart.com%2F" target="_blank" rel="noopener" class="share-btn" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+          <a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fphoto2pixelart.com%2F&media=https%3A%2F%2Fphoto2pixelart.com%2Fpreview.png&description=Free%20image%20to%20pixel%20art%20converter" target="_blank" rel="noopener" class="share-btn" aria-label="Share on Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.782c0-1.67.968-2.918 2.172-2.918 1.024 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 4.094-2.518 4.094-5.522 0-2.886-2.145-4.827-5.024-4.827-3.332 0-5.407 2.422-5.407 5.178 0 .64.109 1.245.245 1.523.056.072.065.136.048.209-.069.27-.218.877-.283 1.111-.044.183-.147.223-.333.134-1.247-.509-2.044-2.054-2.044-3.485 0-2.536 2.128-5.576 6.38-5.576 3.412 0 5.656 2.499 5.656 5.181 0 3.548-1.97 6.199-4.979 6.199-1.455 0-2.529-.942-2.911-1.983 0 0-.586 2.452-.707 2.954-.177.681-.63 1.502-.989 2.061a9.985 9.985 0 002.637.388c6.609 0 11.971-5.364 11.971-11.972C23.999 5.364 18.617 0 12.017 0"/></svg>Pinterest</a>
         </div>
       </div>
     </section>
 
+    <div class="divider-pixel" aria-hidden="true"></div>
+
     <section id="showcase">
       <div class="wrap">
-        <h2 class="section-title">Real Photo to Pixel Art Showcase</h2>
+        <h2 class="section-title title-accent">Real Photo to Pixel Art Showcase</h2>
         <div class="showcase-grid">
           <article class="showcase-card">
             <div class="compare-slider" data-showcase="portrait">
@@ -1972,12 +2159,52 @@
             <p>Reduce mountains, forests, and sunset gradients into readable pixel scenery with a limited palette.</p>
           </article>
         </div>
+        <div class="section-cta">
+          <a href="#tool">Convert your photo to pixel art now</a>
+        </div>
+      </div>
+    </section>
+    <div class="divider-pixel" aria-hidden="true"></div>
+
+
+
+    <section class="how-section">
+      <div class="wrap how-layout">
+        <div class="how-copy">
+          <h2 class="section-title title-accent">How to use this image to pixel art converter</h2>
+          <p>Start with a photo, choose a style, tune the pixel grid, then export a crisp PNG. The core conversion stays fast because it runs directly in your browser.</p>
+        </div>
+        <div class="steps">
+          <div class="step step-pixel">
+            <span class="step-icon">UP</span>
+            <b>Upload</b>
+            <p>Drop a photo, image, or picture into the converter.</p>
+          </div>
+          <div class="step step-pixel">
+            <span class="step-icon">PX</span>
+            <b>Adjust</b>
+            <p>Pick a preset or tune pixel width, colors, scale, palette, and grid.</p>
+          </div>
+          <div class="step step-pixel">
+            <span class="step-icon">AB</span>
+            <b>Compare</b>
+            <p>Check the original image beside the live pixel art result.</p>
+          </div>
+          <div class="step step-pixel">
+            <span class="step-icon">PNG</span>
+            <b>Download</b>
+            <p>Export the finished pixel art as a crisp PNG file.</p>
+          </div>
+        </div>
+        <div class="section-cta">
+          <a href="#tool">Try the pixel art converter</a>
+        </div>
       </div>
     </section>
 
     <section id="benefits">
       <div class="wrap">
-        <h2 class="section-title">Key Benefits of the Image to Pixel Art Converter</h2>
+        <h2 class="section-title title-accent">Key Benefits of the Image to Pixel Art Converter</h2>
         <div class="benefit-grid">
           <div class="benefit-card"><span class="benefit-icon">OK</span><h3>Private Browser-Based Conversion</h3><p>The core converter runs locally with HTML canvas, so your image stays on your device.</p></div>
           <div class="benefit-card"><span class="benefit-icon">AB</span><h3>Real Before/After Preview</h3><p>Compare the original image and pixel art result while tuning width, colors, scale, and grid.</p></div>
@@ -1986,12 +2213,15 @@
           <div class="benefit-card"><span class="benefit-icon">PNG</span><h3>Clean PNG Export</h3><p>Download or copy a crisp PNG with no signup and no watermark in the free local converter.</p></div>
           <div class="benefit-card"><span class="benefit-icon">PRO</span><h3>Built for Creators and Makers</h3><p>Useful for indie game developers, pixel art fans, avatar makers, bead art, and cross-stitch references.</p></div>
         </div>
+        <div class="section-cta">
+          <a href="#tool">Start converting your image</a>
+        </div>
       </div>
     </section>
 
     <section>
       <div class="wrap">
-        <h2 class="section-title">Use it for pixel art, sprites, and craft patterns</h2>
+        <h2 class="section-title title-accent">Use it for pixel art, sprites, and craft patterns</h2>
         <div class="use-case-grid">
           <article class="use-card"><div class="use-art" data-use="avatar"></div><div><h3>Photo to pixel art</h3><p>Turn portraits and selfies into pixel avatars with adjustable detail.</p></div></article>
           <article class="use-card"><div class="use-art" data-use="eightbit"></div><div><h3>8-bit image converter</h3><p>Use low pixel widths and retro palettes for classic game-style graphics.</p></div></article>
@@ -2006,7 +2236,7 @@
 
     <section id="pricing">
       <div class="wrap">
-        <h2 class="section-title">Pricing that keeps the core tool free</h2>
+        <h2 class="section-title title-accent">Pricing that keeps the core tool free</h2>
         <div class="grid-3">
           <div class="price card-pixel">
             <span class="badge-pixel">Free</span>
@@ -2054,7 +2284,7 @@
 
     <section id="faq">
       <div class="wrap">
-        <h2 class="section-title">FAQ</h2>
+        <h2 class="section-title title-accent">FAQ</h2>
         <div class="faq">
           <details class="faq-item" open>
             <summary>Is this image to pixel art converter free?</summary>
@@ -2098,7 +2328,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer legal-pixel">
     <div class="wrap">
       <div class="footer-grid">
         <div>
@@ -2136,6 +2366,9 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <button type="button" id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l-7 7h4.5v6h5V8H15L8 1z"/></svg>
+  </button>
   <script>
     const fileInput = document.getElementById('file');
     const drop = document.getElementById('drop');
@@ -2147,7 +2380,6 @@
     const transparent = document.getElementById('transparent');
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    const empty = document.getElementById('empty');
     const stats = document.getElementById('stats');
     const swatches = document.getElementById('swatches');
     const download = document.getElementById('download');
@@ -2162,8 +2394,8 @@
     const scaleNumber = document.getElementById('scaleNumber');
     const originalPreview = document.getElementById('originalPreview');
     const originalEmpty = document.getElementById('originalEmpty');
-    const originalMeta = document.getElementById('originalMeta');
-    const resultMeta = document.getElementById('resultMeta');
+    const originalMeta = document.getElementById('originalMeta') || {};
+    const resultMeta = document.getElementById('resultMeta') || {};
     const usage = document.getElementById('usage');
     const downloadNudge = document.getElementById('downloadNudge');
     const downloadHint = document.getElementById('downloadHint');
@@ -2205,7 +2437,6 @@
       const colors = ['#17201d','#28b67a','#f07167','#f6c85f','#73a9ff','#7566d8','#fbfaf6'];
       const pattern = [0,0,1,1,1,0,0,0,2,2,0,0,0,1,3,3,3,1,0,2,4,4,2,0,1,3,5,5,3,1,2,4,6,6,4,2,1,3,5,5,3,1,2,4,6,6,4,2,0,1,3,3,3,1,0,2,4,4,2,0,0,0,1,1,1,0,0,0,2,2,0,0,6,6,0,0,0,6,6,0,0,0,6,6,6,0,0,0,6,6,0,0,0,6,6,6,0,0,0,6,6,0,0,0,6,6,6,0,0,6,6,0,0,6,6,0,0,6,6,0,0,0,6,6,6,6,0,0,0,6,6,0,0,0,0,6,6,0,0,0,0,6,6,0,0,0];
       const blocks = pattern.map((n) => `<i style="background:${colors[n]}"></i>`).join('');
-      empty.innerHTML = blocks;
       originalEmpty.innerHTML = blocks;
     }
 
@@ -2232,90 +2463,21 @@
       });
     }
 
-    function drawHeroSource() {
-      const c = document.createElement('canvas');
-      c.width = 640;
-      c.height = 480;
-      const s = c.getContext('2d');
-      const sky = s.createLinearGradient(0, 0, 0, 260);
-      sky.addColorStop(0, '#9fd3ff');
-      sky.addColorStop(1, '#fff0c7');
-      s.fillStyle = sky;
-      s.fillRect(0, 0, c.width, c.height);
-      s.fillStyle = '#f6c85f';
-      s.beginPath();
-      s.arc(520, 96, 46, 0, Math.PI * 2);
-      s.fill();
-      s.fillStyle = '#7566d8';
-      s.beginPath();
-      s.moveTo(58, 345);
-      s.lineTo(236, 170);
-      s.lineTo(398, 345);
-      s.closePath();
-      s.fill();
-      s.fillStyle = '#28b67a';
-      s.beginPath();
-      s.moveTo(210, 345);
-      s.lineTo(372, 142);
-      s.lineTo(590, 345);
-      s.closePath();
-      s.fill();
-      s.fillStyle = '#17201d';
-      s.fillRect(0, 345, 640, 135);
-      s.fillStyle = '#f07167';
-      s.fillRect(300, 285, 150, 90);
-      s.fillStyle = '#fff6da';
-      s.fillRect(342, 318, 28, 42);
-      s.fillRect(385, 318, 28, 42);
-      s.fillStyle = '#f07167';
-      s.fillRect(444, 302, 86, 73);
-      s.fillStyle = '#fff6da';
-      s.fillRect(486, 330, 20, 45);
-      s.fillStyle = '#28b67a';
-      s.fillRect(540, 330, 54, 45);
-      s.fillStyle = '#0f7c55';
-      s.fillRect(590, 350, 34, 25);
-      return c;
-    }
-
-    function pixelateCanvasData(sourceCanvas, style) {
-      const out = document.createElement('canvas');
-      const w = 96;
-      const h = Math.round(sourceCanvas.height * (w / sourceCanvas.width));
-      out.width = w;
-      out.height = h;
-      const outCtx = out.getContext('2d', { willReadFrequently: true });
-      outCtx.imageSmoothingEnabled = false;
-      outCtx.drawImage(sourceCanvas, 0, 0, w, h);
-      const paletteList = palettes[style] || palettes.gameboy;
-      const rgbPalette = paletteList.map(hexToRgb);
-      const image = outCtx.getImageData(0, 0, w, h);
-      const data = image.data;
-      for (let i = 0; i < data.length; i += 4) {
-        const next = nearestColor([data[i], data[i + 1], data[i + 2]], rgbPalette);
-        data[i] = next[0];
-        data[i + 1] = next[1];
-        data[i + 2] = next[2];
-      }
-      outCtx.putImageData(image, 0, 0);
-      return out.toDataURL('image/png');
-    }
-
-    function updateHeroSlider(range) {
-      const value = Number(range.value);
-      const pixelLayer = document.getElementById('heroAfter');
-      const handle = document.getElementById('heroHandle');
-      if (pixelLayer) pixelLayer.style.clipPath = `inset(0 0 0 ${value}%)`;
-      if (handle) handle.style.left = `${value}%`;
-    }
+    const HERO_IMAGES = {
+      gameboy: { before: 'images/hero/hero-gameboy-before.webp', after: 'images/hero/hero-gameboy-after.webp' },
+      nes: { before: 'images/hero/hero-nes-before.webp', after: 'images/hero/hero-nes-after.webp' },
+      minecraft: { before: 'images/hero/hero-minecraft-before.webp', after: 'images/hero/hero-minecraft-after.webp' },
+      pico8: { before: 'images/hero/hero-pico8-before.webp', after: 'images/hero/hero-pico8-after.webp' },
+      grayscale: { before: 'images/hero/hero-bw-before.webp', after: 'images/hero/hero-bw-after.webp' },
+    };
 
     function renderHeroDemo(style = 'gameboy') {
       const before = document.getElementById('heroBefore');
       const after = document.getElementById('heroAfter');
       const label = document.getElementById('heroStyleName');
-      const source = drawHeroSource();
-      if (before) before.innerHTML = `<img src="${source.toDataURL('image/png')}" alt="Original landscape sample">`;
-      if (after) after.innerHTML = `<img src="${pixelateCanvasData(source, style)}" alt="${styleNames[style] || style} pixel art sample">`;
+      const imgs = HERO_IMAGES[style] || HERO_IMAGES.gameboy;
+      if (before) before.innerHTML = '<img src="' + imgs.before + '" width="800" height="450" alt="Original photo" fetchpriority="high">';
+      if (after) after.innerHTML = '<img src="' + imgs.after + '" width="800" height="450" alt="' + (styleNames[style] || style) + ' pixel art">';
       if (label) label.textContent = styleNames[style] || style;
       document.querySelectorAll('[data-style-demo]').forEach((button) => {
         button.classList.toggle('active', button.dataset.styleDemo === style);
@@ -2345,116 +2507,12 @@
     }
 
     function renderShowcases() {
-      const showcasePalettes = {
-        portrait: ['#15110f','#3c2a24','#6d4638','#9d6b57','#d09a7f','#f2c7aa','#fff1e8','#2450a4','#73a9ff','#f07167','#28b67a','#f6c85f'],
-        city: ['#050505','#17201d','#1D2B53','#2450a4','#29ADFF','#7566d8','#FF004D','#FFA300','#FFEC27','#FFF1E8'],
-        food: ['#17201d','#3c2c22','#6b4f33','#AB5236','#f07167','#FFA300','#FFEC27','#fff1c9','#28b67a','#f7cfbd','#ffffff'],
-        nature: ['#17201d','#0f380f','#306230','#5d7c36','#8bac0f','#28b67a','#2450a4','#73a9ff','#f6c85f','#fff1c9','#7566d8']
-      };
-      const drawSource = (kind) => {
-        const c = document.createElement('canvas');
-        c.width = 640;
-        c.height = 400;
-        const s = c.getContext('2d');
-        if (kind === 'portrait') {
-          const bg = s.createLinearGradient(0, 0, 640, 400);
-          bg.addColorStop(0, '#d7e4ef'); bg.addColorStop(.55, '#fff4e7'); bg.addColorStop(1, '#6d8fa7');
-          s.fillStyle = bg; s.fillRect(0, 0, 640, 400);
-          s.fillStyle = 'rgba(255,255,255,.35)';
-          for (let i = 0; i < 7; i++) { s.beginPath(); s.arc(70 + i * 88, 70 + (i % 3) * 36, 34 + i * 2, 0, Math.PI * 2); s.fill(); }
-          s.fillStyle = '#2e1f14'; s.beginPath(); s.ellipse(318, 136, 96, 112, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#f2c7aa'; s.beginPath(); s.ellipse(320, 172, 72, 88, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = 'rgba(125,70,48,.2)'; s.beginPath(); s.ellipse(352, 170, 22, 64, -.2, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#17201d'; s.beginPath(); s.ellipse(292, 164, 9, 13, 0, 0, Math.PI * 2); s.ellipse(348, 164, 9, 13, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#f07167'; s.beginPath(); s.ellipse(320, 211, 28, 9, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#2450a4'; s.beginPath(); s.moveTo(220, 390); s.quadraticCurveTo(320, 246, 430, 390); s.closePath(); s.fill();
-          s.fillStyle = '#fff1c9'; s.fillRect(0, 344, 640, 56);
-        } else if (kind === 'city') {
-          const night = s.createLinearGradient(0, 0, 0, 400);
-          night.addColorStop(0, '#10172f'); night.addColorStop(.6, '#1D2B53'); night.addColorStop(1, '#050505');
-          s.fillStyle = night; s.fillRect(0, 0, 640, 400);
-          s.fillStyle = '#FFEC27'; s.beginPath(); s.arc(500, 75, 42, 0, Math.PI * 2); s.fill();
-          const buildings = [[35,150,82,250],[132,95,96,305],[250,135,74,265],[344,80,116,320],[488,128,96,272]];
-          buildings.forEach(([x,y,w,h], idx) => {
-            s.fillStyle = idx % 2 ? '#17201d' : '#0b111f'; s.fillRect(x, y, w, h);
-            for (let yy = y + 20; yy < y + h - 10; yy += 34) for (let xx = x + 16; xx < x + w - 12; xx += 26) {
-              s.fillStyle = (xx + yy + idx) % 3 ? '#29ADFF' : '#FFA300'; s.fillRect(xx, yy, 12, 16);
-            }
-          });
-          s.fillStyle = '#FF004D'; s.fillRect(188, 172, 154, 22); s.fillStyle = '#29ADFF'; s.fillRect(382, 148, 118, 18);
-          s.fillStyle = '#050505'; s.fillRect(0, 336, 640, 64);
-          s.strokeStyle = 'rgba(255,255,255,.22)'; s.lineWidth = 3; s.beginPath(); s.moveTo(0, 356); s.lineTo(640, 382); s.stroke();
-        } else if (kind === 'food') {
-          const table = s.createLinearGradient(0, 0, 640, 400);
-          table.addColorStop(0, '#7b4a30'); table.addColorStop(1, '#2f1d15'); s.fillStyle = table; s.fillRect(0, 0, 640, 400);
-          s.fillStyle = 'rgba(255,255,255,.08)'; for (let x = 0; x < 640; x += 58) s.fillRect(x, 0, 8, 400);
-          s.fillStyle = '#fff1c9'; s.beginPath(); s.ellipse(320, 210, 150, 112, 0, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#AB5236'; s.beginPath(); s.ellipse(320, 212, 118, 80, 0, 0, Math.PI * 2); s.fill();
-          ['#FFEC27','#28b67a','#f07167','#ffffff','#FFA300'].forEach((color, i) => {
-            s.fillStyle = color; s.beginPath(); s.ellipse(254 + i * 34, 180 + (i % 2) * 48, 28, 18, .5, 0, Math.PI * 2); s.fill();
-          });
-          s.fillStyle = '#15110f'; s.fillRect(78, 78, 88, 142); s.fillStyle = '#f6c85f'; s.fillRect(90, 92, 64, 92);
-          s.fillStyle = '#28b67a'; s.beginPath(); s.arc(494, 106, 48, 0, Math.PI * 2); s.fill(); s.fillStyle = '#fff1c9'; s.beginPath(); s.arc(494, 106, 28, 0, Math.PI * 2); s.fill();
-        } else {
-          const sky = s.createLinearGradient(0, 0, 0, 300);
-          sky.addColorStop(0, '#73a9ff'); sky.addColorStop(.55, '#fff1c9'); sky.addColorStop(1, '#f6c85f'); s.fillStyle = sky; s.fillRect(0, 0, 640, 400);
-          s.fillStyle = '#f6c85f'; s.beginPath(); s.arc(520, 82, 44, 0, Math.PI * 2); s.fill();
-          s.fillStyle = '#7566d8'; s.beginPath(); s.moveTo(0, 308); s.lineTo(170, 122); s.lineTo(350, 308); s.closePath(); s.fill();
-          s.fillStyle = '#28b67a'; s.beginPath(); s.moveTo(118, 312); s.lineTo(348, 92); s.lineTo(640, 312); s.closePath(); s.fill();
-          s.fillStyle = '#2450a4'; s.fillRect(0, 310, 640, 90);
-          s.fillStyle = 'rgba(255,255,255,.35)'; for (let x = 0; x < 640; x += 58) { s.beginPath(); s.ellipse(x + 24, 340 + (x % 3) * 12, 44, 10, 0, 0, Math.PI * 2); s.fill(); }
-          s.fillStyle = '#17201d'; s.fillRect(0, 360, 640, 40);
-        }
-        let seed = kind.split('').reduce((sum, char) => sum + char.charCodeAt(0), 17);
-        for (let i = 0; i < 2600; i++) {
-          seed = (seed * 1664525 + 1013904223) % 4294967296;
-          const x = seed % 640;
-          seed = (seed * 1664525 + 1013904223) % 4294967296;
-          const y = seed % 400;
-          seed = (seed * 1664525 + 1013904223) % 4294967296;
-          const light = seed % 2 === 0 ? 255 : 0;
-          const alpha = .018 + (seed % 6) / 1000;
-          s.fillStyle = `rgba(${light},${light},${light},${alpha})`;
-          s.fillRect(x, y, 1, 1);
-        }
-        const vignette = s.createRadialGradient(320, 190, 120, 320, 190, 430);
-        vignette.addColorStop(0, 'rgba(255,255,255,0)');
-        vignette.addColorStop(1, 'rgba(12,18,15,.22)');
-        s.fillStyle = vignette;
-        s.fillRect(0, 0, 640, 400);
-        return c;
-      };
-      const pixelatedDataUrl = (source, paletteList) => {
-        const smallW = 96;
-        const smallH = Math.round(smallW * source.height / source.width);
-        const tiny = document.createElement('canvas');
-        tiny.width = smallW;
-        tiny.height = smallH;
-        const t = tiny.getContext('2d', { willReadFrequently: true });
-        t.drawImage(source, 0, 0, smallW, smallH);
-        const imageData = t.getImageData(0, 0, smallW, smallH);
-        const data = imageData.data;
-        const paletteRgb = paletteList.map(hexToRgb);
-        for (let i = 0; i < data.length; i += 4) {
-          const rgb = nearestColor([data[i], data[i + 1], data[i + 2]], paletteRgb);
-          data[i] = rgb[0]; data[i + 1] = rgb[1]; data[i + 2] = rgb[2]; data[i + 3] = 255;
-        }
-        t.putImageData(imageData, 0, 0);
-        const out = document.createElement('canvas');
-        out.width = 640;
-        out.height = 400;
-        const o = out.getContext('2d');
-        o.imageSmoothingEnabled = false;
-        o.drawImage(tiny, 0, 0, out.width, out.height);
-        return out.toDataURL('image/png');
-      };
-      document.querySelectorAll('.compare-slider').forEach((card) => {
+      document.querySelectorAll('.compare-slider[data-showcase]').forEach((card) => {
         const kind = card.dataset.showcase;
-        const source = drawSource(kind);
         const before = card.querySelector('.compare-layer.before');
         const after = card.querySelector('.compare-layer.pixel');
-        before.innerHTML = `<img src="${source.toDataURL('image/png')}" alt="Original ${kind} sample">`;
-        after.innerHTML = `<img src="${pixelatedDataUrl(source, showcasePalettes[kind] || palettes.pico8)}" alt="Pixelated ${kind} sample">`;
+        before.innerHTML = '<img src="images/showcase/' + kind + '-before.webp" alt="Original ' + kind + '" loading="lazy">';
+        after.innerHTML = '<img src="images/showcase/' + kind + '-after.webp" alt="Pixelated ' + kind + '" loading="lazy">';
       });
     }
 
@@ -2463,8 +2521,16 @@
       const value = Number(range.value);
       const pixel = card.querySelector('.compare-layer.pixel');
       const handle = card.querySelector('.compare-handle');
-      pixel.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      pixel.style.clipPath = `inset(0 0 0 ${value}%)`;
       handle.style.left = `${value}%`;
+    }
+
+    function updateHeroSlider(range) {
+      const value = Number(range.value);
+      const pixel = document.getElementById('heroAfter');
+      const handle = document.getElementById('heroHandle');
+      if (pixel) pixel.style.clipPath = `inset(0 0 0 ${value}%)`;
+      if (handle) handle.style.left = `${value}%`;
     }
 
     function getHistory() {
@@ -2708,17 +2774,54 @@
       const levels = Math.ceil(Math.cbrt(limit));
       const found = new Map();
 
-      for (let i = 0; i < data.length; i += 4) {
-        if (transparent.checked && data[i + 3] < 20) continue;
-        let rgb = chosenPalette
-          ? nearestColor([data[i], data[i + 1], data[i + 2]], chosenPalette)
-          : quantizeColor(data[i], data[i + 1], data[i + 2], levels);
-        data[i] = rgb[0];
-        data[i + 1] = rgb[1];
-        data[i + 2] = rgb[2];
-        if (!transparent.checked) data[i + 3] = 255;
-        const hex = rgbToHex(rgb);
-        found.set(hex, (found.get(hex) || 0) + 1);
+      const algorithm = document.querySelector('input[name="algorithm"]:checked').value;
+
+      if (algorithm === 'floyd') {
+        const copy = new Uint8ClampedArray(data);
+        for (let y = 0; y < smallH; y++) {
+          for (let x = 0; x < smallW; x++) {
+            const idx = (y * smallW + x) * 4;
+            if (transparent.checked && data[idx + 3] < 20) continue;
+            const r = copy[idx], g = copy[idx + 1], b = copy[idx + 2];
+            let newRgb = chosenPalette
+              ? nearestColor([r, g, b], chosenPalette)
+              : quantizeColor(r, g, b, levels);
+            data[idx] = newRgb[0]; data[idx + 1] = newRgb[1]; data[idx + 2] = newRgb[2];
+            if (!transparent.checked) data[idx + 3] = 255;
+            const errR = r - newRgb[0], errG = g - newRgb[1], errB = b - newRgb[2];
+            if (x + 1 < smallW) {
+              const ri = idx + 4;
+              copy[ri] += errR * 7 / 16; copy[ri + 1] += errG * 7 / 16; copy[ri + 2] += errB * 7 / 16;
+            }
+            if (x - 1 >= 0 && y + 1 < smallH) {
+              const ri = ((y + 1) * smallW + (x - 1)) * 4;
+              copy[ri] += errR * 3 / 16; copy[ri + 1] += errG * 3 / 16; copy[ri + 2] += errB * 3 / 16;
+            }
+            if (y + 1 < smallH) {
+              const ri = ((y + 1) * smallW + x) * 4;
+              copy[ri] += errR * 5 / 16; copy[ri + 1] += errG * 5 / 16; copy[ri + 2] += errB * 5 / 16;
+            }
+            if (x + 1 < smallW && y + 1 < smallH) {
+              const ri = ((y + 1) * smallW + (x + 1)) * 4;
+              copy[ri] += errR * 1 / 16; copy[ri + 1] += errG * 1 / 16; copy[ri + 2] += errB * 1 / 16;
+            }
+            const hex = rgbToHex(newRgb);
+            found.set(hex, (found.get(hex) || 0) + 1);
+          }
+        }
+      } else {
+        for (let i = 0; i < data.length; i += 4) {
+          if (transparent.checked && data[i + 3] < 20) continue;
+          let rgb = chosenPalette
+            ? nearestColor([data[i], data[i + 1], data[i + 2]], chosenPalette)
+            : quantizeColor(data[i], data[i + 1], data[i + 2], levels);
+          data[i] = rgb[0];
+          data[i + 1] = rgb[1];
+          data[i + 2] = rgb[2];
+          if (!transparent.checked) data[i + 3] = 255;
+          const hex = rgbToHex(rgb);
+          found.set(hex, (found.get(hex) || 0) + 1);
+        }
       }
 
       tinyCtx.putImageData(imageData, 0, 0);
@@ -2749,7 +2852,6 @@
 
       lastImageData = { outW, outH, smallW, smallH, colors: found.size };
       canvas.hidden = false;
-      empty.hidden = true;
       resultMeta.textContent = `${smallW}x${smallH} pixels`;
       download.disabled = false;
       copyPng.disabled = false;
@@ -2780,8 +2882,8 @@
       img.onload = () => {
         sourceImage = img;
         originalPreview.src = url;
-        originalPreview.hidden = false;
         originalEmpty.hidden = true;
+        document.getElementById('toolCompare').hidden = false;
         originalMeta.textContent = `${img.naturalWidth}x${img.naturalHeight}`;
         downloadNudge.classList.remove('show');
         pixelate();
@@ -2838,8 +2940,8 @@
         sourceImage = img;
         sourceName = 'sample-pixel-art';
         originalPreview.src = img.src;
-        originalPreview.hidden = false;
         originalEmpty.hidden = true;
+        document.getElementById('toolCompare').hidden = false;
         originalMeta.textContent = `${img.naturalWidth}x${img.naturalHeight}`;
         downloadNudge.classList.remove('show');
         pixelate();
@@ -2866,6 +2968,7 @@
         </div>
       `;
       showToast('PNG downloaded. Batch and AI options are below.');
+      flashBtn(download, '✓ Downloaded!');
     }
 
     async function copyPngToClipboard() {
@@ -2881,11 +2984,25 @@
         try {
           await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
           saveHistory();
+          flashBtn(copyPng, '✓ Copied!');
           showToast('PNG copied to clipboard.');
         } catch {
           showToast('Clipboard permission was blocked. Download PNG instead.');
         }
       }, 'image/png');
+
+    function flashBtn(btn, text) {
+      const orig = btn.textContent;
+      btn.textContent = text;
+      btn.style.opacity = '.8';
+      btn.style.transform = 'scale(.96)';
+      window.clearTimeout(flashBtn.timer);
+      flashBtn.timer = window.setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.opacity = '';
+        btn.style.transform = '';
+      }, 1800);
+    }
     }
 
     async function preparePngForSocialShare() {
@@ -2954,6 +3071,14 @@
       if (selectedStyle) selectedStyle.textContent = styleNames[style] || style;
     });
 
+    document.querySelectorAll('.algo-input').forEach((input) => {
+      input.addEventListener('change', () => {
+        document.querySelectorAll('.algo-chip').forEach((chip) => chip.classList.remove('active'));
+        input.closest('.algo-chip').classList.add('active');
+        pixelate();
+      });
+    });
+
     [
       [pixelSizeNumber, pixelSize],
       [colorCountNumber, colorCount],
@@ -3008,6 +3133,15 @@
     renderHistory();
     updateOutputs();
     createSample({ count: false, notify: false });
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 300);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
+
