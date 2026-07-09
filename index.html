@@ -100,6 +100,8 @@
 
     * { box-sizing: border-box; }
 
+    [hidden] { display: none !important; }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -389,7 +391,7 @@
       display: grid;
       grid-template-columns: minmax(300px, 420px) 1fr;
       gap: 22px;
-      align-items: stretch;
+      align-items: start;
       margin: 28px auto 56px;
     }
 
@@ -838,7 +840,7 @@
 
     .canvas-zone {
       display: grid;
-      min-height: 420px;
+      min-height: 360px;
       padding: 18px;
       background-color: #f3f1eb;
       background-image:
@@ -886,7 +888,7 @@
     .preview-body {
       display: grid;
       place-items: center;
-      min-height: 360px;
+      min-height: 300px;
       padding: 14px;
     }
 
